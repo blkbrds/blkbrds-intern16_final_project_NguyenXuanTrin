@@ -1,0 +1,83 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AlamofireNetworkActivityIndicator (2.4.0):
+    - Alamofire (~> 4.8)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - IQKeyboardManagerSwift (6.5.5)
+  - MVVM-Swift (1.1.0)
+  - ObjectMapper (3.5.2)
+  - Realm (4.4.1):
+    - Realm/Headers (= 4.4.1)
+  - Realm/Headers (4.4.1)
+  - RealmSwift (4.4.1):
+    - Realm (= 4.4.1)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SVProgressHUD (2.2.5)
+  - SwifterSwift (4.6.0):
+    - SwifterSwift/AppKit (= 4.6.0)
+    - SwifterSwift/CoreGraphics (= 4.6.0)
+    - SwifterSwift/CoreLocation (= 4.6.0)
+    - SwifterSwift/Foundation (= 4.6.0)
+    - SwifterSwift/MapKit (= 4.6.0)
+    - SwifterSwift/SpriteKit (= 4.6.0)
+    - SwifterSwift/SwiftStdlib (= 4.6.0)
+    - SwifterSwift/UIKit (= 4.6.0)
+  - SwifterSwift/AppKit (4.6.0)
+  - SwifterSwift/CoreGraphics (4.6.0)
+  - SwifterSwift/CoreLocation (4.6.0)
+  - SwifterSwift/Foundation (4.6.0)
+  - SwifterSwift/MapKit (4.6.0)
+  - SwifterSwift/SpriteKit (4.6.0)
+  - SwifterSwift/SwiftStdlib (4.6.0)
+  - SwifterSwift/UIKit (4.6.0)
+  - SwiftLint (0.27.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - AlamofireNetworkActivityIndicator (~> 2.3)
+  - Charts
+  - IQKeyboardManagerSwift (~> 6.2)
+  - MVVM-Swift (= 1.1.0)
+  - ObjectMapper
+  - RealmSwift (~> 4.0)
+  - SDWebImage (= 4.4.6)
+  - SVProgressHUD (~> 2.2)
+  - SwifterSwift (~> 4.6)
+  - SwiftLint (= 0.27)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireNetworkActivityIndicator
+    - Charts
+    - IQKeyboardManagerSwift
+    - MVVM-Swift
+    - ObjectMapper
+    - Realm
+    - RealmSwift
+    - SDWebImage
+    - SVProgressHUD
+    - SwifterSwift
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireNetworkActivityIndicator: 9acc3de3ca6645bf0efed462396b0df13dd3e7b8
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
+  ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
+  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
+  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+
+PODFILE CHECKSUM: 0bbc161331ce46340d34dcc5eb28688aeee6af11
+
+COCOAPODS: 1.5.3
