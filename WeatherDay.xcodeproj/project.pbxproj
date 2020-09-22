@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C10C11E8F76CB8BF36D0075D /* Pods_WeatherDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B510377BC97FF9CA1E349548 /* Pods_WeatherDay.framework */; };
 		D144D840251881AE00EA12FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D144D83F251881AE00EA12FA /* Preview Assets.xcassets */; };
 		D144D84E251881AE00EA12FA /* WeatherDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D84D251881AE00EA12FA /* WeatherDayTests.swift */; };
 		D144D859251881AE00EA12FA /* WeatherDayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D858251881AE00EA12FA /* WeatherDayUITests.swift */; };
@@ -57,6 +58,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36CA9803E14B42BA91EF9C9F /* Pods-WeatherDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDay.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherDay/Pods-WeatherDay.release.xcconfig"; sourceTree = "<group>"; };
+		51770A7EF8B86CA93DBD3EAB /* Pods-WeatherDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherDay/Pods-WeatherDay.debug.xcconfig"; sourceTree = "<group>"; };
+		B510377BC97FF9CA1E349548 /* Pods_WeatherDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D144D833251881AA00EA12FA /* WeatherDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D144D83F251881AE00EA12FA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D144D849251881AE00EA12FA /* WeatherDayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherDayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C10C11E8F76CB8BF36D0075D /* Pods_WeatherDay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +124,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4ABC83184483F3A17BDE0FC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B510377BC97FF9CA1E349548 /* Pods_WeatherDay.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A387F97F25102866A3FDF95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				51770A7EF8B86CA93DBD3EAB /* Pods-WeatherDay.debug.xcconfig */,
+				36CA9803E14B42BA91EF9C9F /* Pods-WeatherDay.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D144D82A251881AA00EA12FA = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +148,8 @@
 				D144D84C251881AE00EA12FA /* WeatherDayTests */,
 				D144D857251881AE00EA12FA /* WeatherDayUITests */,
 				D144D834251881AA00EA12FA /* Products */,
+				6A387F97F25102866A3FDF95 /* Pods */,
+				4ABC83184483F3A17BDE0FC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -311,9 +335,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D144D85D251881AE00EA12FA /* Build configuration list for PBXNativeTarget "WeatherDay" */;
 			buildPhases = (
+				AAD105CB99FF5A1721CEC61A /* [CP] Check Pods Manifest.lock */,
 				D144D82F251881AA00EA12FA /* Sources */,
 				D144D830251881AA00EA12FA /* Frameworks */,
 				D144D831251881AA00EA12FA /* Resources */,
+				4CC71276E17E734E88B7591E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -434,6 +460,71 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4CC71276E17E734E88B7591E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WeatherDay/Pods-WeatherDay-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MVVM-Swift/MVVM.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MVVM.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherDay/Pods-WeatherDay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAD105CB99FF5A1721CEC61A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeatherDay-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D144D82F251881AA00EA12FA /* Sources */ = {
@@ -622,6 +713,7 @@
 		};
 		D144D85E251881AE00EA12FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51770A7EF8B86CA93DBD3EAB /* Pods-WeatherDay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -641,6 +733,7 @@
 		};
 		D144D85F251881AE00EA12FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36CA9803E14B42BA91EF9C9F /* Pods-WeatherDay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
