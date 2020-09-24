@@ -17,12 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        let contentView = LoginViewController()
+        let vc = LoginViewController()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = contentView
+            window.rootViewController = vc
             self.window = window
             window.makeKeyAndVisible()
 
@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
         return shared
     }()
 
-    func changeRootViewController(type: App.TypeScreen) {
+    func changeRoot(type: App.TypeScreen) {
         switch type {
         case .login:
             createLogin()
@@ -64,9 +64,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         let vc = UIViewController()
         if error == nil {
-            changeRootViewController(type: .home)
+            changeRoot(type: .home)
         } else {
-            vc.alert(title: App.ErorSignIn.notResponse)
+            vc.showAlert(title: "Not Response", message: App.ErorSignIn.notResponse)
         }
     }
 
