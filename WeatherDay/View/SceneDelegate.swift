@@ -6,29 +6,77 @@
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
+import GoogleSignIn
+import Firebase
 import UIKit
 import SwiftUI
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        let contentView = LoginViewController()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = contentView
             self.window = window
             window.makeKeyAndVisible()
+
+            FirebaseApp.configure()
+
+            GIDSignIn.sharedInstance()?.clientID = GoogleSignIn.clientID
+            GIDSignIn.sharedInstance()?.delegate = self
+
         }
+    }
+
+    static let shared: SceneDelegate = {
+        guard let shared = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+            fatalError("Cannot case 'SceneDelegate'")
+        }
+        return shared
+    }()
+
+    enum TypeScreen {
+        case login
+        case home
+    }
+
+    func changeRootViewController(type: TypeScreen) {
+        switch type {
+        case .login:
+            createLogin()
+        case .home:
+            createHome()
+        }
+    }
+
+    private func createLogin() {
+        let vc = LoginViewController()
+        let loginNavi = UINavigationController(rootViewController: vc)
+        window?.rootViewController = loginNavi
+    }
+
+    private func createHome() {
+        let vc = HomeViewController()
+        let homeNavi = UINavigationController(rootViewController: vc)
+        window?.rootViewController = homeNavi
+    }
+
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error == nil {
+            changeRootViewController(type: .home)
+        } else {
+            print("eror")
+        }
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

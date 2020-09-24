@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="WeatherDay" customModuleProvider="target">
+            <connections>
+                <outlet property="signInButton" destination="gij-2b-qZQ" id="o3a-Bq-Qph"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_01" translatesAutoresizingMaskIntoConstraints="NO" id="hCL-f9-cbs">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gij-2b-qZQ" customClass="GIDSignInButton">
+                    <rect key="frame" x="87.5" y="527" width="200" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="D8M-1Z-Jm8"/>
+                        <constraint firstAttribute="width" constant="200" id="hDw-0l-WOA"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp6-mT-ozx">
+                    <rect key="frame" x="35" y="140" width="234" height="72"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUB-EP-KmH">
+                    <rect key="frame" x="226.5" y="220" width="113.5" height="72"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="Zp6-mT-ozx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="AIV-OI-PCB"/>
+                <constraint firstItem="hCL-f9-cbs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FcT-gR-yTZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hCL-f9-cbs" secondAttribute="trailing" id="GZA-kl-bPJ"/>
+                <constraint firstItem="Zp6-mT-ozx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="TWo-ae-3j2"/>
+                <constraint firstItem="gij-2b-qZQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Xgb-kM-SL3"/>
+                <constraint firstItem="Zp6-mT-ozx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="140" id="amV-rz-CMV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gij-2b-qZQ" secondAttribute="bottom" constant="80" id="bn4-G1-hon"/>
+                <constraint firstItem="UUB-EP-KmH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="220" id="e54-Lm-glS"/>
+                <constraint firstAttribute="bottom" secondItem="hCL-f9-cbs" secondAttribute="bottom" id="ouh-mo-pWY"/>
+                <constraint firstItem="hCL-f9-cbs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vuY-Wt-WLt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UUB-EP-KmH" secondAttribute="trailing" constant="35" id="xcD-bc-Q1R"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_01" width="202.5" height="360"/>
+    </resources>
+</document>
