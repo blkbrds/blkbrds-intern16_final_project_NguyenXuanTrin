@@ -30,7 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
 
             GIDSignIn.sharedInstance()?.clientID = GoogleSignIn.clientID
             GIDSignIn.sharedInstance()?.delegate = self
-
         }
     }
 
@@ -41,12 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
         return shared
     }()
 
-    enum TypeScreen {
-        case login
-        case home
-    }
-
-    func changeRootViewController(type: TypeScreen) {
+    func changeRootViewController(type: App.TypeScreen) {
         switch type {
         case .login:
             createLogin()
@@ -68,10 +62,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
     }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let vc = UIViewController()
         if error == nil {
             changeRootViewController(type: .home)
         } else {
-            print("eror")
+            vc.alert(title: App.ErorSignIn.notResponse)
         }
     }
 

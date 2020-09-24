@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		371B980234751CBA7E615DCF /* Pods_WeatherDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74EF3E1F7FCE1707F36E8E9 /* Pods_WeatherDay.framework */; };
+		70423FE5251C52E2000D09E2 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70423FE4251C52E2000D09E2 /* Enum.swift */; };
 		704D7687251C3D16008E482B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 704D7686251C3D15008E482B /* GoogleService-Info.plist */; };
 		70CE738C251B5BA700047D96 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7386251B5BA700047D96 /* Measurement.swift */; };
 		70CE738D251B5BA700047D96 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7387251B5BA700047D96 /* String.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		2CE1BCF5AAA8BBC294ECCA63 /* Pods-WeatherDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDay.debug.xcconfig"; path = "Target Support Files/Pods-WeatherDay/Pods-WeatherDay.debug.xcconfig"; sourceTree = "<group>"; };
+		70423FE4251C52E2000D09E2 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		704D7686251C3D15008E482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70CE7386251B5BA700047D96 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		70CE7387251B5BA700047D96 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				70CE7389251B5BA700047D96 /* Font.swift */,
 				70CE738A251B5BA700047D96 /* App.swift */,
 				70CE738B251B5BA700047D96 /* Color.swift */,
+				70423FE4251C52E2000D09E2 /* Enum.swift */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				D144D8A22518826700EA12FA /* DictionaryExt.swift in Sources */,
 				D144D89E2518826700EA12FA /* NSURL.swift in Sources */,
 				D144D8952518826700EA12FA /* Button.swift in Sources */,
+				70423FE5251C52E2000D09E2 /* Enum.swift in Sources */,
 				70CE7390251B5BA700047D96 /* App.swift in Sources */,
 				70CE738E251B5BA700047D96 /* DeviceType.swift in Sources */,
 				D144D8912518826700EA12FA /* ContentView.swift in Sources */,

@@ -23,4 +23,9 @@ extension UIViewController {
         }
         present(alert, animated: true, completion: nil)
     }
+
+    func alert(title: String) {
+        let alert = UIAlertController(title: title)
+        self.present(alert, animated: true)
+    }
 }

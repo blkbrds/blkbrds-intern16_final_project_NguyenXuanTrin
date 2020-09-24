@@ -18,4 +18,8 @@ extension App {
         static let error = "ERROR"
         static let ok = "OK"
     }
+
+    struct ErorSignIn {
+        static let notResponse = "Not responce from Google"
+    }
 }
