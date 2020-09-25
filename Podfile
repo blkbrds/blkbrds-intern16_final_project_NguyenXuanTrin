@@ -22,5 +22,8 @@ target 'WeatherDay' do
     pod 'RealmSwift', '~> 4.0'
     pod 'IQKeyboardManagerSwift', '~> 6.2' # Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more.
     pod 'MVVM-Swift', '1.1.0' # MVVM Architect for iOS Application.
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
 
 end
