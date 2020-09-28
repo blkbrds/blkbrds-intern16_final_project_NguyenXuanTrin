@@ -64,8 +64,8 @@ final class ApiOAuth {
     ///   - failure: failure callback
     ///   - success: success callback
     private func makeRequest(parameters: [String: String],
-        failure: @escaping (_ error: OAuthSwiftError) -> Void,
-        success: @escaping (_ response: OAuthSwiftResponse) -> Void) {
+                             failure: @escaping (_ error: OAuthSwiftError) -> Void,
+                             success: @escaping (_ response: OAuthSwiftResponse) -> Void) {
         let completionHandler: OAuthSwiftHTTPRequest.CompletionHandler? = { result in
             switch result {
             case .success(let response):

@@ -18,7 +18,7 @@ final class Forecasts: Mappable {
     // MARK: - Initialaze
     init?(map: Map) {
     }
-    
+
     init() {
     }
 
