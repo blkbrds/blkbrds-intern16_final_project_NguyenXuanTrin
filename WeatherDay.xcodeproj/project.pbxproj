@@ -23,6 +23,7 @@
 		7042400C2521755C000D09E2 /* DetailsOfDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7042400A2521755C000D09E2 /* DetailsOfDayCell.swift */; };
 		7042400D2521755C000D09E2 /* DetailsOfDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7042400B2521755C000D09E2 /* DetailsOfDayCell.xib */; };
 		7042400F2521756C000D09E2 /* DetailsOfDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7042400E2521756C000D09E2 /* DetailsOfDayViewModel.swift */; };
+		704240122521A21C000D09E2 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704240112521A21C000D09E2 /* APIManager.swift */; };
 		704D7687251C3D16008E482B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 704D7686251C3D15008E482B /* GoogleService-Info.plist */; };
 		70CE738C251B5BA700047D96 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7386251B5BA700047D96 /* Measurement.swift */; };
 		70CE738D251B5BA700047D96 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7387251B5BA700047D96 /* String.swift */; };
@@ -47,7 +48,6 @@
 		D144D8962518826700EA12FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D8702518826700EA12FA /* SceneDelegate.swift */; };
 		D144D8992518826700EA12FA /* RequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D8782518826700EA12FA /* RequestSerializer.swift */; };
 		D144D89A2518826700EA12FA /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D8792518826700EA12FA /* Error.swift */; };
-		D144D89B2518826700EA12FA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D87A2518826700EA12FA /* APIManager.swift */; };
 		D144D89C2518826700EA12FA /* ResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D87B2518826700EA12FA /* ResponseSerializer.swift */; };
 		D144D89D2518826700EA12FA /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D87C2518826700EA12FA /* Api.swift */; };
 		D144D89E2518826700EA12FA /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144D87F2518826700EA12FA /* NSURL.swift */; };
@@ -100,6 +100,7 @@
 		7042400A2521755C000D09E2 /* DetailsOfDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsOfDayCell.swift; sourceTree = "<group>"; };
 		7042400B2521755C000D09E2 /* DetailsOfDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsOfDayCell.xib; sourceTree = "<group>"; };
 		7042400E2521756C000D09E2 /* DetailsOfDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsOfDayViewModel.swift; sourceTree = "<group>"; };
+		704240112521A21C000D09E2 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		704D7686251C3D15008E482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70CE7386251B5BA700047D96 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		70CE7387251B5BA700047D96 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		D144D8722518826700EA12FA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D144D8782518826700EA12FA /* RequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSerializer.swift; sourceTree = "<group>"; };
 		D144D8792518826700EA12FA /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		D144D87A2518826700EA12FA /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		D144D87B2518826700EA12FA /* ResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerializer.swift; sourceTree = "<group>"; };
 		D144D87C2518826700EA12FA /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		D144D87F2518826700EA12FA /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
@@ -402,10 +402,10 @@
 			children = (
 				D144D8782518826700EA12FA /* RequestSerializer.swift */,
 				D144D8792518826700EA12FA /* Error.swift */,
-				D144D87A2518826700EA12FA /* APIManager.swift */,
 				D144D87B2518826700EA12FA /* ResponseSerializer.swift */,
 				D144D87C2518826700EA12FA /* Api.swift */,
 				70423FF7251DCAAC000D09E2 /* ApiOAuth.swift */,
+				704240112521A21C000D09E2 /* APIManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -679,7 +679,6 @@
 				D144D8962518826700EA12FA /* SceneDelegate.swift in Sources */,
 				D144D8A32518826700EA12FA /* UIViewControllerExt.swift in Sources */,
 				D144D8A12518826700EA12FA /* StringExt.swift in Sources */,
-				D144D89B2518826700EA12FA /* APIManager.swift in Sources */,
 				D144D8A22518826700EA12FA /* DictionaryExt.swift in Sources */,
 				7042400F2521756C000D09E2 /* DetailsOfDayViewModel.swift in Sources */,
 				D144D89E2518826700EA12FA /* NSURL.swift in Sources */,
@@ -705,6 +704,7 @@
 				70CE7391251B5BA700047D96 /* Color.swift in Sources */,
 				70CE739D251B610D00047D96 /* HomeViewController.swift in Sources */,
 				D144D8992518826700EA12FA /* RequestSerializer.swift in Sources */,
+				704240122521A21C000D09E2 /* APIManager.swift in Sources */,
 				D144D8932518826700EA12FA /* ViewController.swift in Sources */,
 				D144D8A02518826700EA12FA /* InputViewExt.swift in Sources */,
 				D144D89F2518826700EA12FA /* DataExt.swift in Sources */,

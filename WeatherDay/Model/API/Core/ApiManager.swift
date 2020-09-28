@@ -1,9 +1,9 @@
 //
-//  ApiManager.swift
-//  MyApp
+//  APIManager.swift
+//  WeatherDay
 //
-//  Created by iOSTeam on 2/21/18.
-//  Copyright © 2018 Asian Tech Co., Ltd. All rights reserved.
+//  Created by PCI0004 on 9/28/20.
+//  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
 import Foundation
