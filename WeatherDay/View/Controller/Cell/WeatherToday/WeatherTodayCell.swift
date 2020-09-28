@@ -23,7 +23,7 @@ class WeatherTodayCell: UITableViewCell {
             updateView()
         }
     }
-    
+
     // MARK: - Private Functions
     private func updateView() {
         guard let viewModel = viewModel else { return }
@@ -32,16 +32,4 @@ class WeatherTodayCell: UITableViewCell {
         temperatureMaxLabel.text = String(viewModel.temperatureMax) + "º"
         temperatureTodayLabel.text = String(viewModel.temperatureToday) + "º"
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

@@ -19,7 +19,7 @@ enum YahooWeatherAPIUnitType: String {
     case metric = "c"
 }
 
-fileprivate struct YahooWeatherAPIClientCredentials {
+private struct YahooWeatherAPIClientCredentials {
     var appId = ""
     var clientId = ""
     var clientSecret = ""
@@ -56,7 +56,6 @@ final class ApiOAuth {
     func weather(location: String, failure: @escaping (_ error: OAuthSwiftError) -> Void, success: @escaping (_ response: OAuthSwiftResponse) -> Void, responseFormat: YahooWeatherAPIResponseType = .json, unit: YahooWeatherAPIUnitType = .metric) {
         self.makeRequest(parameters: ["location": location, "format": responseFormat.rawValue, "u": unit.rawValue], failure: failure, success: success)
     }
-
 
     /// Performs the API request with the OAuthSwift client
     ///

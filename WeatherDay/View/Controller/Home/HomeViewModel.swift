@@ -48,8 +48,4 @@ final class HomeViewModel {
         let viewModel = WeatherTodayViewModel(weatherStatus: current.weatherStatus, temperatureMin: forecasts.temperatureMin, temperatureMax: forecasts.temperatureMax, temperatureToday: current.temperatureToday)
         return viewModel
     }
-    
-//    func cellForRowAt() -> WeatherTodayViewModel {
-//        return WeatherTodayViewModel(weatherStatus: current.weatherStatus, temperatureMin: forecasts.temperatureMin, temperatureMax: forecasts.temperatureMax, temperatureToday: current.temperatureToday)
-//    }
 }

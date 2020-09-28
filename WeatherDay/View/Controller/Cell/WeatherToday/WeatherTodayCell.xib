@@ -45,13 +45,13 @@
                     <rect key="frame" x="15" y="60" width="239" height="40"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qke-tA-P8j">
-                            <rect key="frame" x="0.0" y="0.0" width="119.66666666666667" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="76.333333333333329" height="40"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="A4b-Rg-p2p">
-                                    <rect key="frame" x="0.0" y="1" width="54.666666666666664" height="38.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="1" width="33.333333333333336" height="38.666666666666671"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsJ-ff-iKe">
-                                    <rect key="frame" x="64.666666666666671" y="0.0" width="55" height="40"/>
+                                    <rect key="frame" x="43.333333333333336" y="0.0" width="33.000000000000007" height="40"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -60,13 +60,13 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Haw-xR-g3a">
-                            <rect key="frame" x="119.66666666666666" y="0.0" width="119.33333333333334" height="40"/>
+                            <rect key="frame" x="76.333333333333314" y="0.0" width="76.666666666666686" height="40"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.down.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zBu-06-bO0">
-                                    <rect key="frame" x="0.0" y="1" width="54.666666666666664" height="38.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="1" width="33.333333333333336" height="38.666666666666671"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eeo-nG-B6w">
-                                    <rect key="frame" x="64.666666666666686" y="0.0" width="54.666666666666657" height="40"/>
+                                    <rect key="frame" x="43.333333333333329" y="0.0" width="33.333333333333329" height="40"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -78,11 +78,11 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Haw-xR-g3a" firstAttribute="width" secondItem="Qke-tA-P8j" secondAttribute="width" id="0U4-tG-P7J"/>
-                        <constraint firstAttribute="trailing" secondItem="Haw-xR-g3a" secondAttribute="trailing" id="3GS-Or-nb8"/>
                         <constraint firstItem="Qke-tA-P8j" firstAttribute="leading" secondItem="5MC-O8-tuw" secondAttribute="leading" id="DCT-GF-8Ku"/>
                         <constraint firstAttribute="height" constant="40" id="Ff6-OD-44g"/>
                         <constraint firstItem="Qke-tA-P8j" firstAttribute="top" secondItem="5MC-O8-tuw" secondAttribute="top" id="G0W-QY-Y96"/>
-                        <constraint firstItem="Qke-tA-P8j" firstAttribute="width" secondItem="5MC-O8-tuw" secondAttribute="width" multiplier="0.5" id="JRe-F5-eaZ"/>
+                        <constraint firstItem="Qke-tA-P8j" firstAttribute="width" secondItem="5MC-O8-tuw" secondAttribute="width" multiplier="0.32" id="JRe-F5-eaZ"/>
+                        <constraint firstItem="Haw-xR-g3a" firstAttribute="leading" secondItem="Qke-tA-P8j" secondAttribute="trailing" id="PD7-Xn-zsD"/>
                         <constraint firstItem="Haw-xR-g3a" firstAttribute="bottom" secondItem="Qke-tA-P8j" secondAttribute="bottom" id="r09-1I-kh8"/>
                         <constraint firstItem="Haw-xR-g3a" firstAttribute="top" secondItem="Qke-tA-P8j" secondAttribute="top" id="sML-LX-vJO"/>
                         <constraint firstAttribute="bottom" secondItem="Qke-tA-P8j" secondAttribute="bottom" id="zIY-iX-9fW"/>

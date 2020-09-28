@@ -23,5 +23,3 @@ struct Facebook {
 struct GoogleSignIn {
     static var clientID: String { return "958316485834-6mlci9nvqld9b4gm03q7g6h76rvgqp3g.apps.googleusercontent.com" }
 }
-
-

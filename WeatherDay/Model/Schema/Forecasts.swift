@@ -15,7 +15,6 @@ final class Forecasts: Mappable {
     var temperatureMin: Int = 0
     var temperatureMax: Int = 0
 
-
     // MARK: - Initialaze
     init?(map: Map) {
     }

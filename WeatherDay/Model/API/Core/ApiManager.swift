@@ -21,7 +21,6 @@ enum APIResult {
     case failure(String)
 }
 
-
 let api = ApiManager()
 
 final class ApiManager {

@@ -18,7 +18,7 @@ final class CurrentObservation: Mappable {
     // MARK: - Initialaze
     init?(map: Map) {
     }
-    
+
     init() {
     }
 
