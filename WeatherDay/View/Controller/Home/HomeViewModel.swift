@@ -13,6 +13,7 @@ final class HomeViewModel {
     // MARK: - Properties
     var forecasts: Forecasts = Forecasts()
     var current: CurrentObservation = CurrentObservation()
+    var listEveryHours: [EveryHours] = []
 
     // MARK: - Functions
 //    func loadAPI1(completion: @escaping DataCompletion<Forecasts>) {
@@ -39,13 +40,24 @@ final class HomeViewModel {
     func numberOfSections() -> Int {
         return 1
     }
-    
+
     func numberOfRowsInSection() -> Int {
-        return 1
+        return 2
     }
-    
+
     func viewModelForCellOne() -> WeatherTodayViewModel {
         let viewModel = WeatherTodayViewModel(weatherStatus: current.weatherStatus, temperatureMin: forecasts.temperatureMin, temperatureMax: forecasts.temperatureMax, temperatureToday: current.temperatureToday)
         return viewModel
+    }
+    
+    func viewModelForCellTwo() -> EveryHoursTableViewCellViewModel? {
+        getListCoffee()
+        let everyHours = listEveryHours
+        print("a")
+        return EveryHoursTableViewCellViewModel(listData: everyHours)
+    }
+    
+    func getListCoffee() {
+        listEveryHours = DataforCell.listEveryHours()
     }
 }

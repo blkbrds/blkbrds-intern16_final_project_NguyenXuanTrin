@@ -12,7 +12,7 @@ import Foundation
 final class CurrentObservation: Mappable {
 
     // MARK: Properties
-    var weatherStatus: String = "Trin"
+    var weatherStatus: String = ""
     var temperatureToday: Int = 0
 
     // MARK: - Initialaze
