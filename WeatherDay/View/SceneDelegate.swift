@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        let vc = LoginViewController()
+        let vc = HomeViewController()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
             window.rootViewController = vc
             self.window = window
             window.makeKeyAndVisible()
+            createHome()
 
             FirebaseApp.configure()
 

@@ -20,6 +20,21 @@ final class Api {
     }
 }
 
+struct API {
+    //singleton
+    private static var shareAPI: API = {
+        let shareAPI = API()
+        return shareAPI
+    }()
+
+    static func shared() -> API {
+        return shareAPI
+    }
+
+    //init
+    private init() { }
+}
+
 protocol URLStringConvertible {
     var urlString: String { get }
 }
