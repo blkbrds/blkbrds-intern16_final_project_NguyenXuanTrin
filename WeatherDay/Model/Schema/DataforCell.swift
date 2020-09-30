@@ -25,4 +25,17 @@ final class DataforCell {
             EveryHours(percentOfRain: 28, weatherShowEveryHours: "", temperature: 23, timeEveryHours: "00:00"),]
         return everyHoursArray
     }
+
+    static func listWeatherDaily() -> [WeatherDaily] {
+        let listWeatherDaily: [WeatherDaily] = [
+            WeatherDaily(dayOfWeek: "Monday", temperatureMin: 18, temperatureMax: 25),
+            WeatherDaily(dayOfWeek: "Tuesday", temperatureMin: 20, temperatureMax: 25),
+            WeatherDaily(dayOfWeek: "Wednesday", temperatureMin: 18, temperatureMax: 28),
+            WeatherDaily(dayOfWeek: "Thursday", temperatureMin: 25, temperatureMax: 28),
+            WeatherDaily(dayOfWeek: "Friday", temperatureMin: 21, temperatureMax: 25),
+            WeatherDaily(dayOfWeek: "Saturday", temperatureMin: 20, temperatureMax: 28),
+            WeatherDaily(dayOfWeek: "Sunday", temperatureMin: 25, temperatureMax: 27)
+        ]
+        return listWeatherDaily
+    }
 }

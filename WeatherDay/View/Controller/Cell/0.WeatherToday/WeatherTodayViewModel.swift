@@ -18,7 +18,7 @@ final class WeatherTodayViewModel {
 
     // MARK: - Initialaze
     init(weatherStatus: String, temperatureMin: Int, temperatureMax: Int, temperatureToday: Int) {
-        self.weatherStatus = "Mưa to"
+        self.weatherStatus = "Severe Thunderstorms"
         self.temperatureMin = 30
         self.temperatureMax = 35
         self.temperatureToday = 32

@@ -20,7 +20,6 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Properties
     var viewModel: HomeViewModel = HomeViewModel()
-    var weatherTodayCellId: String = "WeatherTodayCell"
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -52,8 +51,9 @@ final class HomeViewController: UIViewController {
     }
 
     private func configTableview() {
-        tableView.register(nibWithCellClass: WeatherTodayCell.self)
+        tableView.register(nibWithCellClass: WeatherTodayTableViewCell.self)
         tableView.register(nibWithCellClass: EveryHoursTableViewCell.self)
+        tableView.register(nibWithCellClass: DailyTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
@@ -72,36 +72,50 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection()
+        return viewModel.numberOfRowsInSection(inSection: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            let cellOne = tableView.dequeueReusableCell(withClass: WeatherTodayCell.self, for: indexPath)
-            cellOne.viewModel = viewModel.viewModelForCellOne()
-            cellOne.backgroundColor = .clear
-            return cellOne
-        case 1:
-            let cellTwo = tableView.dequeueReusableCell(withClass: EveryHoursTableViewCell.self, for: indexPath)
-            cellTwo.viewModel = viewModel.viewModelForCellTwo()
-            cellTwo.backgroundColor = .clear
-            return cellTwo
-        default:
-            return UITableViewCell()
+        guard let sectionType = HomeViewModel.HomeSectionType(rawValue: indexPath.section) else { return UITableViewCell() }
+        switch sectionType {
+        case .weatherToday:
+            guard let rowType = HomeViewModel.WeatherToday(rawValue: indexPath.row) else {
+                return UITableViewCell()
+            }
+            switch rowType {
+            case .row0:
+                let cellOne = tableView.dequeueReusableCell(withClass: WeatherTodayTableViewCell.self, for: indexPath)
+                cellOne.viewModel = viewModel.viewModelForCellOne()
+                cellOne.backgroundColor = .clear
+                return cellOne
+            case .row1:
+                let cellTwo = tableView.dequeueReusableCell(withClass: EveryHoursTableViewCell.self, for: indexPath)
+                cellTwo.viewModel = viewModel.viewModelForCellTwo()
+                cellTwo.backgroundColor = .clear
+                return cellTwo
+            }
+        case .weatherDaily:
+            let cellThree = tableView.dequeueReusableCell(withClass: DailyTableViewCell.self, for: indexPath)
+            cellThree.viewModel = viewModel.viewModelForCellThree(at: indexPath)
+            return cellThree
         }
     }
 }
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return 220
-        case 1:
-            return 220
-        default:
-            return UITableView.automaticDimension
+        let sectionType = HomeViewModel.HomeSectionType(rawValue: indexPath.section)
+        switch sectionType {
+        case .weatherToday:
+            let rowType = HomeViewModel.WeatherToday(rawValue: indexPath.row)
+            switch rowType {
+            case .row0: return 220
+            case .row1: return 230
+            default: return UITableView.automaticDimension
+                }
+        case .weatherDaily:
+            return 40
+        default: return UITableView.automaticDimension
         }
     }
 }

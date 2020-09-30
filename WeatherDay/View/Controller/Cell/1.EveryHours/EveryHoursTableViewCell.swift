@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EveryHoursTableViewCell: UITableViewCell {
+final class EveryHoursTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -61,9 +61,9 @@ extension EveryHoursTableViewCell: UICollectionViewDelegateFlowLayout {
         temperature = temp.temperature
         temps.append(temperature * 220 / maxTemp)
         if temperature > minTemp && temperature < maxTemp {
-            return CGSize(width: 70, height: temperature * 220 / maxTemp)
+            return CGSize(width: 60, height: temperature * 220 / maxTemp)
         } else {
-            return CGSize(width: 70, height: 220)
+            return CGSize(width: 60, height: 220)
         }
     }
 }

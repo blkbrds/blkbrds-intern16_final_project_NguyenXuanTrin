@@ -10,54 +10,88 @@ import Foundation
 
 final class HomeViewModel {
 
+    enum HomeSectionType: Int {
+        case weatherToday
+        case weatherDaily
+        case weatherDetails
+
+        var numberOfRowInSections: Int {
+            switch self {
+            case .weatherToday: return 2
+            case .weatherDaily: return 1
+            case .weatherDetails: return 1
+            }
+        }
+
+        static var count: Int {
+            return HomeSectionType.weatherToday.hashValue + 1
+        }
+    }
+
+    enum WeatherToday: Int {
+        case row0
+        case row1
+    }
+
+    enum WeatherDetails: Int {
+        case row0
+        case row1
+        case row2
+        case row3
+        case row4
+        case row5
+        case row6
+
+        static var count: Int {
+            return 7
+        }
+    }
+
     // MARK: - Properties
     var forecasts: Forecasts = Forecasts()
     var current: CurrentObservation = CurrentObservation()
     var listEveryHours: [EveryHours] = []
+    var listWeatherDailys: [WeatherDaily] = []
 
     // MARK: - Functions
-//    func loadAPI1(completion: @escaping DataCompletion<Forecasts>) {
-//        APIManager.Forecasts.getForecastsByCity() { result in
-//            switch result {
-//            case .failure(let eror):
-//                completion(.failure(APIError.error("eror")))
-//            case .success:
-//                completion(.success(forecastsResult))
-//            }
-//        }
-//    }
-
-//    func loadAPI2(completion: @escaping APICompletion<CurrentObservation>) {
-//        APIManager.CurrentObservation.getCurrentByCity() { result in
-//            switch result {
-//            case .failure(let eror):
-//                completion(.failure(APIError.error("eror")))
-//            case .success(let currentResult):
-//                completion(.success(currentResult))
-//            }
-//        }
-//    }
     func numberOfSections() -> Int {
-        return 1
+        return 2
     }
 
-    func numberOfRowsInSection() -> Int {
-        return 2
+    func numberOfRowsInSection(inSection section: Int) -> Int {
+        guard let sectionType = HomeSectionType(rawValue: section) else { return 0 }
+        switch sectionType {
+        case .weatherToday:
+            return 2
+        case .weatherDaily:
+            return 7
+        case .weatherDetails:
+            return 1
+        }
     }
 
     func viewModelForCellOne() -> WeatherTodayViewModel {
         let viewModel = WeatherTodayViewModel(weatherStatus: current.weatherStatus, temperatureMin: forecasts.temperatureMin, temperatureMax: forecasts.temperatureMax, temperatureToday: current.temperatureToday)
         return viewModel
     }
-    
+
     func viewModelForCellTwo() -> EveryHoursTableViewCellViewModel? {
-        getListCoffee()
+        getListEveryHours()
         let everyHours = listEveryHours
-        print("a")
         return EveryHoursTableViewCellViewModel(listData: everyHours)
     }
-    
-    func getListCoffee() {
+
+    func viewModelForCellThree(at indexPath: IndexPath) -> DailyTableCellViewModel? {
+        getListWeatherDaily()
+        let weatherDaily = listWeatherDailys[indexPath.row]
+        return DailyTableCellViewModel(weatherDaily: weatherDaily)
+    }
+
+    private func getListEveryHours() {
         listEveryHours = DataforCell.listEveryHours()
+    }
+
+    private func getListWeatherDaily() {
+        listWeatherDailys = DataforCell.listWeatherDaily()
     }
 }

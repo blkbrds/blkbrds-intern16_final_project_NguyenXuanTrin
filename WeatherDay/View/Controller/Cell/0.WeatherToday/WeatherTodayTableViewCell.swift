@@ -1,14 +1,14 @@
 //
-//  WeatherTodayCell.swift
+//  WeatherTodayTableViewCell.swift
 //  WeatherDay
 //
-//  Created by PCI0004 on 9/27/20.
+//  Created by PCI0004 on 9/30/20.
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
 import UIKit
 
-final class WeatherTodayCell: UITableViewCell {
+final class WeatherTodayTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var weatherShowImage: UIImageView!

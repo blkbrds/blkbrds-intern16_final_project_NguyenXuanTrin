@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EveryHoursCollectionViewCell: UICollectionViewCell {
+final class EveryHoursCollectionViewCell: UICollectionViewCell {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var percentOfRainLabel: UILabel!
@@ -28,12 +28,7 @@ class EveryHoursCollectionViewCell: UICollectionViewCell {
     }
     
     private func configView() {
-        backgroundColor = .gray
-        cornerRadius = 15
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        cornerRadius = 10
     }
     
     func updateView() {
