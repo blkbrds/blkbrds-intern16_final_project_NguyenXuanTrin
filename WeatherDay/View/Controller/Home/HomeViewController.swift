@@ -58,38 +58,6 @@ final class HomeViewController: UIViewController {
         tableView.backgroundColor = .clear
     }
 
-//    private func loadData() {
-//        viewModel.loadAPI1(completion: { result in
-//            switch result {
-//            case .success(let forecasts):
-//                DispatchQueue.main.async {
-//                    self.viewModel.forecasts = forecasts
-//                    self.loadWeatherCurrent()
-//                }
-//            case .failure(let eror):
-//                DispatchQueue.main.async {
-//                    print(eror)
-//                }
-//            }
-//        })
-//    }
-
-//    private func loadWeatherCurrent() {
-//        viewModel.loadAPI2(completion: { result in
-//            switch result {
-//            case .success(let current):
-//                DispatchQueue.main.async {
-//                    self.viewModel.current = current
-//                    self.configUI()
-//                }
-//            case .failure(let eror):
-//                DispatchQueue.main.async {
-//                    print(eror)
-//                }
-//            }
-//        })
-//    }
-
     // MARK: - Objc private functions
     @objc private func pushToSearch() {
         let vc = SearchViewController()

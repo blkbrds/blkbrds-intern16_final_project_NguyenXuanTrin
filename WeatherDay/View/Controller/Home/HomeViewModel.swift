@@ -15,27 +15,6 @@ final class HomeViewModel {
     var current: CurrentObservation = CurrentObservation()
 
     // MARK: - Functions
-//    func loadAPI1(completion: @escaping DataCompletion<Forecasts>) {
-//        APIManager.Forecasts.getForecastsByCity() { result in
-//            switch result {
-//            case .failure(let eror):
-//                completion(.failure(APIError.error("eror")))
-//            case .success:
-//                completion(.success(forecastsResult))
-//            }
-//        }
-//    }
-
-//    func loadAPI2(completion: @escaping APICompletion<CurrentObservation>) {
-//        APIManager.CurrentObservation.getCurrentByCity() { result in
-//            switch result {
-//            case .failure(let eror):
-//                completion(.failure(APIError.error("eror")))
-//            case .success(let currentResult):
-//                completion(.success(currentResult))
-//            }
-//        }
-//    }
     func numberOfSections() -> Int {
         return 1
     }
