@@ -26,7 +26,6 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = Configure.titleName
         configNavi()
-        fullScreenImageView.addBlurEffect()
         configTableview()
     }
 
@@ -53,6 +52,7 @@ final class HomeViewController: UIViewController {
     private func configTableview() {
         tableView.register(nibWithCellClass: WeatherTodayTableViewCell.self)
         tableView.register(nibWithCellClass: EveryHoursTableViewCell.self)
+        tableView.register(nibWithCellClass: SubTableViewCell.self)
         tableView.register(nibWithCellClass: DailyTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
@@ -94,11 +94,23 @@ extension HomeViewController: UITableViewDataSource {
                 cellTwo.backgroundColor = .clear
                 return cellTwo
             }
-        case .weatherDaily:
-            let cellThree = tableView.dequeueReusableCell(withClass: DailyTableViewCell.self, for: indexPath)
-            cellThree.viewModel = viewModel.viewModelForCellThree(at: indexPath)
-            return cellThree
+        case .weatherDayofWeek:
+//            guard let rowType = HomeViewModel.WeatherDailys(rawValue: indexPath.row) else {
+//                return UITableViewCell()
+//            }
+            switch indexPath.row {
+            case 0:
+                let cellThree = tableView.dequeueReusableCell(withClass: SubTableViewCell.self)
+                return cellThree
+            default:
+                let cellFour = tableView.dequeueReusableCell(withClass: DailyTableViewCell.self, for: indexPath)
+                cellFour.viewModel = viewModel.viewModelForCellFour(at: indexPath)
+                return cellFour
+            }
+        case .weatherDetails:
+            return UITableViewCell()
         }
+
     }
 }
 
@@ -112,9 +124,16 @@ extension HomeViewController: UITableViewDelegate {
             case .row0: return 220
             case .row1: return 230
             default: return UITableView.automaticDimension
-                }
-        case .weatherDaily:
-            return 40
+            }
+        case .weatherDayofWeek:
+            let rowType = HomeViewModel.WeatherDailys(rawValue: indexPath.row)
+            switch rowType {
+            case .row0: return 32
+            case .row1: return 64
+            default: return UITableView.automaticDimension
+            }
+        case .weatherDetails:
+            return 70
         default: return UITableView.automaticDimension
         }
     }

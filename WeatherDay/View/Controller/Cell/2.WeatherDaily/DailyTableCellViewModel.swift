@@ -16,6 +16,9 @@ final class DailyTableCellViewModel {
     var dayOfWeek: String {
         return weatherDaily.dayOfWeek
     }
+    var percentHumidity: Int {
+        return weatherDaily.percentHumidity
+    }
     var temperatureMin: Int {
         return weatherDaily.temperatureMin
     }

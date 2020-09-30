@@ -12,13 +12,13 @@ final class HomeViewModel {
 
     enum HomeSectionType: Int {
         case weatherToday
-        case weatherDaily
+        case weatherDayofWeek
         case weatherDetails
 
         var numberOfRowInSections: Int {
             switch self {
             case .weatherToday: return 2
-            case .weatherDaily: return 1
+            case .weatherDayofWeek: return 2
             case .weatherDetails: return 1
             }
         }
@@ -32,19 +32,10 @@ final class HomeViewModel {
         case row0
         case row1
     }
-
-    enum WeatherDetails: Int {
+    
+    enum WeatherDailys: Int {
         case row0
         case row1
-        case row2
-        case row3
-        case row4
-        case row5
-        case row6
-
-        static var count: Int {
-            return 7
-        }
     }
 
     // MARK: - Properties
@@ -63,10 +54,10 @@ final class HomeViewModel {
         switch sectionType {
         case .weatherToday:
             return 2
-        case .weatherDaily:
-            return 7
+        case .weatherDayofWeek:
+            return 8
         case .weatherDetails:
-            return 1
+            return 2
         }
     }
 
@@ -81,10 +72,10 @@ final class HomeViewModel {
         return EveryHoursTableViewCellViewModel(listData: everyHours)
     }
 
-    func viewModelForCellThree(at indexPath: IndexPath) -> DailyTableCellViewModel? {
+    func viewModelForCellFour(at indexPath: IndexPath) -> DailyTableCellViewModel? {
         getListWeatherDaily()
-        let weatherDaily = listWeatherDailys[indexPath.row]
-        return DailyTableCellViewModel(weatherDaily: weatherDaily)
+        let temp = listWeatherDailys[indexPath.row - 1]
+        return DailyTableCellViewModel(weatherDaily: temp)
     }
 
     private func getListEveryHours() {

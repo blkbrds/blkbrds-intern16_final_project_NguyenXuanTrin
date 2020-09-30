@@ -28,13 +28,13 @@ final class DataforCell {
 
     static func listWeatherDaily() -> [WeatherDaily] {
         let listWeatherDaily: [WeatherDaily] = [
-            WeatherDaily(dayOfWeek: "Monday", temperatureMin: 18, temperatureMax: 25),
-            WeatherDaily(dayOfWeek: "Tuesday", temperatureMin: 20, temperatureMax: 25),
-            WeatherDaily(dayOfWeek: "Wednesday", temperatureMin: 18, temperatureMax: 28),
-            WeatherDaily(dayOfWeek: "Thursday", temperatureMin: 25, temperatureMax: 28),
-            WeatherDaily(dayOfWeek: "Friday", temperatureMin: 21, temperatureMax: 25),
-            WeatherDaily(dayOfWeek: "Saturday", temperatureMin: 20, temperatureMax: 28),
-            WeatherDaily(dayOfWeek: "Sunday", temperatureMin: 25, temperatureMax: 27)
+            WeatherDaily(dayOfWeek: "Monday", percentHumidity: 20, temperatureMin: 18, temperatureMax: 25),
+            WeatherDaily(dayOfWeek: "Tuesday", percentHumidity: 80, temperatureMin: 20, temperatureMax: 25),
+            WeatherDaily(dayOfWeek: "Wednesday", percentHumidity: 95, temperatureMin: 18, temperatureMax: 28),
+            WeatherDaily(dayOfWeek: "Thursday", percentHumidity: 30, temperatureMin: 25, temperatureMax: 28),
+            WeatherDaily(dayOfWeek: "Friday", percentHumidity: 25, temperatureMin: 21, temperatureMax: 25),
+            WeatherDaily(dayOfWeek: "Saturday", percentHumidity: 24, temperatureMin: 20, temperatureMax: 28),
+            WeatherDaily(dayOfWeek: "Sunday", percentHumidity: 28, temperatureMin: 25, temperatureMax: 27)
         ]
         return listWeatherDaily
     }
