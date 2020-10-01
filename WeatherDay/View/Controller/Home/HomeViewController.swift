@@ -54,6 +54,8 @@ final class HomeViewController: UIViewController {
         tableView.register(nibWithCellClass: EveryHoursTableViewCell.self)
         tableView.register(nibWithCellClass: SubTableViewCell.self)
         tableView.register(nibWithCellClass: DailyTableViewCell.self)
+        tableView.register(nibWithCellClass: DetailsOfDayCell.self)
+        tableView.register(nibWithCellClass: MapTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
@@ -95,9 +97,6 @@ extension HomeViewController: UITableViewDataSource {
                 return cellTwo
             }
         case .weatherDayofWeek:
-//            guard let rowType = HomeViewModel.WeatherDailys(rawValue: indexPath.row) else {
-//                return UITableViewCell()
-//            }
             switch indexPath.row {
             case 0:
                 let cellThree = tableView.dequeueReusableCell(withClass: SubTableViewCell.self)
@@ -108,9 +107,13 @@ extension HomeViewController: UITableViewDataSource {
                 return cellFour
             }
         case .weatherDetails:
-            return UITableViewCell()
+            let cellFive = tableView.dequeueReusableCell(withClass: DetailsOfDayCell.self)
+            cellFive.viewModel = viewModel.viewModelForCellFive()
+            return cellFive
+        case .map:
+            let cellSix = tableView.dequeueReusableCell(withClass: MapTableViewCell.self)
+            return cellSix
         }
-
     }
 }
 
@@ -122,7 +125,7 @@ extension HomeViewController: UITableViewDelegate {
             let rowType = HomeViewModel.WeatherToday(rawValue: indexPath.row)
             switch rowType {
             case .row0: return 220
-            case .row1: return 230
+            case .row1: return 220
             default: return UITableView.automaticDimension
             }
         case .weatherDayofWeek:
@@ -133,7 +136,9 @@ extension HomeViewController: UITableViewDelegate {
             default: return UITableView.automaticDimension
             }
         case .weatherDetails:
-            return 70
+            return 199
+        case .map:
+            return 220
         default: return UITableView.automaticDimension
         }
     }

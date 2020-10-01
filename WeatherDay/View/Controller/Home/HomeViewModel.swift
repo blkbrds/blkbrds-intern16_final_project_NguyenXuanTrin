@@ -14,12 +14,14 @@ final class HomeViewModel {
         case weatherToday
         case weatherDayofWeek
         case weatherDetails
+        case map
 
         var numberOfRowInSections: Int {
             switch self {
             case .weatherToday: return 2
             case .weatherDayofWeek: return 2
             case .weatherDetails: return 1
+            case .map: return 1
             }
         }
 
@@ -43,10 +45,11 @@ final class HomeViewModel {
     var current: CurrentObservation = CurrentObservation()
     var listEveryHours: [EveryHours] = []
     var listWeatherDailys: [WeatherDaily] = []
+    var weatherDayOfDetails: WeatherDetails = WeatherDetails(temperature: 0, humidity: 0, visibility: 0, uvIndex: "", dewpoint: 0)
 
     // MARK: - Functions
     func numberOfSections() -> Int {
-        return 2
+        return 4
     }
 
     func numberOfRowsInSection(inSection section: Int) -> Int {
@@ -57,7 +60,9 @@ final class HomeViewModel {
         case .weatherDayofWeek:
             return 8
         case .weatherDetails:
-            return 2
+            return 1
+        case .map:
+            return 1
         }
     }
 
@@ -77,6 +82,13 @@ final class HomeViewModel {
         let temp = listWeatherDailys[indexPath.row - 1]
         return DailyTableCellViewModel(weatherDaily: temp)
     }
+    
+    func viewModelForCellFive() -> DetailsOfDayViewModel? {
+        getWeatherDetails()
+        let temp = weatherDayOfDetails
+        return DetailsOfDayViewModel(weatherDetails: temp)
+    }
+    
 
     private func getListEveryHours() {
         listEveryHours = DataforCell.listEveryHours()
@@ -84,5 +96,9 @@ final class HomeViewModel {
 
     private func getListWeatherDaily() {
         listWeatherDailys = DataforCell.listWeatherDaily()
+    }
+    
+    private func getWeatherDetails() {
+        weatherDayOfDetails = DataforCell.cellWeatherDetails()
     }
 }

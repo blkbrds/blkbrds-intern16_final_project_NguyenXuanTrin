@@ -38,4 +38,9 @@ final class DataforCell {
         ]
         return listWeatherDaily
     }
+    
+    static func cellWeatherDetails() -> WeatherDetails {
+        let cellWeatherDetails: WeatherDetails = WeatherDetails(temperature: 28, humidity: 30, visibility: 40, uvIndex: "Low 1", dewpoint: 25)
+        return cellWeatherDetails
+    }
 }
