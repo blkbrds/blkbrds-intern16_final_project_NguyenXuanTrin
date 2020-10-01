@@ -11,10 +11,10 @@ import Foundation
 final class WeatherTodayViewModel {
 
     // MARK: - Properties
-    private(set) var weatherStatus: String
-    private(set) var temperatureMin: Int
-    private(set) var temperatureMax: Int
-    private(set) var temperatureToday: Int
+    var weatherStatus: String
+    var temperatureMin: Int
+    var temperatureMax: Int
+    var temperatureToday: Int
 
     // MARK: - Initialaze
     init(weatherStatus: String, temperatureMin: Int, temperatureMax: Int, temperatureToday: Int) {
