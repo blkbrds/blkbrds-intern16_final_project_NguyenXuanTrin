@@ -14,8 +14,6 @@
 		704076A925249951009A09FD /* WeatherDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076A825249951009A09FD /* WeatherDetails.swift */; };
 		704076AC2524F380009A09FD /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076AA2524F380009A09FD /* MapTableViewCell.swift */; };
 		704076AD2524F380009A09FD /* MapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704076AB2524F380009A09FD /* MapTableViewCell.xib */; };
-		704076B025256DCC009A09FD /* SunandWindTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076AE25256DCC009A09FD /* SunandWindTableViewCell.swift */; };
-		704076B125256DCC009A09FD /* SunandWindTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704076AF25256DCC009A09FD /* SunandWindTableViewCell.xib */; };
 		70423FE5251C52E2000D09E2 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70423FE4251C52E2000D09E2 /* Enum.swift */; };
 		70423FED251D8E87000D09E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70423FEB251D8E87000D09E2 /* SearchViewController.swift */; };
 		70423FEE251D8E87000D09E2 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70423FEC251D8E87000D09E2 /* SearchViewController.xib */; };
@@ -110,8 +108,6 @@
 		704076A825249951009A09FD /* WeatherDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetails.swift; sourceTree = "<group>"; };
 		704076AA2524F380009A09FD /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		704076AB2524F380009A09FD /* MapTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapTableViewCell.xib; sourceTree = "<group>"; };
-		704076AE25256DCC009A09FD /* SunandWindTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunandWindTableViewCell.swift; sourceTree = "<group>"; };
-		704076AF25256DCC009A09FD /* SunandWindTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SunandWindTableViewCell.xib; sourceTree = "<group>"; };
 		70423FE4251C52E2000D09E2 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		70423FEB251D8E87000D09E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		70423FEC251D8E87000D09E2 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
@@ -279,8 +275,6 @@
 		7042401D2521BB9C000D09E2 /* 5.SunandWind */ = {
 			isa = PBXGroup;
 			children = (
-				704076AE25256DCC009A09FD /* SunandWindTableViewCell.swift */,
-				704076AF25256DCC009A09FD /* SunandWindTableViewCell.xib */,
 			);
 			path = 5.SunandWind;
 			sourceTree = "<group>";
@@ -696,7 +690,6 @@
 				704D7687251C3D16008E482B /* GoogleService-Info.plist in Resources */,
 				D144D8A92518826800EA12FA /* .gitkeep in Resources */,
 				70E9C4952524394F0032DF67 /* DailyTableViewCell.xib in Resources */,
-				704076B125256DCC009A09FD /* SunandWindTableViewCell.xib in Resources */,
 				70423FEE251D8E87000D09E2 /* SearchViewController.xib in Resources */,
 				704076A6252498B1009A09FD /* DetailsOfDayCell.xib in Resources */,
 				70CE739E251B610D00047D96 /* HomeViewController.xib in Resources */,
@@ -811,7 +804,6 @@
 				704076A7252498B1009A09FD /* DetailsOfDayViewModel.swift in Sources */,
 				D144D8A52518826700EA12FA /* DefaultsExt.swift in Sources */,
 				70424002251DED86000D09E2 /* HomeViewModel.swift in Sources */,
-				704076B025256DCC009A09FD /* SunandWindTableViewCell.swift in Sources */,
 				D144D8A42518826700EA12FA /* MapperExt.swift in Sources */,
 				70423FF6251DC87B000D09E2 /* ApiKey.swift in Sources */,
 				D144D8902518826700EA12FA /* AppDelegate.swift in Sources */,

@@ -26,16 +26,16 @@
                         <blurEffect style="regular"/>
                     </visualEffectView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-r5-YDT">
-                        <rect key="frame" x="10" y="5" width="57" height="28"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <rect key="frame" x="10" y="5" width="54" height="28"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_rain" translatesAutoresizingMaskIntoConstraints="NO" id="4SS-q3-DEs">
-                        <rect key="frame" x="10" y="43" width="143" height="146"/>
+                        <rect key="frame" x="10" y="38" width="143" height="146"/>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="0Jg-w7-UMY">
-                        <rect key="frame" x="161" y="43" width="143" height="146"/>
+                        <rect key="frame" x="161" y="38" width="143" height="146"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtd-81-aoD">
                                 <rect key="frame" x="0.0" y="0.0" width="143" height="18"/>
@@ -141,9 +141,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="4SS-q3-DEs" firstAttribute="centerY" secondItem="0Jg-w7-UMY" secondAttribute="centerY" id="AA2-0n-Leb"/>
                     <constraint firstItem="fXy-r5-YDT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="GHC-bd-eIG"/>
                     <constraint firstAttribute="trailing" secondItem="0Jg-w7-UMY" secondAttribute="trailing" constant="15" id="IaK-Q6-tiU"/>
-                    <constraint firstItem="4SS-q3-DEs" firstAttribute="top" secondItem="fXy-r5-YDT" secondAttribute="bottom" constant="10" id="N46-dk-hLE"/>
+                    <constraint firstItem="4SS-q3-DEs" firstAttribute="top" secondItem="fXy-r5-YDT" secondAttribute="bottom" constant="5" id="N46-dk-hLE"/>
                     <constraint firstAttribute="bottom" secondItem="RVp-Zg-9cg" secondAttribute="bottom" id="Nrt-a2-bc7"/>
                     <constraint firstItem="4SS-q3-DEs" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.448276" id="aUn-Cz-dL8"/>
                     <constraint firstItem="0Jg-w7-UMY" firstAttribute="top" secondItem="4SS-q3-DEs" secondAttribute="top" id="cT4-9N-sNZ"/>
@@ -152,7 +153,7 @@
                     <constraint firstItem="RVp-Zg-9cg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gBU-0g-iKh"/>
                     <constraint firstItem="0Jg-w7-UMY" firstAttribute="bottom" secondItem="4SS-q3-DEs" secondAttribute="bottom" id="gfi-QN-rI5"/>
                     <constraint firstItem="fXy-r5-YDT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="jYZ-fa-HZt"/>
-                    <constraint firstAttribute="bottom" secondItem="4SS-q3-DEs" secondAttribute="bottom" constant="10" id="msM-Ec-d1R"/>
+                    <constraint firstAttribute="bottom" secondItem="4SS-q3-DEs" secondAttribute="bottom" constant="15" id="msM-Ec-d1R"/>
                     <constraint firstItem="0Jg-w7-UMY" firstAttribute="width" secondItem="4SS-q3-DEs" secondAttribute="width" id="mwA-Q6-7or"/>
                     <constraint firstItem="RVp-Zg-9cg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="s3o-sM-KcZ"/>
                 </constraints>
