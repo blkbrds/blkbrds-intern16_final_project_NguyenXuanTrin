@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherTodayCell: UITableViewCell {
+final class WeatherTodayCell: UITableViewCell {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var weatherShowImage: UIImageView!

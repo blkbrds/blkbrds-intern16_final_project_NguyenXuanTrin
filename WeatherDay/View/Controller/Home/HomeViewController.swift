@@ -20,7 +20,6 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Properties
     var viewModel: HomeViewModel = HomeViewModel()
-    var weatherTodayCellId: String = "WeatherTodayCell"
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -41,9 +40,7 @@ final class HomeViewController: UIViewController {
         // Change color title
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-
         navigationController?.navigationBar.tintColor = .white
-
         // Transparent navi
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -52,7 +49,7 @@ final class HomeViewController: UIViewController {
     }
 
     private func configTableview() {
-        tableView.register(UINib(nibName: "WeatherTodayCell", bundle: nil), forCellReuseIdentifier: "WeatherTodayCell")
+        tableView.register(nibWithCellClass: WeatherTodayCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
@@ -77,7 +74,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cellOne = tableView.dequeueReusableCell(withIdentifier: "WeatherTodayCell", for: indexPath) as? WeatherTodayCell else { return WeatherTodayCell() }
+            let cellOne = tableView.dequeueReusableCell(withClass: WeatherTodayCell.self)
             cellOne.viewModel = viewModel.viewModelForCellOne()
             cellOne.backgroundColor = .clear
             return cellOne
