@@ -28,8 +28,8 @@ final class WeatherTodayCell: UITableViewCell {
     private func updateView() {
         guard let viewModel = viewModel else { return }
         weatherStatusLabel.text = viewModel.weatherStatus
-        temperatureMinLabel.text = String(viewModel.temperatureMin) + "º"
-        temperatureMaxLabel.text = String(viewModel.temperatureMax) + "º"
-        temperatureTodayLabel.text = String(viewModel.temperatureToday) + "º"
+        temperatureMinLabel.text = viewModel.infoWeatherToday(temperature: viewModel.temperatureMin)
+        temperatureMaxLabel.text = viewModel.infoWeatherToday(temperature: viewModel.temperatureMax)
+        temperatureTodayLabel.text = viewModel.infoWeatherToday(temperature: viewModel.temperatureToday)
     }
 }

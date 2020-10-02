@@ -23,4 +23,8 @@ final class WeatherTodayViewModel {
         self.temperatureMax = 35
         self.temperatureToday = 32
     }
+    
+    func infoWeatherToday(temperature: Int) -> String {
+        return "\(temperature.string)º"
+    }
 }
