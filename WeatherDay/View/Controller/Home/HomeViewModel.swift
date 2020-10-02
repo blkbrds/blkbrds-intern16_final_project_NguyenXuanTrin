@@ -15,6 +15,8 @@ final class HomeViewModel {
         case weatherDayofWeek
         case weatherDetails
         case map
+        case sunAndWind
+        case amountOfRain
 
         var numberOfRowInSections: Int {
             switch self {
@@ -22,6 +24,8 @@ final class HomeViewModel {
             case .weatherDayofWeek: return 2
             case .weatherDetails: return 1
             case .map: return 1
+            case .sunAndWind: return 1
+            case .amountOfRain: return 1
             }
         }
 
@@ -34,7 +38,7 @@ final class HomeViewModel {
         case row0
         case row1
     }
-    
+
     enum WeatherDailys: Int {
         case row0
         case row1
@@ -46,10 +50,11 @@ final class HomeViewModel {
     var listEveryHours: [EveryHours] = []
     var listWeatherDailys: [WeatherDaily] = []
     var weatherDayOfDetails: WeatherDetails = WeatherDetails(temperature: 0, humidity: 0, visibility: 0, uvIndex: "", dewpoint: 0)
+    var listAmountOfRain: [AmountofRain] = []
 
     // MARK: - Functions
     func numberOfSections() -> Int {
-        return 4
+        return 6
     }
 
     func numberOfRowsInSection(inSection section: Int) -> Int {
@@ -62,6 +67,10 @@ final class HomeViewModel {
         case .weatherDetails:
             return 1
         case .map:
+            return 1
+        case .sunAndWind:
+            return 1
+        case .amountOfRain:
             return 1
         }
     }
@@ -82,13 +91,24 @@ final class HomeViewModel {
         let temp = listWeatherDailys[indexPath.row - 1]
         return DailyTableCellViewModel(weatherDaily: temp)
     }
-    
+
     func viewModelForCellFive() -> DetailsOfDayViewModel? {
         getWeatherDetails()
-        let temp = weatherDayOfDetails
-        return DetailsOfDayViewModel(weatherDetails: temp)
+        let temps = weatherDayOfDetails
+        return DetailsOfDayViewModel(weatherDetails: temps)
     }
-    
+
+    func viewModelForCellEight() -> AmountofRainTableViewModel? {
+        getListAmountOfRain()
+        let temps = listAmountOfRain
+        return AmountofRainTableViewModel(listData: temps)
+    }
+
+    func postCheckPoint() -> SunandWindTableViewModel? {
+        let temp: Bool = true
+        return SunandWindTableViewModel(checkPoint: temp)
+        
+    }
 
     private func getListEveryHours() {
         listEveryHours = DataforCell.listEveryHours()
@@ -97,8 +117,12 @@ final class HomeViewModel {
     private func getListWeatherDaily() {
         listWeatherDailys = DataforCell.listWeatherDaily()
     }
-    
+
     private func getWeatherDetails() {
         weatherDayOfDetails = DataforCell.cellWeatherDetails()
+    }
+
+    private func getListAmountOfRain() {
+        listAmountOfRain = DataforCell.listAmountofRain()
     }
 }

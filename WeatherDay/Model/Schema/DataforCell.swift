@@ -43,4 +43,14 @@ final class DataforCell {
         let cellWeatherDetails: WeatherDetails = WeatherDetails(temperature: 28, humidity: 30, visibility: 40, uvIndex: "Low 1", dewpoint: 25)
         return cellWeatherDetails
     }
+    
+    static func listAmountofRain() -> [AmountofRain] {
+        let listAmountofRain: [AmountofRain] = [
+        AmountofRain(statusOfRain: "Morning", humidity: 10),
+        AmountofRain(statusOfRain: "Noon", humidity: 25),
+        AmountofRain(statusOfRain: "Afternoon", humidity: 40),
+        AmountofRain(statusOfRain: "Evening", humidity: 80)
+        ]
+        return listAmountofRain
+    }
 }

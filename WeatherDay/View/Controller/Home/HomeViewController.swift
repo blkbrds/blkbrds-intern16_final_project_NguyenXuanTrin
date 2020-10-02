@@ -20,6 +20,9 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Properties
     var viewModel: HomeViewModel = HomeViewModel()
+    var sunAndWind: SunandWindView = SunandWindView()
+    var refreshControl = UIRefreshControl()
+    var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -27,6 +30,7 @@ final class HomeViewController: UIViewController {
         title = Configure.titleName
         configNavi()
         configTableview()
+        configPulltoRefesh()
     }
 
     // MARK: - Private Functions
@@ -56,15 +60,28 @@ final class HomeViewController: UIViewController {
         tableView.register(nibWithCellClass: DailyTableViewCell.self)
         tableView.register(nibWithCellClass: DetailsOfDayCell.self)
         tableView.register(nibWithCellClass: MapTableViewCell.self)
+        tableView.register(nibWithCellClass: SunandWindTableViewCell.self)
+        tableView.register(nibWithCellClass: AmountofRainTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
+    }
+
+    private func configPulltoRefesh() {
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
 
     // MARK: - Objc private functions
     @objc private func pushToSearch() {
         let vc = SearchViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @objc func refresh(_ sender: AnyObject) {
+        fullScreenImageView.image = imageArray.randomItem
+        refreshControl.endRefreshing()
     }
 }
 
@@ -113,6 +130,14 @@ extension HomeViewController: UITableViewDataSource {
         case .map:
             let cellSix = tableView.dequeueReusableCell(withClass: MapTableViewCell.self)
             return cellSix
+        case .sunAndWind:
+            let cellSeven = tableView.dequeueReusableCell(withClass: SunandWindTableViewCell.self)
+            cellSeven.viewModel = SunandWindTableViewModel(checkPoint: false)
+            return cellSeven
+        case .amountOfRain:
+            let cellEight = tableView.dequeueReusableCell(withClass: AmountofRainTableViewCell.self)
+            cellEight.viewModel = viewModel.viewModelForCellEight()
+            return cellEight
         }
     }
 }
@@ -139,7 +164,18 @@ extension HomeViewController: UITableViewDelegate {
             return 199
         case .map:
             return 220
+        case .sunAndWind:
+            return 220
+        case .amountOfRain:
+            return 220
         default: return UITableView.automaticDimension
+        }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 5, let cell = tableView.cellForRow(at: indexPath) as? SunandWindTableViewCell {
+            cell.viewModel = viewModel.postCheckPoint()
+//             viewModel.postCheckPoint()
         }
     }
 }
