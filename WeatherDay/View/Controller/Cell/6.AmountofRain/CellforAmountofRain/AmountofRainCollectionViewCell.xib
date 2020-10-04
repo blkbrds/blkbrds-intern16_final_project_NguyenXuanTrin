@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AmountofRainCollectionViewCell" customModule="WeatherDay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="95" height="220"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="95" height="220"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <visualEffectView opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9K-bC-mji">
+                        <rect key="frame" x="0.0" y="0.0" width="95" height="220"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vbi-V1-D3m">
+                            <rect key="frame" x="0.0" y="0.0" width="95" height="220"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <blurEffect style="regular"/>
+                    </visualEffectView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hC-cz-B45">
+                        <rect key="frame" x="28" y="192" width="39" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="img_blood" translatesAutoresizingMaskIntoConstraints="NO" id="dz6-Js-IL1">
+                        <rect key="frame" x="10" y="38" width="75" height="144"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZj-Tm-gae">
+                        <rect key="frame" x="28" y="10" width="39" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="dz6-Js-IL1" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="5z4-dV-eyv"/>
+                <constraint firstAttribute="trailing" secondItem="dz6-Js-IL1" secondAttribute="trailing" constant="10" id="606-GI-PNc"/>
+                <constraint firstItem="0hC-cz-B45" firstAttribute="top" secondItem="dz6-Js-IL1" secondAttribute="bottom" constant="10" id="6hm-H9-ZmB"/>
+                <constraint firstItem="x9K-bC-mji" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="BZ2-3T-j5F"/>
+                <constraint firstItem="0hC-cz-B45" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="BwH-0o-dtN"/>
+                <constraint firstItem="TZj-Tm-gae" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="HIj-65-YDP"/>
+                <constraint firstItem="dz6-Js-IL1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Kn5-95-Xez"/>
+                <constraint firstItem="dz6-Js-IL1" firstAttribute="top" secondItem="TZj-Tm-gae" secondAttribute="bottom" constant="10" id="OHp-Xz-WNo"/>
+                <constraint firstAttribute="trailing" secondItem="x9K-bC-mji" secondAttribute="trailing" id="SkB-Gh-gfD"/>
+                <constraint firstAttribute="bottom" secondItem="x9K-bC-mji" secondAttribute="bottom" id="Yrq-Dm-RuW"/>
+                <constraint firstItem="TZj-Tm-gae" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="bsO-m8-2YE"/>
+                <constraint firstAttribute="bottom" secondItem="0hC-cz-B45" secondAttribute="bottom" constant="10" id="gpJ-OD-raM"/>
+                <constraint firstItem="x9K-bC-mji" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xmL-Cl-DF1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="95" height="220"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="15"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="humidityLabel" destination="0hC-cz-B45" id="BMS-Fl-gRD"/>
+                <outlet property="showAmountofRainImageView" destination="dz6-Js-IL1" id="j8L-TK-DfM"/>
+                <outlet property="statusRainLabel" destination="TZj-Tm-gae" id="9Th-cF-6Ch"/>
+            </connections>
+            <point key="canvasLocation" x="-280.43478260869568" y="38.169642857142854"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="img_blood" width="50" height="50"/>
+    </resources>
+</document>
