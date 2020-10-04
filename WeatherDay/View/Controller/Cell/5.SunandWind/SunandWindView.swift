@@ -11,19 +11,17 @@ import UIKit
 final class SunandWindView: UIView {
 
     // MARK: - Properties
-    var pointX: CGFloat = -20
-    var pointY: CGFloat = 142
     var viewModel: SunandWindTableViewModel?
 
     // MARK: - Functions
     func configSunsetSunrise(sunRise: String, sunSet: String) {
-        let sunRiseLabel = UILabel(frame: CGRect(x: pointX, y: pointY, width: 100, height: 50))
+        let sunRiseLabel = UILabel(frame: CGRect(x: frame.size.width / 2 - 170, y: frame.size.height / 2 - 10, width: 100, height: 50))
         sunRiseLabel.text = sunRise
         sunRiseLabel.textAlignment = .center
         sunRiseLabel.textColor = .white
         addSubview(sunRiseLabel)
 
-        let sunSetLabel = UILabel(frame: CGRect(x: pointX + 240, y: pointY, width: 100, height: 50))
+        let sunSetLabel = UILabel(frame: CGRect(x: frame.size.width / 2 + 70, y: frame.size.height / 2 - 10, width: 100, height: 50))
         sunSetLabel.text = sunSet
         sunSetLabel.textAlignment = .center
         sunSetLabel.textColor = .white
@@ -51,15 +49,15 @@ final class SunandWindView: UIView {
             clockwise: true).cgPath
         adcLayer.lineWidth = 3.0
         adcLayer.strokeColor = UIColor.white.cgColor //border of circle
-        adcLayer.fillColor = UIColor.clear.cgColor  //inside the circle
+        adcLayer.fillColor = UIColor.clear.cgColor //inside the circle
         adcLayer.lineJoin = .round
         adcLayer.lineDashPattern = [6, 3]
         layer.addSublayer(adcLayer)
     }
 
-    func createLine(timecurrent: String, sunrise: String, sunset: String) {
+    func createLine(hoursCurrent: Int, minuteCurrent: Int, sunrise: String, sunset: String) {
         let startAngle: CGFloat = CGFloat.pi
-        let secondCurrent: Int = covertHourtoSecond(hours: timecurrent)
+        let secondCurrent: Int = (hoursCurrent * 60) * 60 + minuteCurrent * 60
         let secondSunset: Int = covertHourtoSecond(hours: sunset)
         let secondSunrise: Int = covertHourtoSecond(hours: sunrise)
 
@@ -85,7 +83,7 @@ final class SunandWindView: UIView {
     func configAnimations(startAngle: CGFloat, anglePI: CGFloat) -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.toValue = (anglePI * .pi + startAngle) / .pi
-        animation.duration = 4
+        animation.duration = 5
         //animation.repeatCount = .infinity
         animation.fromValue = 0
         return animation

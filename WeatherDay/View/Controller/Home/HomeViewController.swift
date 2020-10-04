@@ -31,6 +31,7 @@ final class HomeViewController: UIViewController {
         configNavi()
         configTableview()
         configPulltoRefesh()
+        UIScreen.main.brightness = CGFloat(1)
     }
 
     // MARK: - Private Functions
@@ -68,7 +69,6 @@ final class HomeViewController: UIViewController {
     }
 
     private func configPulltoRefesh() {
-        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
@@ -80,8 +80,12 @@ final class HomeViewController: UIViewController {
     }
 
     @objc func refresh(_ sender: AnyObject) {
-        fullScreenImageView.image = imageArray.randomItem
-        refreshControl.endRefreshing()
+        UIView.transition(with: fullScreenImageView, duration: 0.8,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.fullScreenImageView.image = self.imageArray.randomItem
+                self.refreshControl.endRefreshing()
+        })
     }
 }
 
@@ -175,7 +179,6 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 5, let cell = tableView.cellForRow(at: indexPath) as? SunandWindTableViewCell {
             cell.viewModel = viewModel.postCheckPoint()
-//             viewModel.postCheckPoint()
         }
     }
 }

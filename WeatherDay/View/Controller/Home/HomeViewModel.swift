@@ -107,7 +107,6 @@ final class HomeViewModel {
     func postCheckPoint() -> SunandWindTableViewModel? {
         let temp: Bool = true
         return SunandWindTableViewModel(checkPoint: temp)
-        
     }
 
     private func getListEveryHours() {
