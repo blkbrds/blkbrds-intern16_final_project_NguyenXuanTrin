@@ -1,19 +1,19 @@
 //
-//  CurrentObservation.swift
+//  Atmosphere.swift
 //  WeatherDay
 //
-//  Created by PCI0004 on 9/25/20.
+//  Created by PCI0004 on 10/4/20.
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
 import ObjectMapper
 import Foundation
 
-final class CurrentObservation: Mappable {
+final class Atmosphere: Mappable {
 
     // MARK: Properties
-    var weatherStatus: String = ""
-    var temperatureToday: Int = 0
+    var humidity: Int = 0
+    var visibility: Float = 0.0
 
     // MARK: - Initialaze
     init?(map: Map) {
@@ -24,7 +24,7 @@ final class CurrentObservation: Mappable {
 
     // MARK: - Functions
     func mapping(map: Map) {
-        weatherStatus <- map["condition.text"]
-        temperatureToday <- map["condition.temperature"]
+        humidity <- map["humidity"]
+        visibility <- map["visibility"]
     }
 }

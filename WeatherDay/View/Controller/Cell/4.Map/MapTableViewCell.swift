@@ -14,18 +14,25 @@ final class MapTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet private weak var mapView: MKMapView!
     
-    // MARK: - Life cycle
+    // MARK: - Properties
+    var viewModel: MapTableViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            configMap(lat: viewModel.lat, lon: viewModel.lon)
+        }
+    }
+    
+    // MARK: Life cycle
     override func awakeFromNib() {
-        configMap()
         mapView.mapType = MKMapType.satellite
     }
     
     // MARK: - Private functions
-    private func configMap() {
+    private func configMap(lat: Double, lon: Double) {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 16.054407, longitude: 108.202164)
+        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         mapView.setCenter(annotation.coordinate, animated: true)
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: true)
     }

@@ -11,10 +11,19 @@ import Foundation
 final class SunandWindTableViewModel {
     
     // MARK: - Properties
+    var astronomy: Astronomy
     var checkPoint: Bool
     
+    var sunrise: String {
+        return astronomy.sunrise
+    }
+    
+    var sunset: String {
+        return astronomy.sunset
+    }
     // MARK: - Initalize
-    init(checkPoint: Bool) {
+    init(astronomy: Astronomy, checkPoint: Bool) {
+        self.astronomy = astronomy
         self.checkPoint = checkPoint
     }
 }

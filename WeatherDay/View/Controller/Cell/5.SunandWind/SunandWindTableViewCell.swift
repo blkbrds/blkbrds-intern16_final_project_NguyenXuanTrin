@@ -12,11 +12,10 @@ final class SunandWindTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
     // MARK: - Properties
-    var sunset: String = "17:00"
-    var sunrise: String = "05:00"
     var viewModel: SunandWindTableViewModel? {
         didSet {
-            configUI()
+            guard let viewModel = viewModel else { return }
+            configUI(sunrise: viewModel.sunrise, sunset: viewModel.sunset)
         }
     }
 
@@ -31,7 +30,7 @@ final class SunandWindTableViewCell: UITableViewCell {
     }
 
     // MARK: - Private functions
-    private func configUI() {
+    private func configUI(sunrise: String, sunset: String) {
         let frameCircle = CGRect(x: 40, y: 30, width: 300, height: 300)
         let circleCustom = SunandWindView(frame: frameCircle)
         circleCustom.createADC()

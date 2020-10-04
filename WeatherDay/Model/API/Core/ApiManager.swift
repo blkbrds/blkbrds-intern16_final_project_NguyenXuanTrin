@@ -18,7 +18,7 @@ typealias DataCompletion<Value> = (Result<Value>) -> Void
 
 enum APIResult {
     case success
-    case failure(String)
+    case failure(Error)
 }
 
 let api = ApiManager()
@@ -40,5 +40,8 @@ struct APIManager {
 
     // MARK: - Domain
     struct Forecasts { }
-    struct CurrentObservation { }
+    struct Condition { }
+    struct Astronomy { }
+    struct Atmosphere { }
+    struct Location { }
 }

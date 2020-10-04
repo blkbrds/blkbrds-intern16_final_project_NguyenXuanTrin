@@ -28,11 +28,11 @@ class DetailsOfDayCell: UITableViewCell {
     // MARK: - Private Functions
     private func updateView() {
         guard let viewModel = viewModel else { return }
-        temperatureLabel.text = String(viewModel.temperature) + "º"
-        humidityLabel.text = String(viewModel.humidity) + "%"
-        visibilityLabel.text = String(viewModel.visibility) + "km"
+        temperatureLabel.text = viewModel.infoTempDaily(temperature: viewModel.temperature)
+        humidityLabel.text = viewModel.infoHumidityDaily(humidity: viewModel.humidity)
+        visibilityLabel.text = viewModel.infoVisibilityDaily(visibility: viewModel.visibility)
         uvIndexLabel.text = viewModel.uvIndex
-        dewpointLabel.text = String(viewModel.dewpoint) + "º"
+        dewpointLabel.text = viewModel.infoTempDaily(temperature: viewModel.dewpoint)
     }
     
 }

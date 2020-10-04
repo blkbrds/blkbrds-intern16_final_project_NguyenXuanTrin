@@ -1,5 +1,5 @@
 //
-//  Forecasts.swift
+//  CurrentObservation.swift
 //  WeatherDay
 //
 //  Created by PCI0004 on 9/25/20.
@@ -9,12 +9,11 @@
 import ObjectMapper
 import Foundation
 
-final class Forecasts: Mappable {
+final class ConditionToday: Mappable {
 
     // MARK: Properties
-    var dayOfWeek: String = ""
-    var temperatureMin: Int = 0
-    var temperatureMax: Int = 0
+    var weatherStatus: String = ""
+    var temperatureToday: Int = 0
 
     // MARK: - Initialaze
     init?(map: Map) {
@@ -25,8 +24,7 @@ final class Forecasts: Mappable {
 
     // MARK: - Functions
     func mapping(map: Map) {
-        dayOfWeek <- map["day"]
-        temperatureMin <- map["low"]
-        temperatureMax <- map["high"]
+        weatherStatus <- map["text"]
+        temperatureToday <- map["temperature"]
     }
 }

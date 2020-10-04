@@ -11,16 +11,29 @@ import Foundation
 final class WeatherTodayViewModel {
 
     // MARK: - Properties
-    private(set) var weatherStatus: String
-    private(set) var temperatureMin: Int
-    private(set) var temperatureMax: Int
-    private(set) var temperatureToday: Int
+    var forecasts: Forecasts
+    var condition: ConditionToday
+    
+    var weatherStatus: String {
+        return condition.weatherStatus
+    }
+    var temperatureMin: Int {
+        return forecasts.temperatureMin
+    }
+    var temperatureMax: Int {
+        return forecasts.temperatureMax
+    }
+    var temperatureToday: Int {
+        return condition.temperatureToday
+    }
 
     // MARK: - Initialaze
-    init(weatherStatus: String, temperatureMin: Int, temperatureMax: Int, temperatureToday: Int) {
-        self.weatherStatus = "Severe Thunderstorms"
-        self.temperatureMin = 30
-        self.temperatureMax = 35
-        self.temperatureToday = 32
+    init(forecasts: Forecasts, condition: ConditionToday) {
+        self.forecasts = forecasts
+        self.condition = condition
+    }
+
+    func infoWeatherToday(temperature: Int) -> String {
+        return "\(temperature.string)º"
     }
 }

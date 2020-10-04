@@ -27,8 +27,8 @@ final class DailyTableViewCell: UITableViewCell {
     func updateView() {
         guard let viewModel = viewModel else { return }
         dayOfWeekLabel.text = viewModel.dayOfWeek
-        percentHumidityLabel.text = String(viewModel.percentHumidity) + "%"
-        temperatureMinLabel.text = String(viewModel.temperatureMin) + "º"
-        temperatureMaxLabel.text = String(viewModel.temperatureMax) + "º"
+        percentHumidityLabel.text = viewModel.infoHumidityDaily(humidity: viewModel.percentHumidity)
+        temperatureMinLabel.text = viewModel.infoTempDaily(temperature: viewModel.temperatureMin)
+        temperatureMaxLabel.text = viewModel.infoTempDaily(temperature: viewModel.temperatureMax)
     }
 }

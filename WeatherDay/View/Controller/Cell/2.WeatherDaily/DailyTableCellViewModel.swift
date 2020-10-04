@@ -11,22 +11,30 @@ import Foundation
 final class DailyTableCellViewModel {
 
     // MARK: - Properties
-    var weatherDaily: WeatherDaily
+    var forecasts: Forecasts
 
     var dayOfWeek: String {
-        return weatherDaily.dayOfWeek
+        return forecasts.dayOfWeek
     }
     var percentHumidity: Int {
-        return weatherDaily.percentHumidity
+        return 35
     }
     var temperatureMin: Int {
-        return weatherDaily.temperatureMin
+        return forecasts.temperatureMin
     }
     var temperatureMax: Int {
-        return weatherDaily.temperatureMax
+        return forecasts.temperatureMax
     }
 
-    init(weatherDaily: WeatherDaily) {
-        self.weatherDaily = weatherDaily
+    init(forecasts: Forecasts) {
+        self.forecasts = forecasts
+    }
+    
+    func infoTempDaily(temperature: Int) -> String {
+        return "\(temperature.string)º"
+    }
+    
+    func infoHumidityDaily(humidity: Int) -> String {
+        return "\(humidity.string)%"
     }
 }

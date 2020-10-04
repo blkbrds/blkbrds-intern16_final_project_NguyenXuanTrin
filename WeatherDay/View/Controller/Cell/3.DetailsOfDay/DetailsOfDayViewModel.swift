@@ -9,25 +9,43 @@
 import Foundation
 
 final class DetailsOfDayViewModel {
-    var weatherDetails: WeatherDetails
+    
+    // MARK: - Properties
+    var condition: ConditionToday
+    var atmosphere: Atmosphere
     
     var temperature: Int {
-        return weatherDetails.temperature
+        return condition.temperatureToday
     }
     var humidity: Int {
-        return weatherDetails.humidity
+        return atmosphere.humidity
     }
-    var visibility: Int {
-        return weatherDetails.visibility
+    var visibility: Float {
+        return atmosphere.visibility
     }
     var uvIndex: String {
-        return weatherDetails.uvIndex
+        return "Low 0"
     }
     var dewpoint: Int {
-        return weatherDetails.dewpoint
+        return 24
     }
     
-    init(weatherDetails: WeatherDetails) {
-        self.weatherDetails = weatherDetails
+    // MARK: - Initialize
+    init(condition: ConditionToday, atmosphere: Atmosphere) {
+        self.condition = condition
+        self.atmosphere = atmosphere
+    }
+    
+    // MARK: - Functions
+    func infoTempDaily(temperature: Int) -> String {
+        return "\(temperature.string)º"
+    }
+    
+    func infoHumidityDaily(humidity: Int) -> String {
+        return "\(humidity.string)%"
+    }
+    
+    func infoVisibilityDaily(visibility: Float) -> String {
+        return "\(humidity.string) km"
     }
 }

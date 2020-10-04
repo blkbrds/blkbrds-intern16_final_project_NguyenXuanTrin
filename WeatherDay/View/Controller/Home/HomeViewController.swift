@@ -28,6 +28,10 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Configure.titleName
+        loadDataAtmosphere()
+        loadDataCondition()
+        loadDataForecasts()
+        loadDataForecastsArray()
         configNavi()
         configTableview()
         configPulltoRefesh()
@@ -73,6 +77,102 @@ final class HomeViewController: UIViewController {
         tableView.addSubview(refreshControl)
     }
 
+    private func loadDataCondition() {
+        viewModel.loadCondition() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    this.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    this.alert(error: error)
+                }
+            }
+        }
+    }
+
+    private func loadDataForecasts() {
+        viewModel.loadForecasts() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    this.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    this.alert(error: error)
+                }
+            }
+        }
+    }
+    
+    private func loadDataAtmosphere() {
+        viewModel.loadAtmosphere() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    this.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    this.alert(error: error)
+                }
+            }
+        }
+    }
+    
+    private func loadDataLocation() {
+        viewModel.loadLocation() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    this.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    this.alert(error: error)
+                }
+            }
+        }
+    }
+    
+    private func loadDataAstronomy() {
+        viewModel.loadAstronomy() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    this.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    this.alert(error: error)
+                }
+            }
+        }
+    }
+
+    private func loadDataForecastsArray() {
+        viewModel.loadForecastsArray() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    this.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    this.alert(error: error)
+                }
+            }
+        }
+    }
+
     // MARK: - Objc private functions
     @objc private func pushToSearch() {
         let vc = SearchViewController()
@@ -85,7 +185,7 @@ final class HomeViewController: UIViewController {
             animations: {
                 self.fullScreenImageView.image = self.imageArray.randomItem
                 self.refreshControl.endRefreshing()
-        })
+            })
     }
 }
 
@@ -124,7 +224,7 @@ extension HomeViewController: UITableViewDataSource {
                 return cellThree
             default:
                 let cellFour = tableView.dequeueReusableCell(withClass: DailyTableViewCell.self, for: indexPath)
-                cellFour.viewModel = viewModel.viewModelForCellFour(at: indexPath)
+                //cellFour.viewModel = viewModel.viewModelForCellFour(at: indexPath)
                 return cellFour
             }
         case .weatherDetails:
@@ -136,7 +236,7 @@ extension HomeViewController: UITableViewDataSource {
             return cellSix
         case .sunAndWind:
             let cellSeven = tableView.dequeueReusableCell(withClass: SunandWindTableViewCell.self)
-            cellSeven.viewModel = SunandWindTableViewModel(checkPoint: false)
+            cellSeven.viewModel = viewModel.postCheckPoint()
             return cellSeven
         case .amountOfRain:
             let cellEight = tableView.dequeueReusableCell(withClass: AmountofRainTableViewCell.self)
