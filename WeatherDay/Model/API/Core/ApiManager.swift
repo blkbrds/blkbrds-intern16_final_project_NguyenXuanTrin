@@ -1,9 +1,9 @@
 //
-//  ApiManager.swift
-//  MyApp
+//  APIManager.swift
+//  WeatherDay
 //
-//  Created by iOSTeam on 2/21/18.
-//  Copyright © 2018 Asian Tech Co., Ltd. All rights reserved.
+//  Created by PCI0004 on 9/28/20.
+//  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
 import Foundation
@@ -12,7 +12,14 @@ import Alamofire
 typealias JSObject = [String: Any]
 typealias JSArray = [JSObject]
 
-typealias Completion = (Result<Any>) -> Void
+typealias Completion<Value> = (Result<Any>) -> Void
+typealias APICompletion = (APIResult) -> Void
+typealias DataCompletion<Value> = (Result<Value>) -> Void
+
+enum APIResult {
+    case success
+    case failure(Error)
+}
 
 let api = ApiManager()
 
@@ -22,4 +29,19 @@ final class ApiManager {
         let headers: [String: String] = [:]
         return headers
     }
+}
+
+struct APIManager {
+    // MARK: - Config
+    struct Path {
+        static let baseDomain = "https://weather-ydn-yql.media.yahoo.com"
+        static let basePath = "/forecastrss"
+    }
+
+    // MARK: - Domain
+    struct Forecasts { }
+    struct Condition { }
+    struct Astronomy { }
+    struct Atmosphere { }
+    struct Location { }
 }
