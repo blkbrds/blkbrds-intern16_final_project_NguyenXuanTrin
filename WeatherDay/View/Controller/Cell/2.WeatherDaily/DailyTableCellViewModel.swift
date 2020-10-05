@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import MVVM
 
-final class DailyTableCellViewModel {
+final class DailyTableCellViewModel: ViewModel {
 
     // MARK: - Properties
     var forecasts: Forecasts

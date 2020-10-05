@@ -34,5 +34,4 @@ class DetailsOfDayCell: UITableViewCell {
         uvIndexLabel.text = viewModel.uvIndex
         dewpointLabel.text = viewModel.infoTempDaily(temperature: viewModel.dewpoint)
     }
-    
 }

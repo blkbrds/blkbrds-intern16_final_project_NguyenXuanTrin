@@ -12,7 +12,7 @@ private struct Configure {
     static var titleName: String = "Home"
 }
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: ViewController {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var fullScreenImageView: UIImageView!
@@ -24,18 +24,20 @@ final class HomeViewController: UIViewController {
     var refreshControl = UIRefreshControl()
     var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
 
+
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Configure.titleName
-        loadDataAtmosphere()
-        loadDataCondition()
-        loadDataForecasts()
-        loadDataForecastsArray()
         configNavi()
         configTableview()
         configPulltoRefesh()
         UIScreen.main.brightness = CGFloat(1)
+    }
+
+    override func setUpData() {
+        super.setUpData()
+        handleCallApi()
     }
 
     // MARK: - Private Functions
@@ -77,14 +79,11 @@ final class HomeViewController: UIViewController {
         tableView.addSubview(refreshControl)
     }
 
-    private func loadDataCondition() {
+    private func loadDataCondition(completion: @escaping () -> Void) {
         viewModel.loadCondition() { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    this.tableView.reloadData()
-                }
+            case .success: completion()
             case .failure(let error):
                 DispatchQueue.main.async {
                     this.alert(error: error)
@@ -93,83 +92,102 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    private func loadDataForecasts() {
+    private func loadDataForecasts(completion: @escaping () -> Void) {
         viewModel.loadForecasts() { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    this.tableView.reloadData()
-                }
+            case .success: completion()
             case .failure(let error):
-                DispatchQueue.main.async {
-                    this.alert(error: error)
-                }
-            }
-        }
-    }
-    
-    private func loadDataAtmosphere() {
-        viewModel.loadAtmosphere() { [weak self] result in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    this.tableView.reloadData()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    this.alert(error: error)
-                }
-            }
-        }
-    }
-    
-    private func loadDataLocation() {
-        viewModel.loadLocation() { [weak self] result in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    this.tableView.reloadData()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    this.alert(error: error)
-                }
-            }
-        }
-    }
-    
-    private func loadDataAstronomy() {
-        viewModel.loadAstronomy() { [weak self] result in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    this.tableView.reloadData()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    this.alert(error: error)
-                }
+                this.alert(error: error)
             }
         }
     }
 
-    private func loadDataForecastsArray() {
+    private func loadDataAtmosphere(completion: @escaping () -> Void) {
+        viewModel.loadAtmosphere() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success: completion()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    private func loadDataLocation(completion: @escaping () -> Void) {
+        viewModel.loadLocation() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success: completion()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    private func loadDataAstronomy(completion: @escaping () -> Void) {
+        viewModel.loadAstronomy() { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success: completion()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    private func loadDataForecastsArray(completion: @escaping () -> Void) {
         viewModel.loadForecastsArray() { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    this.tableView.reloadData()
-                }
+            case .success: completion()
             case .failure(let error):
-                DispatchQueue.main.async {
-                    this.alert(error: error)
-                }
+                this.alert(error: error)
             }
+        }
+    }
+
+    private func handleCallApi() {
+        //HUD.show()
+        let dispatchGroup = DispatchGroup()
+        // loadDataCondition
+        dispatchGroup.enter()
+        loadDataCondition {
+            dispatchGroup.leave()
+        }
+        // loadDataForecasts
+        dispatchGroup.enter()
+        loadDataForecasts {
+            dispatchGroup.leave()
+        }
+        // loadDataForecastsArray
+        dispatchGroup.enter()
+        loadDataForecastsArray {
+            dispatchGroup.leave()
+        }
+        // loadDataAtmosphere
+        dispatchGroup.enter()
+        loadDataAtmosphere {
+            dispatchGroup.leave()
+        }
+        // loadDataLocation
+        dispatchGroup.enter()
+        loadDataLocation {
+            dispatchGroup.leave()
+        }
+        // loadDataAstronomy
+        dispatchGroup.enter()
+        loadDataAstronomy {
+            dispatchGroup.leave()
+        }
+        // loadDataLocation
+        dispatchGroup.enter()
+        loadDataLocation {
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            //HUD.popActivity()
+            self.tableView.reloadData()
         }
     }
 
@@ -224,7 +242,7 @@ extension HomeViewController: UITableViewDataSource {
                 return cellThree
             default:
                 let cellFour = tableView.dequeueReusableCell(withClass: DailyTableViewCell.self, for: indexPath)
-                //cellFour.viewModel = viewModel.viewModelForCellFour(at: indexPath)
+                cellFour.viewModel = viewModel.viewModelForCellFour(at: indexPath)
                 return cellFour
             }
         case .weatherDetails:
@@ -233,10 +251,11 @@ extension HomeViewController: UITableViewDataSource {
             return cellFive
         case .map:
             let cellSix = tableView.dequeueReusableCell(withClass: MapTableViewCell.self)
+            cellSix.viewModel = viewModel.viewModelForCellSix()
             return cellSix
         case .sunAndWind:
             let cellSeven = tableView.dequeueReusableCell(withClass: SunandWindTableViewCell.self)
-            cellSeven.viewModel = viewModel.postCheckPoint()
+            cellSeven.viewModel = viewModel.viewModelForCellSeven()
             return cellSeven
         case .amountOfRain:
             let cellEight = tableView.dequeueReusableCell(withClass: AmountofRainTableViewCell.self)
@@ -278,7 +297,7 @@ extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 5, let cell = tableView.cellForRow(at: indexPath) as? SunandWindTableViewCell {
-            cell.viewModel = viewModel.postCheckPoint()
+            cell.viewModel = viewModel.viewModelForCellSeven()
         }
     }
 }

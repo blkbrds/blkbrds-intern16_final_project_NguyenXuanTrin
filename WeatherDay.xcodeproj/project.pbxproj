@@ -318,10 +318,10 @@
 		7042401D2521BB9C000D09E2 /* 5.SunandWind */ = {
 			isa = PBXGroup;
 			children = (
-				704076D12526C9E3009A09FD /* SunandWindTableViewModel.swift */,
 				704076BC25262CA2009A09FD /* SunandWindTableViewCell.swift */,
+				704076D12526C9E3009A09FD /* SunandWindTableViewModel.swift */,
 				704076BA25262CA2009A09FD /* SunandWindTableViewCell.xib */,
-				704076C025263CA8009A09FD /* SunandWindView.swift */,
+				70426946252ADEC700DFD77E /* ViewforSunandWind */,
 			);
 			path = 5.SunandWind;
 			sourceTree = "<group>";
@@ -345,6 +345,14 @@
 				704240282521C235000D09E2 /* EveryHoursViewModel.swift */,
 			);
 			path = CellforEveryHours;
+			sourceTree = "<group>";
+		};
+		70426946252ADEC700DFD77E /* ViewforSunandWind */ = {
+			isa = PBXGroup;
+			children = (
+				704076C025263CA8009A09FD /* SunandWindView.swift */,
+			);
+			path = ViewforSunandWind;
 			sourceTree = "<group>";
 		};
 		70CE7385251B5BA700047D96 /* Define */ = {

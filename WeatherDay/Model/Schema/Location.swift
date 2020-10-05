@@ -29,6 +29,6 @@ final class Location: Mappable {
         city <- map["city"]
         country <- map["country"]
         lat <- map["lat"]
-        lon <- map["lon"]
+        lon <- map["long"]
     }
 }

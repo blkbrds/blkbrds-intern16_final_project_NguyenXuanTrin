@@ -10,9 +10,6 @@ import UIKit
 
 final class SunandWindView: UIView {
 
-    // MARK: - Properties
-    var viewModel: SunandWindTableViewModel?
-
     // MARK: - Functions
     func configSunsetSunrise(sunRise: String, sunSet: String) {
         let sunRiseLabel = UILabel(frame: CGRect(x: frame.size.width / 2 - 170, y: frame.size.height / 2 - 10, width: 100, height: 50))
@@ -27,13 +24,26 @@ final class SunandWindView: UIView {
         sunSetLabel.textColor = .white
         addSubview(sunSetLabel)
     }
-
-    private func covertHourtoSecond(hours: String) -> Int {
+    
+    private func covertSunrisetoSecond(hours: String) -> Int {
         let temp: [String] = hours.components(separatedBy: ":")
-        guard let temp1 = Int(temp[0]), let temp2 = Int(temp[1]) else {
+        let index = temp[1].index(temp[1].startIndex, offsetBy: 2)
+        let mySubstringTemp1 = temp[1][..<index]
+        guard let temp1 = Int(temp[0]), let temp2 = Int(mySubstringTemp1) else {
             return 0
         }
         return (temp1 * 60) * 60 + temp2 * 60
+    }
+
+    private func covertSunsettoSecond(hours: String) -> Int {
+        let temp: [String] = hours.components(separatedBy: ":")
+        print("a")
+        let index = temp[1].index(temp[1].startIndex, offsetBy: 2)
+        let mySubstringTemp1 = temp[1][..<index]
+        guard let temp1 = Int(temp[0]), let temp2 = Int(mySubstringTemp1) else {
+            return 0
+        }
+        return ((temp1 + 12) * 60) * 60 + temp2 * 60
     }
 
     func createADC() {
@@ -58,10 +68,13 @@ final class SunandWindView: UIView {
     func createLine(hoursCurrent: Int, minuteCurrent: Int, sunrise: String, sunset: String) {
         let startAngle: CGFloat = CGFloat.pi
         let secondCurrent: Int = (hoursCurrent * 60) * 60 + minuteCurrent * 60
-        let secondSunset: Int = covertHourtoSecond(hours: sunset)
-        let secondSunrise: Int = covertHourtoSecond(hours: sunrise)
+        let secondSunrise: Int = covertSunrisetoSecond(hours: sunrise)
+        let secondSunset: Int = covertSunsettoSecond(hours: sunset)
 
-        let anglePI: CGFloat = CGFloat(secondCurrent - secondSunrise) / CGFloat(secondSunset - secondSunrise)
+        var anglePI: CGFloat = CGFloat(secondCurrent - secondSunrise) / CGFloat(secondSunset - secondSunrise)
+        if anglePI >= 1 {
+            anglePI = 1
+        }
         let arrCenter = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
 
         let circleLayer = CAShapeLayer()

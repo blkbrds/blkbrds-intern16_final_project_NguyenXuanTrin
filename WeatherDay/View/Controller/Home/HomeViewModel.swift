@@ -52,7 +52,6 @@ final class HomeViewModel {
     var location: Location = Location()
     var astronomy: Astronomy = Astronomy()
     var listEveryHours: [EveryHours] = []
-    var weatherDayOfDetails: WeatherDetails = WeatherDetails(temperature: 0, humidity: 0, visibility: 0, uvIndex: "", dewpoint: 0)
     var listAmountOfRain: [AmountofRain] = []
 
     // MARK: - Functions
@@ -66,7 +65,7 @@ final class HomeViewModel {
         case .weatherToday:
             return 2
         case .weatherDayofWeek:
-            return 10
+            return 8
         case .weatherDetails:
             return 1
         case .map:
@@ -77,7 +76,7 @@ final class HomeViewModel {
             return 1
         }
     }
-    
+
     func viewModelForCellOne() -> WeatherTodayViewModel? {
         return WeatherTodayViewModel(forecasts: forecasts, condition: current)
     }
@@ -89,6 +88,7 @@ final class HomeViewModel {
     }
 
     func viewModelForCellFour(at indexPath: IndexPath) -> DailyTableCellViewModel? {
+        guard 0 <= indexPath.row - 1 && indexPath.row - 1 < forecastsArray.count else { return nil }
         let temp = forecastsArray[indexPath.row - 1]
         return DailyTableCellViewModel(forecasts: temp)
     }
@@ -96,16 +96,19 @@ final class HomeViewModel {
     func viewModelForCellFive() -> DetailsOfDayViewModel? {
         return DetailsOfDayViewModel(condition: current, atmosphere: atmosphere)
     }
+    
+    func viewModelForCellSix() -> MapTableViewModel? {
+        return MapTableViewModel(location: location)
+    }
+
+    func viewModelForCellSeven() -> SunandWindTableViewModel? {
+        return SunandWindTableViewModel(astronomy: astronomy)
+    }
 
     func viewModelForCellEight() -> AmountofRainTableViewModel? {
         getListAmountOfRain()
         let temps = listAmountOfRain
         return AmountofRainTableViewModel(listData: temps)
-    }
-
-    func postCheckPoint() -> SunandWindTableViewModel? {
-        let temp: Bool = true
-        return SunandWindTableViewModel(astronomy: astronomy, checkPoint: temp)
     }
 
     private func getListEveryHours() {
@@ -117,29 +120,28 @@ final class HomeViewModel {
     }
 
     // MARK: API
-
     func loadForecasts(completion: @escaping APICompletion) {
         APIManager.Forecasts.getForecastsByCity() { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
-                completion( .failure(error))
+                completion(.failure(error))
             case .success(let forecastsResult):
                 this.forecasts = forecastsResult
-                completion( .success)
+                completion(.success)
             }
         }
     }
-    
+
     func loadForecastsArray(completion: @escaping APICompletion) {
-        APIManager.Forecasts.getForecastsArrayByCity() { [weak self] result in
+        APIManager.Forecasts.getForecastsArrayByCity { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
-                completion( .failure(error))
+                completion(.failure(error))
             case .success(let forecastsResult):
                 this.forecastsArray = forecastsResult
-                completion( .success)
+                completion(.success)
             }
         }
     }
@@ -149,10 +151,10 @@ final class HomeViewModel {
             guard let this = self else { return }
             switch result {
             case .failure(let error):
-                completion( .failure(error))
+                completion(.failure(error))
             case .success(let currentResult):
                 this.current = currentResult
-                completion( .success)
+                completion(.success)
             }
         }
     }
@@ -162,36 +164,36 @@ final class HomeViewModel {
             guard let this = self else { return }
             switch result {
             case .failure(let error):
-                completion( .failure(error))
+                completion(.failure(error))
             case .success(let atmosphereResult):
                 this.atmosphere = atmosphereResult
-                completion( .success)
+                completion(.success)
             }
         }
     }
-    
+
     func loadLocation(completion: @escaping APICompletion) {
         APIManager.Location.getLocationByCity() { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
-                completion( .failure(error))
+                completion(.failure(error))
             case .success(let locationResult):
                 this.location = locationResult
-                completion( .success)
+                completion(.success)
             }
         }
     }
-    
+
     func loadAstronomy(completion: @escaping APICompletion) {
         APIManager.Astronomy.getAstronomyByCity() { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
-                completion( .failure(error))
+                completion(.failure(error))
             case .success(let astronomyResult):
                 this.astronomy = astronomyResult
-                completion( .success)
+                completion(.success)
             }
         }
     }

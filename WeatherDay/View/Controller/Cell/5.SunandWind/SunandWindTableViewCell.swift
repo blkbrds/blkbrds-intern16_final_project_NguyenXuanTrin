@@ -14,8 +14,8 @@ final class SunandWindTableViewCell: UITableViewCell {
     // MARK: - Properties
     var viewModel: SunandWindTableViewModel? {
         didSet {
-            guard let viewModel = viewModel else { return }
-            configUI(sunrise: viewModel.sunrise, sunset: viewModel.sunset)
+            guard let astronomy = viewModel?.astronomy else { return }
+            configUI(sunrise: astronomy.sunrise, sunset: astronomy.sunset)
         }
     }
 
@@ -31,6 +31,7 @@ final class SunandWindTableViewCell: UITableViewCell {
 
     // MARK: - Private functions
     private func configUI(sunrise: String, sunset: String) {
+        guard !sunrise.isEmpty && !sunset.isEmpty else { return }
         let frameCircle = CGRect(x: 40, y: 30, width: 300, height: 300)
         let circleCustom = SunandWindView(frame: frameCircle)
         circleCustom.createADC()
