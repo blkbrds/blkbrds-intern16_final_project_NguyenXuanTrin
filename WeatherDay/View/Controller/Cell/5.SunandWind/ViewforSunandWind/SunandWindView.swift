@@ -37,7 +37,6 @@ final class SunandWindView: UIView {
 
     private func covertSunsettoSecond(hours: String) -> Int {
         let temp: [String] = hours.components(separatedBy: ":")
-        print("a")
         let index = temp[1].index(temp[1].startIndex, offsetBy: 2)
         let mySubstringTemp1 = temp[1][..<index]
         guard let temp1 = Int(temp[0]), let temp2 = Int(mySubstringTemp1) else {

@@ -44,6 +44,11 @@
 		7042402B2521C4E9000D09E2 /* EveryHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7042402A2521C4E9000D09E2 /* EveryHours.swift */; };
 		7042402D2521C658000D09E2 /* DataforCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7042402C2521C658000D09E2 /* DataforCell.swift */; };
 		7042402F2521D20C000D09E2 /* EveryHoursCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7042402E2521D20C000D09E2 /* EveryHoursCellViewModel.swift */; };
+		70425F8E252B83E500E3B55C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70425F8C252B83E500E3B55C /* SearchTableViewCell.swift */; };
+		70425F8F252B83E500E3B55C /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70425F8D252B83E500E3B55C /* SearchTableViewCell.xib */; };
+		70425F91252B84CC00E3B55C /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70425F90252B84CC00E3B55C /* SearchCellViewModel.swift */; };
+		70425F93252B850200E3B55C /* Province.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70425F92252B850200E3B55C /* Province.swift */; };
+		70425F95252B8C4300E3B55C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70425F94252B8C4300E3B55C /* SearchViewModel.swift */; };
 		7044E215252A18CD004D6111 /* ApiWeatherDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E214252A18CD004D6111 /* ApiWeatherDay.swift */; };
 		7044E217252A1D11004D6111 /* Atmosphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E216252A1D11004D6111 /* Atmosphere.swift */; };
 		7044E219252A1D2E004D6111 /* Astronomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E218252A1D2E004D6111 /* Astronomy.swift */; };
@@ -154,6 +159,11 @@
 		7042402A2521C4E9000D09E2 /* EveryHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryHours.swift; sourceTree = "<group>"; };
 		7042402C2521C658000D09E2 /* DataforCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataforCell.swift; sourceTree = "<group>"; };
 		7042402E2521D20C000D09E2 /* EveryHoursCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryHoursCellViewModel.swift; sourceTree = "<group>"; };
+		70425F8C252B83E500E3B55C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		70425F8D252B83E500E3B55C /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		70425F90252B84CC00E3B55C /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
+		70425F92252B850200E3B55C /* Province.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Province.swift; sourceTree = "<group>"; };
+		70425F94252B8C4300E3B55C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7044E214252A18CD004D6111 /* ApiWeatherDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiWeatherDay.swift; sourceTree = "<group>"; };
 		7044E216252A1D11004D6111 /* Atmosphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atmosphere.swift; sourceTree = "<group>"; };
 		7044E218252A1D2E004D6111 /* Astronomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronomy.swift; sourceTree = "<group>"; };
@@ -254,8 +264,10 @@
 		70423FEA251D8E72000D09E2 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				70425F89252B838300E3B55C /* CellforSearch */,
 				70423FEB251D8E87000D09E2 /* SearchViewController.swift */,
 				70423FEC251D8E87000D09E2 /* SearchViewController.xib */,
+				70425F94252B8C4300E3B55C /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -345,6 +357,16 @@
 				704240282521C235000D09E2 /* EveryHoursViewModel.swift */,
 			);
 			path = CellforEveryHours;
+			sourceTree = "<group>";
+		};
+		70425F89252B838300E3B55C /* CellforSearch */ = {
+			isa = PBXGroup;
+			children = (
+				70425F8C252B83E500E3B55C /* SearchTableViewCell.swift */,
+				70425F8D252B83E500E3B55C /* SearchTableViewCell.xib */,
+				70425F90252B84CC00E3B55C /* SearchCellViewModel.swift */,
+			);
+			path = CellforSearch;
 			sourceTree = "<group>";
 		};
 		70426946252ADEC700DFD77E /* ViewforSunandWind */ = {
@@ -547,6 +569,7 @@
 				7044E216252A1D11004D6111 /* Atmosphere.swift */,
 				7044E218252A1D2E004D6111 /* Astronomy.swift */,
 				7044E21C252A355F004D6111 /* Location.swift */,
+				70425F92252B850200E3B55C /* Province.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -751,6 +774,7 @@
 				704240272521BD2E000D09E2 /* EveryHoursCollectionViewCell.xib in Resources */,
 				704076CC25264BDE009A09FD /* AmountofRainCollectionViewCell.xib in Resources */,
 				704076C525264852009A09FD /* AmountofRainTableViewCell.xib in Resources */,
+				70425F8F252B83E500E3B55C /* SearchTableViewCell.xib in Resources */,
 				D144D8A72518826800EA12FA /* Assets.xcassets in Resources */,
 				704240222521BCF4000D09E2 /* EveryHoursTableViewCell.xib in Resources */,
 				704D7687251C3D16008E482B /* GoogleService-Info.plist in Resources */,
@@ -858,6 +882,7 @@
 				D144D8A32518826700EA12FA /* UIViewControllerExt.swift in Sources */,
 				D144D8A12518826700EA12FA /* StringExt.swift in Sources */,
 				704076D025264F48009A09FD /* AmountofRain.swift in Sources */,
+				70425F8E252B83E500E3B55C /* SearchTableViewCell.swift in Sources */,
 				D144D8A22518826700EA12FA /* DictionaryExt.swift in Sources */,
 				70E9C485252315480032DF67 /* WeatherDaily.swift in Sources */,
 				D144D89E2518826700EA12FA /* NSURL.swift in Sources */,
@@ -873,8 +898,10 @@
 				7042402D2521C658000D09E2 /* DataforCell.swift in Sources */,
 				704076AC2524F380009A09FD /* MapTableViewCell.swift in Sources */,
 				70423FF4251DC65A000D09E2 /* ConditionToday.swift in Sources */,
+				70425F93252B850200E3B55C /* Province.swift in Sources */,
 				704076CE25264BFD009A09FD /* AmountofRainCollectionViewModel.swift in Sources */,
 				70423FF0251DA3B6000D09E2 /* UIImageView.swift in Sources */,
+				70425F91252B84CC00E3B55C /* SearchCellViewModel.swift in Sources */,
 				7044E21D252A355F004D6111 /* Location.swift in Sources */,
 				704076A7252498B1009A09FD /* DetailsOfDayViewModel.swift in Sources */,
 				D144D8A52518826700EA12FA /* DefaultsExt.swift in Sources */,
@@ -900,6 +927,7 @@
 				7042402B2521C4E9000D09E2 /* EveryHours.swift in Sources */,
 				D144D8A02518826700EA12FA /* InputViewExt.swift in Sources */,
 				D144D89F2518826700EA12FA /* DataExt.swift in Sources */,
+				70425F95252B8C4300E3B55C /* SearchViewModel.swift in Sources */,
 				70CE738F251B5BA700047D96 /* Font.swift in Sources */,
 				D144D89A2518826700EA12FA /* Error.swift in Sources */,
 				D144D8922518826700EA12FA /* CollectionCell.swift in Sources */,

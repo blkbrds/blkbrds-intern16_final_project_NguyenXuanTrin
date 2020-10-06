@@ -52,6 +52,6 @@ extension AmountofRainTableViewCell: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension AmountofRainTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.size.width / 4 - 20, height: 148)
+        return CGSize(width: frame.size.width / 4 - 14, height: 148)
     }
 }

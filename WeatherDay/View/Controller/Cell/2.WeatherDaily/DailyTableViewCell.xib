@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="360" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <visualEffectView opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qob-43-0Wq">
+                    <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qob-43-0Wq">
                         <rect key="frame" x="0.0" y="0.0" width="322" height="79"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8bi-8A-ryr">
                             <rect key="frame" x="0.0" y="0.0" width="322" height="79"/>

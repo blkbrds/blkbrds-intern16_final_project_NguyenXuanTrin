@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MVh-C3-uab">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="10" y="44" width="404" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
@@ -27,9 +27,9 @@
             <color key="backgroundColor" red="0.11304876949999999" green="0.13294070960000001" blue="0.15791159869999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MVh-C3-uab" secondAttribute="trailing" id="4Id-z6-sCa"/>
-                <constraint firstAttribute="bottom" secondItem="MVh-C3-uab" secondAttribute="bottom" id="ADt-Jc-JsF"/>
-                <constraint firstItem="MVh-C3-uab" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Lby-UP-xwi"/>
-                <constraint firstItem="MVh-C3-uab" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="htx-jH-eya"/>
+                <constraint firstItem="MVh-C3-uab" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Lby-UP-xwi"/>
+                <constraint firstItem="MVh-C3-uab" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cvM-eO-hHE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MVh-C3-uab" secondAttribute="bottom" id="eKG-3w-ir3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="131.8840579710145" y="134.59821428571428"/>

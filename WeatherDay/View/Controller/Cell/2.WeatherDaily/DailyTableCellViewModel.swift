@@ -30,12 +30,27 @@ final class DailyTableCellViewModel: ViewModel {
     init(forecasts: Forecasts) {
         self.forecasts = forecasts
     }
-    
+
     func infoTempDaily(temperature: Int) -> String {
         return "\(temperature.string)º"
     }
-    
+
     func infoHumidityDaily(humidity: Int) -> String {
         return "\(humidity.string)%"
+    }
+
+    func infoDayofWeek(day: String) -> String {
+        switch forecasts.dayOfWeek {
+        case "Tue":
+            return "Tuesday"
+        case "Wed":
+            return "Wednesday"
+        case "Thu":
+            return "Thusday"
+        case "Sat":
+            return "Saturday"
+        default:
+            return forecasts.dayOfWeek + "day"
+        }
     }
 }

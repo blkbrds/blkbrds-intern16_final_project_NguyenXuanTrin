@@ -96,7 +96,7 @@ final class HomeViewModel {
     func viewModelForCellFive() -> DetailsOfDayViewModel? {
         return DetailsOfDayViewModel(condition: current, atmosphere: atmosphere)
     }
-    
+
     func viewModelForCellSix() -> MapTableViewModel? {
         return MapTableViewModel(location: location)
     }
@@ -120,8 +120,8 @@ final class HomeViewModel {
     }
 
     // MARK: API
-    func loadForecasts(completion: @escaping APICompletion) {
-        APIManager.Forecasts.getForecastsByCity() { [weak self] result in
+    func loadForecasts(location: String, completion: @escaping APICompletion) {
+        APIManager.Forecasts.getForecastsByCity(location: location) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
@@ -133,8 +133,8 @@ final class HomeViewModel {
         }
     }
 
-    func loadForecastsArray(completion: @escaping APICompletion) {
-        APIManager.Forecasts.getForecastsArrayByCity { [weak self] result in
+    func loadForecastsArray(location: String, completion: @escaping APICompletion) {
+        APIManager.Forecasts.getForecastsArrayByCity(location: location) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
@@ -146,8 +146,8 @@ final class HomeViewModel {
         }
     }
 
-    func loadCondition(completion: @escaping APICompletion) {
-        APIManager.Condition.getCurrentByCity() { [weak self] result in
+    func loadCondition(location: String, completion: @escaping APICompletion) {
+        APIManager.Condition.getCurrentByCity(location: location) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
@@ -159,8 +159,8 @@ final class HomeViewModel {
         }
     }
 
-    func loadAtmosphere(completion: @escaping APICompletion) {
-        APIManager.Atmosphere.getAtmosthereByCity() { [weak self] result in
+    func loadAtmosphere(location: String, completion: @escaping APICompletion) {
+        APIManager.Atmosphere.getAtmosthereByCity(location: location) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
@@ -172,8 +172,8 @@ final class HomeViewModel {
         }
     }
 
-    func loadLocation(completion: @escaping APICompletion) {
-        APIManager.Location.getLocationByCity() { [weak self] result in
+    func loadLocation(location: String, completion: @escaping APICompletion) {
+        APIManager.Location.getLocationByCity(location: location) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
@@ -185,8 +185,8 @@ final class HomeViewModel {
         }
     }
 
-    func loadAstronomy(completion: @escaping APICompletion) {
-        APIManager.Astronomy.getAstronomyByCity() { [weak self] result in
+    func loadAstronomy(location: String, completion: @escaping APICompletion) {
+        APIManager.Astronomy.getAstronomyByCity(location: location) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .failure(let error):

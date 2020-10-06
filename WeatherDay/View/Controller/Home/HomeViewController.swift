@@ -9,7 +9,7 @@
 import UIKit
 
 private struct Configure {
-    static var titleName: String = "Home"
+    static var titleName: String = "Đà nẵng"
 }
 
 final class HomeViewController: ViewController {
@@ -23,12 +23,12 @@ final class HomeViewController: ViewController {
     var sunAndWind: SunandWindView = SunandWindView()
     var refreshControl = UIRefreshControl()
     var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
+    //var temp: String = "Đà nẵng"
 
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Configure.titleName
         configNavi()
         configTableview()
         configPulltoRefesh()
@@ -42,6 +42,7 @@ final class HomeViewController: ViewController {
 
     // MARK: - Private Functions
     private func configNavi() {
+        title = Configure.titleName
         let sideMenuItem = UIBarButtonItem(image: UIImage(named: "ic_image_sidemenu"), style: .done, target: self, action: nil)
         navigationItem.leftBarButtonItem = sideMenuItem
         let plusItem = UIBarButtonItem(image: UIImage(named: "ic_image_plus"), style: .done, target: self, action: #selector(pushToSearch))
@@ -80,7 +81,7 @@ final class HomeViewController: ViewController {
     }
 
     private func loadDataCondition(completion: @escaping () -> Void) {
-        viewModel.loadCondition() { [weak self] result in
+        viewModel.loadCondition(location: Configure.titleName) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -93,7 +94,7 @@ final class HomeViewController: ViewController {
     }
 
     private func loadDataForecasts(completion: @escaping () -> Void) {
-        viewModel.loadForecasts() { [weak self] result in
+        viewModel.loadForecasts(location: Configure.titleName) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -104,7 +105,7 @@ final class HomeViewController: ViewController {
     }
 
     private func loadDataAtmosphere(completion: @escaping () -> Void) {
-        viewModel.loadAtmosphere() { [weak self] result in
+        viewModel.loadAtmosphere(location: Configure.titleName) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -115,7 +116,7 @@ final class HomeViewController: ViewController {
     }
 
     private func loadDataLocation(completion: @escaping () -> Void) {
-        viewModel.loadLocation() { [weak self] result in
+        viewModel.loadLocation(location: Configure.titleName) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -126,7 +127,7 @@ final class HomeViewController: ViewController {
     }
 
     private func loadDataAstronomy(completion: @escaping () -> Void) {
-        viewModel.loadAstronomy() { [weak self] result in
+        viewModel.loadAstronomy(location: Configure.titleName) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -137,7 +138,7 @@ final class HomeViewController: ViewController {
     }
 
     private func loadDataForecastsArray(completion: @escaping () -> Void) {
-        viewModel.loadForecastsArray() { [weak self] result in
+        viewModel.loadForecastsArray(location: Configure.titleName) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -148,7 +149,7 @@ final class HomeViewController: ViewController {
     }
 
     private func handleCallApi() {
-        //HUD.show()
+        HUD.show()
         let dispatchGroup = DispatchGroup()
         // loadDataCondition
         dispatchGroup.enter()
@@ -186,7 +187,7 @@ final class HomeViewController: ViewController {
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) {
-            //HUD.popActivity()
+            HUD.popActivity()
             self.tableView.reloadData()
         }
     }
@@ -194,6 +195,7 @@ final class HomeViewController: ViewController {
     // MARK: - Objc private functions
     @objc private func pushToSearch() {
         let vc = SearchViewController()
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -301,3 +303,19 @@ extension HomeViewController: UITableViewDelegate {
         }
     }
 }
+
+extension HomeViewController: SearchViewControllerDelegate {
+    func changeTitleHome(_ viewController: SearchViewController, needPerform action: SearchViewController.Action) {
+        switch action {
+        case .sendTitleHome(title: let title):
+            Configure.titleName = title
+            configNavi()
+            handleCallApi()
+            UIView.transition(with: fullScreenImageView, duration: 0.6,
+                options: .transitionCrossDissolve,
+                animations: {
+                    self.fullScreenImageView.image = self.imageArray.randomItem
+                })
+            }
+        }
+    }
