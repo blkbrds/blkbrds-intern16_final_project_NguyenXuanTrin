@@ -11,6 +11,7 @@ import UIKit
 private struct Configure {
     static let titleName: String = "Add new locations"
 }
+
 final class SearchViewController: UIViewController {
 
     // MARK: - IBOutlets

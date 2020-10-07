@@ -77,11 +77,11 @@ final class ApiOAuth {
             }
         }
         self.oauth?.client.request(self.url,
-            method: .GET,
-            parameters: parameters,
-            headers: self.headers,
-            body: nil,
-            checkTokenExpiration: true,
-            completionHandler: completionHandler)
+                                   method: .GET,
+                                   parameters: parameters,
+                                   headers: self.headers,
+                                   body: nil,
+                                   checkTokenExpiration: true,
+                                   completionHandler: completionHandler)
     }
 }

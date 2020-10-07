@@ -12,15 +12,13 @@ import Foundation
 final class CurrentObservation: Mappable {
 
     // MARK: Properties
-    var weatherStatus: String = "Trin"
+    var weatherStatus: String = ""
     var temperatureToday: Int = 0
 
     // MARK: - Initialaze
-    init?(map: Map) {
-    }
+    init?(map: Map) { }
 
-    init() {
-    }
+    init() { }
 
     // MARK: - Functions
     func mapping(map: Map) {

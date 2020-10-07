@@ -24,14 +24,14 @@ final class HomeViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Configure.titleName
         configNavi()
-        fullScreenImageView.addBlurEffect()
         configTableview()
     }
 
     // MARK: - Private Functions
     private func configNavi() {
+        title = Configure.titleName
+        fullScreenImageView.addBlurEffect()
         let sideMenuItem = UIBarButtonItem(image: UIImage(named: "ic_image_sidemenu"), style: .done, target: self, action: nil)
         navigationItem.leftBarButtonItem = sideMenuItem
         let plusItem = UIBarButtonItem(image: UIImage(named: "ic_image_plus"), style: .done, target: self, action: #selector(pushToSearch))
