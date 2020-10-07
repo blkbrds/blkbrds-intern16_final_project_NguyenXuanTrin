@@ -27,22 +27,29 @@ private struct YahooWeatherAPIClientCredentials {
 
 final class ApiOAuth {
 
-    // Configure the following with your values.
-    private let credentials = YahooWeatherAPIClientCredentials(appId: Key.appId, clientId: Key.clientId, clientSecret: Key.clientSecret)
+    // MARK: - Singleton
+    private static var sharedApi: ApiOAuth = {
+        let apiOAuth = ApiOAuth()
+        return apiOAuth
+    }()
 
+    class func shared() -> ApiOAuth {
+        return sharedApi
+    }
+    
+    // MARK: - Properties
+    private let credentials = YahooWeatherAPIClientCredentials(appId: Key.appId, clientId: Key.clientId, clientSecret: Key.clientSecret)
     private let url: String = APIManager.Path.baseDomain + APIManager.Path.basePath
     private let oauth: OAuth1Swift?
-
-    public static let shared = ApiOAuth()
-
-    private init() {
-        self.oauth = OAuth1Swift(consumerKey: self.credentials.clientId, consumerSecret: self.credentials.clientSecret)
-    }
-
     private var headers: [String: String] {
         return [
             "X-Yahoo-App-Id": self.credentials.appId
         ]
+    }
+
+    // MARK: - Private funtions
+    private init() {
+        oauth = OAuth1Swift(consumerKey: self.credentials.clientId, consumerSecret: self.credentials.clientSecret)
     }
 
     /// Requests weather data by location name.
@@ -69,14 +76,12 @@ final class ApiOAuth {
         let completionHandler: OAuthSwiftHTTPRequest.CompletionHandler? = { result in
             switch result {
             case .success(let response):
-                print(response)
                 success(response)
             case .failure(let error):
-                print(error)
                 failure(error)
             }
         }
-        self.oauth?.client.request(self.url,
+        self.oauth?.client.request(url,
                                    method: .GET,
                                    parameters: parameters,
                                    headers: self.headers,
