@@ -55,6 +55,7 @@ final class HomeViewModel {
     var listEveryHours: [EveryHours] = []
     var listAmountOfRain: [AmountofRain] = []
     var listProvince: [Province] = []
+    var keySearch: KeySearch = KeySearch()
 
     // MARK: - Functions
     func numberOfSections() -> Int {
@@ -121,19 +122,30 @@ final class HomeViewModel {
         listAmountOfRain = DataforCell.listAmountofRain()
     }
     
-    func fetchDataHome(completion: @escaping APICompletion) {
+//    func fetchDataHome(completion: @escaping APICompletion) {
+//        do {
+//            let realm = try Realm()
+//            let results = realm.objects(Province.self)
+//            listProvince = results.reversed()
+//            completion(.success)
+//        } catch {
+//            completion(.failure(error))
+//        }
+//    }
+    
+    func fetchKeySearch() {
         do {
             let realm = try Realm()
-            let results = realm.objects(Province.self)
-            listProvince = results.reversed()
-            completion(.success)
+            if let result = realm.objects(KeySearch.self).first {
+                keySearch = result
+            }
         } catch {
-            completion(.failure(error))
+            print(error.localizedDescription)
         }
     }
     
-    func getFirstHome() -> String? {
-        return listProvince.first?.provinceName
+    func getFirstKey() -> String? {
+        return keySearch.reversedList.first
     }
 
     // MARK: API

@@ -94,19 +94,12 @@ final class HomeViewController: ViewController {
     }
     
     private func fetchData() {
-        viewModel.fetchDataHome { [weak self] (result) in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                this.getFirst()
-            case .failure(let error):
-                this.alert(error: error)
-            }
-        }
+        viewModel.fetchKeySearch()
+        getFirst()
     }
     
     private func getFirst() {
-        Configure.titleName = viewModel.getFirstHome() ?? ""
+        Configure.titleName = viewModel.getFirstKey() ?? ""
     }
 
     private func loadDataCondition(completion: @escaping () -> Void) {

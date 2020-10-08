@@ -1,5 +1,5 @@
 //
-//  HistoryTableViewCell.swift
+//  CellforArrayTableViewCell.swift
 //  WeatherDay
 //
 //  Created by PCI0004 on 10/8/20.
@@ -8,14 +8,13 @@
 
 import UIKit
 
-class HistoryTableViewCell: UITableViewCell {
+class CellforArrayTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
-    @IBOutlet private weak var historyNameLabel: UILabel!
-    @IBOutlet private weak var historyImageView: UIImageView!
+    @IBOutlet private weak var locationNameLabel: UILabel!
     
     // MARK: - Properties
-    var viewModel: HistoryCellViewModel? {
+    var viewModel: CellforArrayViewModel? {
         didSet {
             updateView()
         }
@@ -29,7 +28,7 @@ class HistoryTableViewCell: UITableViewCell {
     // MARK: - Functions
     func updateView() {
         guard let viewModel = viewModel else { return }
-        historyNameLabel.text = viewModel.historyKey
+        locationNameLabel.text = viewModel.locationName
     }
     
 }

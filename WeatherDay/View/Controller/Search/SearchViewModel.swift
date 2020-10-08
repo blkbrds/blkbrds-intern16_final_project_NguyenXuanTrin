@@ -24,16 +24,16 @@ final class SearchViewModel {
     }
 
     func numberOfRowsInSectionHistoryTableview() -> Int {
-        return keySearch.keyList.count
+        return keySearch.reversedList.count
     }
 
     func viewModelForItemResultTableView(at indexPath: IndexPath) -> SearchCellViewModel? {
         let province = filterList[indexPath.row]
         return SearchCellViewModel(province: province)
     }
-
-    func viewModelForItemHistoryTableView() -> HistoryCellViewModel? {
-        return HistoryCellViewModel(keySearch: keySearch)
+    
+    func viewModelForItemHistoryTableView(indexPath: IndexPath) -> HistoryCellViewModel? {
+        return HistoryCellViewModel(historyKey: keySearch.reversedList[indexPath.row])
     }
 
     func getListProvince() {
@@ -47,11 +47,13 @@ final class SearchViewModel {
                 let count = keySearch.keyList.count
                 if count == 0 {
                     keySearch.keyList.append(searchKey)
+                    realm.add(keySearch)
                 } else {
                     if let index = keySearch.keyList.firstIndex(of: searchKey) {
                         keySearch.keyList.remove(at: index)
                     }
                     keySearch.keyList.append(searchKey)
+                    realm.add(keySearch, update: .modified)
                 }
             }
             completion(.success)
@@ -70,16 +72,4 @@ final class SearchViewModel {
             print(error.localizedDescription)
         }
     }
-
-//    func fetchProvince(completion: @escaping APICompletion) {
-//        do {
-//            let realm = try Realm()
-//            if let result = realm.objects(KeySearch.self).first {
-//                keySearch = result
-//            }
-//            completion(.success)
-//        } catch {
-//            completion(.failure(error))
-//        }
-//    }
 }

@@ -68,7 +68,6 @@ final class SearchViewController: ViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         historyTableView.isHidden = true
-        //searchController.searchBar.delegate = self
     }
 
     private func saveProvinceToRealm(searchKey: String) {
@@ -88,7 +87,6 @@ final class SearchViewController: ViewController {
         if searchText.isEmpty {
             resultTableView.isHidden = true
             historyTableView.isHidden = false
-            fetchSearchHistoryData()
         } else {
             viewModel.filterList = viewModel.filterList.filter { Province in
                 Province.provinceName.lowercased().hasPrefix(searchText.lowercased())
@@ -98,14 +96,10 @@ final class SearchViewController: ViewController {
             resultTableView.reloadData()
         }
     }
-    
-    func fetchSearchHistoryData() {
-        viewModel.fetchKeySearch()
-    }
 
     // MARK: - Objc Private Functions
     @objc private func backButtonTouchUpInSide() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
@@ -121,7 +115,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == historyTableView {
             let cell = historyTableView.dequeueReusableCell(withClass: HistoryTableViewCell.self)
-            cell.viewModel = viewModel.viewModelForItemHistoryTableView()
+            cell.viewModel = viewModel.viewModelForItemHistoryTableView(indexPath: indexPath)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withClass: SearchTableViewCell.self, for: indexPath)
@@ -139,6 +133,7 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == historyTableView {
             let title: String = viewModel.keySearch.reversedList[indexPath.row]
+            saveProvinceToRealm(searchKey: title)
             delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
         } else {
             let title: String = viewModel.filterList[indexPath.row].provinceName

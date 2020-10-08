@@ -21,8 +21,15 @@
 		703F616B252EAC4800BB82B1 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F6169252EAC4800BB82B1 /* HistoryTableViewCell.swift */; };
 		703F616C252EAC4800BB82B1 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 703F616A252EAC4800BB82B1 /* HistoryTableViewCell.xib */; };
 		703F616E252EAC5500BB82B1 /* HistoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F616D252EAC5500BB82B1 /* HistoryCellViewModel.swift */; };
-		703F6171252EB92400BB82B1 /* OptionsLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F616F252EB92400BB82B1 /* OptionsLocationTableViewCell.swift */; };
-		703F6172252EB92400BB82B1 /* OptionsLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 703F6170252EB92400BB82B1 /* OptionsLocationTableViewCell.xib */; };
+		703F6176252ECB5600BB82B1 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F6175252ECB5600BB82B1 /* LocationsViewModel.swift */; };
+		703F617A252EDE3700BB82B1 /* ArrayLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F6178252EDE3700BB82B1 /* ArrayLocationTableViewController.swift */; };
+		703F617B252EDE3700BB82B1 /* ArrayLocationTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 703F6179252EDE3700BB82B1 /* ArrayLocationTableViewController.xib */; };
+		703F617D252EDE4D00BB82B1 /* ArrayLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F617C252EDE4D00BB82B1 /* ArrayLocationViewModel.swift */; };
+		703F6183252EE18400BB82B1 /* CellforArrayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F6181252EE18400BB82B1 /* CellforArrayTableViewCell.swift */; };
+		703F6184252EE18400BB82B1 /* CellforArrayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 703F6182252EE18400BB82B1 /* CellforArrayTableViewCell.xib */; };
+		703F6188252EE1A400BB82B1 /* CellforArrayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F6187252EE1A400BB82B1 /* CellforArrayViewModel.swift */; };
+		703F618B252EE57300BB82B1 /* OptionLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703F6189252EE57300BB82B1 /* OptionLocationTableViewCell.swift */; };
+		703F618C252EE57300BB82B1 /* OptionLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 703F618A252EE57300BB82B1 /* OptionLocationTableViewCell.xib */; };
 		704076A5252498B1009A09FD /* DetailsOfDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076A2252498B0009A09FD /* DetailsOfDayCell.swift */; };
 		704076A6252498B1009A09FD /* DetailsOfDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704076A3252498B0009A09FD /* DetailsOfDayCell.xib */; };
 		704076A7252498B1009A09FD /* DetailsOfDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076A4252498B0009A09FD /* DetailsOfDayViewModel.swift */; };
@@ -151,8 +158,15 @@
 		703F6169252EAC4800BB82B1 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		703F616A252EAC4800BB82B1 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		703F616D252EAC5500BB82B1 /* HistoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellViewModel.swift; sourceTree = "<group>"; };
-		703F616F252EB92400BB82B1 /* OptionsLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsLocationTableViewCell.swift; sourceTree = "<group>"; };
-		703F6170252EB92400BB82B1 /* OptionsLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsLocationTableViewCell.xib; sourceTree = "<group>"; };
+		703F6175252ECB5600BB82B1 /* LocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
+		703F6178252EDE3700BB82B1 /* ArrayLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayLocationTableViewController.swift; sourceTree = "<group>"; };
+		703F6179252EDE3700BB82B1 /* ArrayLocationTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArrayLocationTableViewController.xib; sourceTree = "<group>"; };
+		703F617C252EDE4D00BB82B1 /* ArrayLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayLocationViewModel.swift; sourceTree = "<group>"; };
+		703F6181252EE18400BB82B1 /* CellforArrayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellforArrayTableViewCell.swift; sourceTree = "<group>"; };
+		703F6182252EE18400BB82B1 /* CellforArrayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellforArrayTableViewCell.xib; sourceTree = "<group>"; };
+		703F6187252EE1A400BB82B1 /* CellforArrayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellforArrayViewModel.swift; sourceTree = "<group>"; };
+		703F6189252EE57300BB82B1 /* OptionLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionLocationTableViewCell.swift; sourceTree = "<group>"; };
+		703F618A252EE57300BB82B1 /* OptionLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionLocationTableViewCell.xib; sourceTree = "<group>"; };
 		704076A2252498B0009A09FD /* DetailsOfDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsOfDayCell.swift; sourceTree = "<group>"; };
 		704076A3252498B0009A09FD /* DetailsOfDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsOfDayCell.xib; sourceTree = "<group>"; };
 		704076A4252498B0009A09FD /* DetailsOfDayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsOfDayViewModel.swift; sourceTree = "<group>"; };
@@ -295,6 +309,7 @@
 		703F6153252DD0A700BB82B1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				703F6177252EDE1000BB82B1 /* 3.LocationTableView */,
 				703F6156252DD0CD00BB82B1 /* 2.Notifications */,
 				703F6155252DD0C200BB82B1 /* 1.Locations */,
 				703F6154252DD0AE00BB82B1 /* 0.Profile */,
@@ -354,6 +369,7 @@
 			children = (
 				703F615B252DD10200BB82B1 /* LocationsTableViewCell.swift */,
 				703F615C252DD10200BB82B1 /* LocationsTableViewCell.xib */,
+				703F6175252ECB5600BB82B1 /* LocationsViewModel.swift */,
 			);
 			path = CellLocations;
 			sourceTree = "<group>";
@@ -361,10 +377,31 @@
 		703F6174252EB93600BB82B1 /* CellOptionsLocation */ = {
 			isa = PBXGroup;
 			children = (
-				703F616F252EB92400BB82B1 /* OptionsLocationTableViewCell.swift */,
-				703F6170252EB92400BB82B1 /* OptionsLocationTableViewCell.xib */,
+				703F6189252EE57300BB82B1 /* OptionLocationTableViewCell.swift */,
+				703F618A252EE57300BB82B1 /* OptionLocationTableViewCell.xib */,
 			);
 			path = CellOptionsLocation;
+			sourceTree = "<group>";
+		};
+		703F6177252EDE1000BB82B1 /* 3.LocationTableView */ = {
+			isa = PBXGroup;
+			children = (
+				703F6180252EE14600BB82B1 /* CellforTableLocation */,
+				703F6178252EDE3700BB82B1 /* ArrayLocationTableViewController.swift */,
+				703F6179252EDE3700BB82B1 /* ArrayLocationTableViewController.xib */,
+				703F617C252EDE4D00BB82B1 /* ArrayLocationViewModel.swift */,
+			);
+			path = 3.LocationTableView;
+			sourceTree = "<group>";
+		};
+		703F6180252EE14600BB82B1 /* CellforTableLocation */ = {
+			isa = PBXGroup;
+			children = (
+				703F6181252EE18400BB82B1 /* CellforArrayTableViewCell.swift */,
+				703F6182252EE18400BB82B1 /* CellforArrayTableViewCell.xib */,
+				703F6187252EE1A400BB82B1 /* CellforArrayViewModel.swift */,
+			);
+			path = CellforTableLocation;
 			sourceTree = "<group>";
 		};
 		704076C625264B5E009A09FD /* CellforAmountofRain */ = {
@@ -900,13 +937,15 @@
 				D144D8A72518826800EA12FA /* Assets.xcassets in Resources */,
 				704240222521BCF4000D09E2 /* EveryHoursTableViewCell.xib in Resources */,
 				704D7687251C3D16008E482B /* GoogleService-Info.plist in Resources */,
+				703F6184252EE18400BB82B1 /* CellforArrayTableViewCell.xib in Resources */,
 				D144D8A92518826800EA12FA /* .gitkeep in Resources */,
 				70E9C4952524394F0032DF67 /* DailyTableViewCell.xib in Resources */,
 				704076BD25262CA2009A09FD /* SunandWindTableViewCell.xib in Resources */,
 				70423FEE251D8E87000D09E2 /* SearchViewController.xib in Resources */,
-				703F6172252EB92400BB82B1 /* OptionsLocationTableViewCell.xib in Resources */,
+				703F617B252EDE3700BB82B1 /* ArrayLocationTableViewController.xib in Resources */,
 				704076A6252498B1009A09FD /* DetailsOfDayCell.xib in Resources */,
 				70CE739E251B610D00047D96 /* HomeViewController.xib in Resources */,
+				703F618C252EE57300BB82B1 /* OptionLocationTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,7 +1061,10 @@
 				7042402D2521C658000D09E2 /* DataforCell.swift in Sources */,
 				704076AC2524F380009A09FD /* MapTableViewCell.swift in Sources */,
 				703F615D252DD10200BB82B1 /* LocationsTableViewCell.swift in Sources */,
+				703F617D252EDE4D00BB82B1 /* ArrayLocationViewModel.swift in Sources */,
+				703F617A252EDE3700BB82B1 /* ArrayLocationTableViewController.swift in Sources */,
 				70423FF4251DC65A000D09E2 /* ConditionToday.swift in Sources */,
+				703F6188252EE1A400BB82B1 /* CellforArrayViewModel.swift in Sources */,
 				70425F93252B850200E3B55C /* Province.swift in Sources */,
 				704076CE25264BFD009A09FD /* AmountofRainCollectionViewModel.swift in Sources */,
 				703F616B252EAC4800BB82B1 /* HistoryTableViewCell.swift in Sources */,
@@ -1053,7 +1095,6 @@
 				704240122521A21C000D09E2 /* APIManager.swift in Sources */,
 				D144D8932518826700EA12FA /* ViewController.swift in Sources */,
 				7042402B2521C4E9000D09E2 /* EveryHours.swift in Sources */,
-				703F6171252EB92400BB82B1 /* OptionsLocationTableViewCell.swift in Sources */,
 				D144D8A02518826700EA12FA /* InputViewExt.swift in Sources */,
 				D144D89F2518826700EA12FA /* DataExt.swift in Sources */,
 				70425F95252B8C4300E3B55C /* SearchViewModel.swift in Sources */,
@@ -1062,10 +1103,13 @@
 				D144D89A2518826700EA12FA /* Error.swift in Sources */,
 				D144D8922518826700EA12FA /* CollectionCell.swift in Sources */,
 				704240212521BCF4000D09E2 /* EveryHoursTableViewCell.swift in Sources */,
+				703F618B252EE57300BB82B1 /* OptionLocationTableViewCell.swift in Sources */,
+				703F6183252EE18400BB82B1 /* CellforArrayTableViewCell.swift in Sources */,
 				704240262521BD2E000D09E2 /* EveryHoursCollectionViewCell.swift in Sources */,
 				70CE738C251B5BA700047D96 /* Measurement.swift in Sources */,
 				70E9C4932524394F0032DF67 /* DailyTableCellViewModel.swift in Sources */,
 				704076C125263CA8009A09FD /* SunandWindView.swift in Sources */,
+				703F6176252ECB5600BB82B1 /* LocationsViewModel.swift in Sources */,
 				703F6166252EA63E00BB82B1 /* SideMenuViewModel.swift in Sources */,
 				703F6151252DCD3B00BB82B1 /* SideMenuTableViewController.swift in Sources */,
 			);

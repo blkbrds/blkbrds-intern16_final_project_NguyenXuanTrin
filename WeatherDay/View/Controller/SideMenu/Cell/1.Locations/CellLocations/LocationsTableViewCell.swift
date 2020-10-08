@@ -14,16 +14,22 @@ class LocationsTableViewCell: UITableViewCell {
     @IBOutlet private weak var locationNameLabel: UILabel!
     @IBOutlet private weak var showLocationImageView: UIImageView!
 
+    // MARK: - Properties
+    var viewModel: LocationsViewModel? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    // MARK: - Life cycle
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
         backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // MARK: - Functions
+    func updateView() {
+        guard let viewModel = viewModel else { return }
+        locationNameLabel.text = viewModel.historyKey
     }
     
 }

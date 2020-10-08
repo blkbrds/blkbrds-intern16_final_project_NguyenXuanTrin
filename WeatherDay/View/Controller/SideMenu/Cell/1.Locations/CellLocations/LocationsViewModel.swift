@@ -1,5 +1,5 @@
 //
-//  HistoryCellViewModel.swift
+//  LocationsViewModel.swift
 //  WeatherDay
 //
 //  Created by PCI0004 on 10/8/20.
@@ -8,13 +8,12 @@
 
 import Foundation
 
-final class HistoryCellViewModel {
-    
+final class LocationsViewModel {
     // MARK: - Properties
     var historyKey: String
     
+    // MARK: - Initialize
     init(historyKey: String) {
         self.historyKey = historyKey
     }
-    
 }

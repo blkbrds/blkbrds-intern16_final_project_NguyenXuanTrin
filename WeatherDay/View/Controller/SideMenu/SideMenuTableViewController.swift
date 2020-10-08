@@ -23,9 +23,15 @@ final class SideMenuTableViewController: UITableViewController {
     func configTableView() {
         tableView.backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
         tableView.register(nibWithCellClass: ProfileTableViewCell.self)
-        tableView.register(nibWithCellClass: OptionsLocationTableViewCell.self)
+        tableView.register(nibWithCellClass: OptionLocationTableViewCell.self)
         tableView.register(nibWithCellClass: LocationsTableViewCell.self)
         tableView.register(nibWithCellClass: NotificationsTableViewCell.self)
+    }
+    
+    // MARK: - Objc method
+    @objc func handleEditButtonTouchUpInside() {
+        let vc = ArrayLocationTableViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - Table view data source
@@ -49,10 +55,14 @@ final class SideMenuTableViewController: UITableViewController {
         case .location:
             switch indexPath.row {
             case 0:
-                let cellTwo = tableView.dequeueReusableCell(withClass: OptionsLocationTableViewCell.self)
+                let cellTwo = tableView.dequeueReusableCell(withClass: OptionLocationTableViewCell.self)
+                
+                cellTwo.editButton.addTarget(self, action: #selector(handleEditButtonTouchUpInside), for: .touchUpInside)
+                
                 return cellTwo
             default:
                 let cellThree = tableView.dequeueReusableCell(withClass: LocationsTableViewCell.self, for: indexPath)
+                cellThree.viewModel = viewModel.viewModelForItemLocationTableView(indexPath: indexPath)
                 return cellThree
             }
         case .notification:

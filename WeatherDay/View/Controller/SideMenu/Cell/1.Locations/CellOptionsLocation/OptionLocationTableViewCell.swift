@@ -1,5 +1,5 @@
 //
-//  OptionsLocationTableViewCell.swift
+//  OptionLocationTableViewCell.swift
 //  WeatherDay
 //
 //  Created by PCI0004 on 10/8/20.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class OptionsLocationTableViewCell: UITableViewCell {
+class OptionLocationTableViewCell: UITableViewCell {
 
+    // MARK: - IBOutlets
+    @IBOutlet weak var editButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
     }
 
@@ -21,5 +23,4 @@ class OptionsLocationTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

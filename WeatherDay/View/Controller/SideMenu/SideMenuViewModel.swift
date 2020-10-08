@@ -6,22 +6,21 @@
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
+import RealmSwift
 import Foundation
 
 final class SideMenuViewModel {
+    
+    var keySearch: KeySearch = KeySearch()
+    
+    init() {
+        fetchKeyLocation()
+    }
     
     enum SideMenuSectionType: Int {
         case profile
         case location
         case notification
-
-        var numberOfRowInSections: Int {
-            switch self {
-            case .profile: return 1
-            case .location: return 6
-            case .notification: return 1
-            }
-        }
     }
 
     enum location: Int {
@@ -39,9 +38,29 @@ final class SideMenuViewModel {
         case .profile:
             return 1
         case .location:
-            return 6
+            return numberOfRowsInSectionLocationTableview() + 1
         case .notification:
             return 1
+        }
+    }
+    
+    func numberOfRowsInSectionLocationTableview() -> Int {
+        return keySearch.reversedList.count
+    }
+    
+    func viewModelForItemLocationTableView(indexPath: IndexPath) -> LocationsViewModel? {
+        guard 0 <= indexPath.row - 1 && indexPath.row - 1 < keySearch.reversedList.count  else { return nil }
+        return LocationsViewModel(historyKey: keySearch.reversedList[indexPath.row - 1])
+    }
+    
+    func fetchKeyLocation() {
+        do {
+            let realm = try Realm()
+            if let result = realm.objects(KeySearch.self).first {
+                keySearch = result
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
