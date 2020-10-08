@@ -10,6 +10,7 @@ import UIKit
 import MVVM
 
 class ViewController: UIViewController, MVVM.View {
+
     // MARK: - Life cycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -30,8 +31,18 @@ class ViewController: UIViewController, MVVM.View {
     func setUpUI() {
         configNavi()
     }
+
     // MARK: - Private functions
     private func configNavi() {
-        // code here
+        setHiddenTitleBackbutton()
+    }
+
+    func setHiddenTitleBackbutton() {
+        switch self {
+        case is SearchViewController:
+            navigationController?.navigationItem.backBarButtonItem?.title = ""
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        default: break
+        }
     }
 }

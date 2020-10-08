@@ -20,13 +20,14 @@ private struct Configure {
 final class SearchViewController: ViewController {
 
     // MARK: - IBOutlets
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var resultTableView: UITableView!
+    @IBOutlet private weak var historyTableView: UITableView!
 
     // MARK: - Properties
     var delegate: SearchViewControllerDelegate?
     var viewModel: SearchViewModel = SearchViewModel()
     private lazy var searchController = UISearchController(searchResultsController: nil)
-    
+
     enum Action {
         case sendTitleHome(title: String)
     }
@@ -34,48 +35,99 @@ final class SearchViewController: ViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configNavi()
         configSearchUI()
     }
 
-    // MARK: - Override functions 
+    // MARK: - Override functions
     override func setUpUI() {
-        tableView.backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
-        tableView.register(nibWithCellClass: SearchTableViewCell.self)
-        tableView.dataSource = self
-        tableView.delegate = self
+        configTableView()
     }
-    
+
     // MARK: - Private Functions
+    private func configTableView() {
+        resultTableView.backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
+        resultTableView.register(nibWithCellClass: SearchTableViewCell.self)
+        resultTableView.delegate = self
+        resultTableView.dataSource = self
+        historyTableView.backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
+        historyTableView.register(nibWithCellClass: HistoryTableViewCell.self)
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
+    }
+
+    private func configNavi() {
+        let leftButton = UIBarButtonItem(image: UIImage(named: "img_back"), style: .plain, target: self, action: #selector(backButtonTouchUpInSide))
+        navigationItem.leftBarButtonItem = leftButton
+    }
+
     private func configSearchUI() {
         title = Configure.titleName
         navigationItem.searchController = searchController
         searchController.searchBar.searchTextField.textColor = .white
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
+        historyTableView.isHidden = true
+        //searchController.searchBar.delegate = self
     }
-    
+
+    private func saveProvinceToRealm(searchKey: String) {
+        viewModel.saveProvinceToRealm(searchKey: searchKey) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                print("Successed")
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
     private func filterProvince(for searchText: String) {
         viewModel.getListProvince()
         if searchText.isEmpty {
-            viewModel.filter = viewModel.listProvince
+            resultTableView.isHidden = true
+            historyTableView.isHidden = false
+            fetchSearchHistoryData()
         } else {
-            viewModel.filter = viewModel.listProvince.filter { Province in
+            viewModel.filterList = viewModel.filterList.filter { Province in
                 Province.provinceName.lowercased().hasPrefix(searchText.lowercased())
             }
+            historyTableView.isHidden = true
+            resultTableView.isHidden = false
+            resultTableView.reloadData()
         }
-        tableView.reloadData()
+    }
+    
+    func fetchSearchHistoryData() {
+        viewModel.fetchKeySearch()
+    }
+
+    // MARK: - Objc Private Functions
+    @objc private func backButtonTouchUpInSide() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection()
+        if tableView == historyTableView {
+            return viewModel.numberOfRowsInSectionHistoryTableview()
+        } else {
+            return viewModel.numberOfRowsInSectionResultTableview()
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: SearchTableViewCell.self, for: indexPath)
-        cell.viewModel = viewModel.viewModelForItem(at: indexPath)
-        return cell
+        if tableView == historyTableView {
+            let cell = historyTableView.dequeueReusableCell(withClass: HistoryTableViewCell.self)
+            cell.viewModel = viewModel.viewModelForItemHistoryTableView()
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withClass: SearchTableViewCell.self, for: indexPath)
+            cell.viewModel = viewModel.viewModelForItemResultTableView(at: indexPath)
+            return cell
+        }
     }
 }
 
@@ -83,10 +135,16 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let title: String = viewModel.filter[indexPath.row].provinceName
-        delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
+        if tableView == historyTableView {
+            let title: String = viewModel.keySearch.reversedList[indexPath.row]
+            delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
+        } else {
+            let title: String = viewModel.filterList[indexPath.row].provinceName
+            saveProvinceToRealm(searchKey: title)
+            delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
+        }
         navigationController?.popToRootViewController(animated: true)
     }
 }

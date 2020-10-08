@@ -12,13 +12,16 @@ final class SunandWindView: UIView {
 
     // MARK: - Functions
     func configSunsetSunrise(sunRise: String, sunSet: String) {
-        let sunRiseLabel = UILabel(frame: CGRect(x: frame.size.width / 2 - 170, y: frame.size.height / 2 - 10, width: 100, height: 50))
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        
+        let sunRiseLabel = UILabel(frame: CGRect(x: screenWidth / 2 - 220, y: 220 / 1.5 - 10, width: 100, height: 50))
         sunRiseLabel.text = sunRise
         sunRiseLabel.textAlignment = .center
         sunRiseLabel.textColor = .white
         addSubview(sunRiseLabel)
 
-        let sunSetLabel = UILabel(frame: CGRect(x: frame.size.width / 2 + 70, y: frame.size.height / 2 - 10, width: 100, height: 50))
+        let sunSetLabel = UILabel(frame: CGRect(x: screenWidth / 2 + 20, y: 220 / 1.5 - 10, width: 100, height: 50))
         sunSetLabel.text = sunSet
         sunSetLabel.textAlignment = .center
         sunSetLabel.textColor = .white
@@ -46,9 +49,12 @@ final class SunandWindView: UIView {
     }
 
     func createADC() {
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        
         let startAngle: CGFloat = CGFloat.pi
         let anglePI: CGFloat = 0.0
-        let arrCenter: CGPoint = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        let arrCenter = CGPoint(x: screenWidth / 2 - 60, y: 220 / 1.5)
 
         let adcLayer = CAShapeLayer()
         adcLayer.path = UIBezierPath(arcCenter: arrCenter,
@@ -65,6 +71,9 @@ final class SunandWindView: UIView {
     }
 
     func createLine(hoursCurrent: Int, minuteCurrent: Int, sunrise: String, sunset: String) {
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        
         let startAngle: CGFloat = CGFloat.pi
         let secondCurrent: Int = (hoursCurrent * 60) * 60 + minuteCurrent * 60
         let secondSunrise: Int = covertSunrisetoSecond(hours: sunrise)
@@ -74,7 +83,7 @@ final class SunandWindView: UIView {
         if anglePI >= 1 {
             anglePI = 1
         }
-        let arrCenter = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
+        let arrCenter = CGPoint(x: screenWidth / 2 - 60, y: 220 / 1.5)
 
         let circleLayer = CAShapeLayer()
         circleLayer.path = UIBezierPath(arcCenter: arrCenter,

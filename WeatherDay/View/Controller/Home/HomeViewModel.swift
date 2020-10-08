@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class HomeViewModel {
 
@@ -53,6 +54,7 @@ final class HomeViewModel {
     var astronomy: Astronomy = Astronomy()
     var listEveryHours: [EveryHours] = []
     var listAmountOfRain: [AmountofRain] = []
+    var listProvince: [Province] = []
 
     // MARK: - Functions
     func numberOfSections() -> Int {
@@ -117,6 +119,21 @@ final class HomeViewModel {
 
     private func getListAmountOfRain() {
         listAmountOfRain = DataforCell.listAmountofRain()
+    }
+    
+    func fetchDataHome(completion: @escaping APICompletion) {
+        do {
+            let realm = try Realm()
+            let results = realm.objects(Province.self)
+            listProvince = results.reversed()
+            completion(.success)
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
+    func getFirstHome() -> String? {
+        return listProvince.first?.provinceName
     }
 
     // MARK: API

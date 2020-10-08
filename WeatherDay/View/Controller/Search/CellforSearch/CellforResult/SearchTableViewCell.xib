@@ -24,9 +24,9 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="EIa-1p-Id5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="0Cq-JW-SPG"/>
-                    <constraint firstItem="EIa-1p-Id5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="DMH-P9-zIw"/>
-                    <constraint firstItem="EIa-1p-Id5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XC6-z2-z3J"/>
+                    <constraint firstItem="EIa-1p-Id5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="9OH-LM-Cko"/>
+                    <constraint firstAttribute="trailing" secondItem="EIa-1p-Id5" secondAttribute="trailing" constant="20" id="hsd-4z-tVz"/>
+                    <constraint firstItem="EIa-1p-Id5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rb4-ed-zeD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

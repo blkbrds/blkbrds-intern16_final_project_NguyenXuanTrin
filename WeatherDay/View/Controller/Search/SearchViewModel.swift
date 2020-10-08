@@ -7,23 +7,79 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class SearchViewModel {
-    
+
     // MARK: - Properties
-    var listProvince: [Province] = []
-    var filter: [Province] = []
+    var filterList: [Province] = []
+    var keySearch: KeySearch = KeySearch()
     
-    func numberOfRowsInSection() -> Int{
-        return filter.count
+    init() {
+        fetchKeySearch()
     }
-    
-    func viewModelForItem(at indexPath: IndexPath) -> SearchCellViewModel? {
-        let province = filter[indexPath.row]
+
+    func numberOfRowsInSectionResultTableview() -> Int {
+        return filterList.count
+    }
+
+    func numberOfRowsInSectionHistoryTableview() -> Int {
+        return keySearch.keyList.count
+    }
+
+    func viewModelForItemResultTableView(at indexPath: IndexPath) -> SearchCellViewModel? {
+        let province = filterList[indexPath.row]
         return SearchCellViewModel(province: province)
     }
-    
-    func getListProvince() {
-        listProvince = DataforCell.provinceList()
+
+    func viewModelForItemHistoryTableView() -> HistoryCellViewModel? {
+        return HistoryCellViewModel(keySearch: keySearch)
     }
+
+    func getListProvince() {
+        filterList = DataforCell.provinceList()
+    }
+
+    func saveProvinceToRealm(searchKey: String, completion: @escaping APICompletion) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let count = keySearch.keyList.count
+                if count == 0 {
+                    keySearch.keyList.append(searchKey)
+                } else {
+                    if let index = keySearch.keyList.firstIndex(of: searchKey) {
+                        keySearch.keyList.remove(at: index)
+                    }
+                    keySearch.keyList.append(searchKey)
+                }
+            }
+            completion(.success)
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
+    func fetchKeySearch() {
+        do {
+            let realm = try Realm()
+            if let result = realm.objects(KeySearch.self).first {
+                keySearch = result
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+//    func fetchProvince(completion: @escaping APICompletion) {
+//        do {
+//            let realm = try Realm()
+//            if let result = realm.objects(KeySearch.self).first {
+//                keySearch = result
+//            }
+//            completion(.success)
+//        } catch {
+//            completion(.failure(error))
+//        }
+//    }
 }

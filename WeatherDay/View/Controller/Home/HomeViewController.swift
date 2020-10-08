@@ -6,10 +6,11 @@
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
+import SideMenu
 import UIKit
 
 private struct Configure {
-    static var titleName: String = "Đà nẵng"
+    static var titleName: String = ""
 }
 
 final class HomeViewController: ViewController {
@@ -23,7 +24,7 @@ final class HomeViewController: ViewController {
     var sunAndWind: SunandWindView = SunandWindView()
     var refreshControl = UIRefreshControl()
     var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
-    //var temp: String = "Đà nẵng"
+    var menu: SideMenuNavigationController?
 
 
     // MARK: - Life Cycle
@@ -32,18 +33,23 @@ final class HomeViewController: ViewController {
         configNavi()
         configTableview()
         configPulltoRefesh()
+        configSideMenu()
         UIScreen.main.brightness = CGFloat(1)
     }
 
     override func setUpData() {
         super.setUpData()
+        fetchData()
+        if Configure.titleName == "" {
+            Configure.titleName = "Đà Nẵng"
+        }
         handleCallApi()
     }
 
     // MARK: - Private Functions
     private func configNavi() {
         title = Configure.titleName
-        let sideMenuItem = UIBarButtonItem(image: UIImage(named: "ic_image_sidemenu"), style: .done, target: self, action: nil)
+        let sideMenuItem = UIBarButtonItem(image: UIImage(named: "ic_image_sidemenu"), style: .done, target: self, action: #selector(didTapMenu))
         navigationItem.leftBarButtonItem = sideMenuItem
         let plusItem = UIBarButtonItem(image: UIImage(named: "ic_image_plus"), style: .done, target: self, action: #selector(pushToSearch))
         navigationItem.rightBarButtonItem = plusItem
@@ -78,6 +84,29 @@ final class HomeViewController: ViewController {
     private func configPulltoRefesh() {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
+    }
+    
+    private func configSideMenu() {
+        menu = SideMenuNavigationController(rootViewController: SideMenuTableViewController())
+        menu?.leftSide = true
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
+    }
+    
+    private func fetchData() {
+        viewModel.fetchDataHome { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.getFirst()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+    
+    private func getFirst() {
+        Configure.titleName = viewModel.getFirstHome() ?? ""
     }
 
     private func loadDataCondition(completion: @escaping () -> Void) {
@@ -197,6 +226,11 @@ final class HomeViewController: ViewController {
         let vc = SearchViewController()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func didTapMenu() {
+        guard let menu = menu else { return }
+        present(menu,animated: true)
     }
 
     @objc func refresh(_ sender: AnyObject) {

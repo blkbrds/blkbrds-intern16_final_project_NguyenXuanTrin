@@ -6,15 +6,19 @@
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
+import RealmSwift
 import Foundation
 
-final class Province {
+@objcMembers class Province: Object {
     
     // MARK: Properties
-    var provinceName :String = ""
+    var provinceName = ""
+    let provinceList = List<String>()
     
     // MARK: Initialize
     init(province: String) {
         self.provinceName = province
     }
+    
+    required init() { }
 }
