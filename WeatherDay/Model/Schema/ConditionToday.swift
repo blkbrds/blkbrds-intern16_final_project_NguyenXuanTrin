@@ -12,6 +12,7 @@ import Foundation
 final class ConditionToday: Mappable {
 
     // MARK: Properties
+    var code: Int = 0
     var weatherStatus: String = ""
     var temperatureToday: Int = 0
 
@@ -24,6 +25,7 @@ final class ConditionToday: Mappable {
 
     // MARK: - Functions
     func mapping(map: Map) {
+        code <- map["code"]
         weatherStatus <- map["text"]
         temperatureToday <- map["temperature"]
     }

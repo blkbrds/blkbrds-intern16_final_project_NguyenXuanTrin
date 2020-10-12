@@ -12,13 +12,18 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
+    
+    static var share: SceneDelegate {
+        guard let sceneDe = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+            fatalError()
+        }
+        return sceneDe
+    }
 
     var window: UIWindow?
+    let vc = HomeViewController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
-        let vc = HomeViewController()
-
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

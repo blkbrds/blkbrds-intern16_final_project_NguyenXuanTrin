@@ -21,11 +21,6 @@ class LocationsTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: - Life cycle
-    override func awakeFromNib() {
-        backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
-    }
-    
     // MARK: - Functions
     func updateView() {
         guard let viewModel = viewModel else { return }

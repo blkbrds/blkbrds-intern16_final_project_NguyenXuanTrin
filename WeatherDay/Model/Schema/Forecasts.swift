@@ -12,6 +12,7 @@ import Foundation
 final class Forecasts: Mappable {
 
     // MARK: Properties
+    var code: Int = 0
     var dayOfWeek: String = ""
     var temperatureMin: Int = 0
     var temperatureMax: Int = 0
@@ -25,6 +26,7 @@ final class Forecasts: Mappable {
 
     // MARK: - Functions
     func mapping(map: Map) {
+        code <- map["code"]
         dayOfWeek <- map["day"]
         temperatureMin <- map["low"]
         temperatureMax <- map["high"]

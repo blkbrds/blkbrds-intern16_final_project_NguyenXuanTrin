@@ -28,6 +28,7 @@ class DetailsOfDayCell: UITableViewCell {
     // MARK: - Private Functions
     private func updateView() {
         guard let viewModel = viewModel else { return }
+        weatherShowImageView.sd_setImage(with: URL(string: viewModel.url))
         temperatureLabel.text = viewModel.infoTempDaily(temperature: viewModel.temperature)
         humidityLabel.text = viewModel.infoHumidityDaily(humidity: viewModel.humidity)
         visibilityLabel.text = viewModel.infoVisibilityDaily(visibility: viewModel.visibility)

@@ -9,15 +9,11 @@
 import SideMenu
 import UIKit
 
-private struct Configure {
-    static var titleName: String = ""
-}
-
 final class HomeViewController: ViewController {
 
     // MARK: - IBOutlets
-    @IBOutlet private weak var fullScreenImageView: UIImageView!
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var fullScreenImageView: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
 
     // MARK: - Properties
     var viewModel: HomeViewModel = HomeViewModel()
@@ -25,6 +21,8 @@ final class HomeViewController: ViewController {
     var refreshControl = UIRefreshControl()
     var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
     var menu: SideMenuNavigationController?
+    var locationName: String = ""
+    var check: Bool = true
 
 
     // MARK: - Life Cycle
@@ -36,19 +34,30 @@ final class HomeViewController: ViewController {
         configSideMenu()
         UIScreen.main.brightness = CGFloat(1)
     }
-
-    override func setUpData() {
-        super.setUpData()
-        fetchData()
-        if Configure.titleName == "" {
-            Configure.titleName = "Đà Nẵng"
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if check == false {
+            title = locationName
+            handleCallApi(locationName: locationName)
+        } else {
+            UIView.transition(with: fullScreenImageView, duration: 0.6,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.fullScreenImageView.image = self.imageArray.randomItem
+            })
+            fetchData()
+            if locationName == "" {
+                locationName = "Đà Nẵng"
+            }
+            title = locationName
+            handleCallApi(locationName: locationName)
         }
-        handleCallApi()
     }
 
     // MARK: - Private Functions
     private func configNavi() {
-        title = Configure.titleName
+        title = locationName
         let sideMenuItem = UIBarButtonItem(image: UIImage(named: "ic_image_sidemenu"), style: .done, target: self, action: #selector(didTapMenu))
         navigationItem.leftBarButtonItem = sideMenuItem
         let plusItem = UIBarButtonItem(image: UIImage(named: "ic_image_plus"), style: .done, target: self, action: #selector(pushToSearch))
@@ -85,38 +94,25 @@ final class HomeViewController: ViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
-    
+
     private func configSideMenu() {
         menu = SideMenuNavigationController(rootViewController: SideMenuTableViewController())
         menu?.leftSide = true
         SideMenuManager.default.leftMenuNavigationController = menu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
     }
-    
+
     private func fetchData() {
         viewModel.fetchKeySearch()
         getFirst()
     }
-    
+
     private func getFirst() {
-        Configure.titleName = viewModel.getFirstKey() ?? ""
+        locationName = viewModel.getFirstKey() ?? ""
     }
 
-    private func loadDataCondition(completion: @escaping () -> Void) {
-        viewModel.loadCondition(location: Configure.titleName) { [weak self] result in
-            guard let this = self else { return }
-            switch result {
-            case .success: completion()
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    this.alert(error: error)
-                }
-            }
-        }
-    }
-
-    private func loadDataForecasts(completion: @escaping () -> Void) {
-        viewModel.loadForecasts(location: Configure.titleName) { [weak self] result in
+    private func loadDataCondition(locationTitle: String, completion: @escaping () -> Void) {
+        viewModel.loadCondition(location: locationTitle) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -126,8 +122,8 @@ final class HomeViewController: ViewController {
         }
     }
 
-    private func loadDataAtmosphere(completion: @escaping () -> Void) {
-        viewModel.loadAtmosphere(location: Configure.titleName) { [weak self] result in
+    private func loadDataForecasts(locationTitle: String, completion: @escaping () -> Void) {
+        viewModel.loadForecasts(location: locationTitle) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -137,8 +133,8 @@ final class HomeViewController: ViewController {
         }
     }
 
-    private func loadDataLocation(completion: @escaping () -> Void) {
-        viewModel.loadLocation(location: Configure.titleName) { [weak self] result in
+    private func loadDataAtmosphere(locationTitle: String, completion: @escaping () -> Void) {
+        viewModel.loadAtmosphere(location: locationTitle) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -148,8 +144,8 @@ final class HomeViewController: ViewController {
         }
     }
 
-    private func loadDataAstronomy(completion: @escaping () -> Void) {
-        viewModel.loadAstronomy(location: Configure.titleName) { [weak self] result in
+    private func loadDataLocation(locationTitle: String, completion: @escaping () -> Void) {
+        viewModel.loadLocation(location: locationTitle) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -159,8 +155,8 @@ final class HomeViewController: ViewController {
         }
     }
 
-    private func loadDataForecastsArray(completion: @escaping () -> Void) {
-        viewModel.loadForecastsArray(location: Configure.titleName) { [weak self] result in
+    private func loadDataAstronomy(locationTitle: String, completion: @escaping () -> Void) {
+        viewModel.loadAstronomy(location: locationTitle) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success: completion()
@@ -170,42 +166,53 @@ final class HomeViewController: ViewController {
         }
     }
 
-    private func handleCallApi() {
+    private func loadDataForecastsArray(locationTitle: String, completion: @escaping () -> Void) {
+        viewModel.loadForecastsArray(location: locationTitle) { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success: completion()
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    func handleCallApi(locationName: String) {
         HUD.show()
         let dispatchGroup = DispatchGroup()
         // loadDataCondition
         dispatchGroup.enter()
-        loadDataCondition {
+        loadDataCondition(locationTitle: locationName) {
             dispatchGroup.leave()
         }
         // loadDataForecasts
         dispatchGroup.enter()
-        loadDataForecasts {
+        loadDataForecasts(locationTitle: locationName) {
             dispatchGroup.leave()
         }
         // loadDataForecastsArray
         dispatchGroup.enter()
-        loadDataForecastsArray {
+        loadDataForecastsArray(locationTitle: locationName) {
             dispatchGroup.leave()
         }
         // loadDataAtmosphere
         dispatchGroup.enter()
-        loadDataAtmosphere {
+        loadDataAtmosphere(locationTitle: locationName) {
             dispatchGroup.leave()
         }
         // loadDataLocation
         dispatchGroup.enter()
-        loadDataLocation {
+        loadDataLocation(locationTitle: locationName) {
             dispatchGroup.leave()
         }
         // loadDataAstronomy
         dispatchGroup.enter()
-        loadDataAstronomy {
+        loadDataAstronomy(locationTitle: locationName) {
             dispatchGroup.leave()
         }
         // loadDataLocation
         dispatchGroup.enter()
-        loadDataLocation {
+        loadDataLocation(locationTitle: locationName) {
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) {
@@ -217,13 +224,12 @@ final class HomeViewController: ViewController {
     // MARK: - Objc private functions
     @objc private func pushToSearch() {
         let vc = SearchViewController()
-        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+
     @objc private func didTapMenu() {
         guard let menu = menu else { return }
-        present(menu,animated: true)
+        present(menu, animated: true)
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -330,19 +336,3 @@ extension HomeViewController: UITableViewDelegate {
         }
     }
 }
-
-extension HomeViewController: SearchViewControllerDelegate {
-    func changeTitleHome(_ viewController: SearchViewController, needPerform action: SearchViewController.Action) {
-        switch action {
-        case .sendTitleHome(title: let title):
-            Configure.titleName = title
-            configNavi()
-            handleCallApi()
-            UIView.transition(with: fullScreenImageView, duration: 0.6,
-                options: .transitionCrossDissolve,
-                animations: {
-                    self.fullScreenImageView.image = self.imageArray.randomItem
-                })
-            }
-        }
-    }

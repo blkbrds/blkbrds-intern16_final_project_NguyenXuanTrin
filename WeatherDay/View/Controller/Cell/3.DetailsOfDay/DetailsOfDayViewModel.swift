@@ -14,6 +14,14 @@ final class DetailsOfDayViewModel {
     var condition: ConditionToday
     var atmosphere: Atmosphere
     
+    var url: String {
+        return "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + String(code) + "d.png"
+    }
+    
+    var code: Int {
+        return condition.code
+    }
+    
     var temperature: Int {
         return condition.temperatureToday
     }

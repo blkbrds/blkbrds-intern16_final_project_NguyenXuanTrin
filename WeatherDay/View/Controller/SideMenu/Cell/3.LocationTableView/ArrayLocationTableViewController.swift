@@ -61,4 +61,28 @@ class ArrayLocationTableViewController: UITableViewController {
         cell.viewModel = viewModel.viewModelForItemLocationTableView(indexPath: indexPath)
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            viewModel.removeKeyLocation(locationName: viewModel.keySearch.reversedList[indexPath.row])
+            tableView.reloadData()
+        case .insert:
+            print("b")
+        case .none:
+            print("c")
+        }
+    }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        navigationController?.popToRootViewController(animated: true)
+//    }
 }

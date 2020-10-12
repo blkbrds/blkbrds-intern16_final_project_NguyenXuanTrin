@@ -22,11 +22,6 @@ final class MapTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: Life cycle
-    override func awakeFromNib() {
-        mapView.mapType = MKMapType.satellite
-    }
-    
     // MARK: - Private functions
     private func configMap(lat: Double, lon: Double) {
         let annotation = MKPointAnnotation()
@@ -35,5 +30,8 @@ final class MapTableViewCell: UITableViewCell {
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: true)
+        mapView.isZoomEnabled = false
+        mapView.isScrollEnabled = false
+        mapView.isUserInteractionEnabled = false
     }
 }

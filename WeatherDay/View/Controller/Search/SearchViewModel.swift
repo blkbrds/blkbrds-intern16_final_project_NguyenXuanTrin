@@ -14,7 +14,7 @@ final class SearchViewModel {
     // MARK: - Properties
     var filterList: [Province] = []
     var keySearch: KeySearch = KeySearch()
-    
+
     init() {
         fetchKeySearch()
     }
@@ -31,7 +31,7 @@ final class SearchViewModel {
         let province = filterList[indexPath.row]
         return SearchCellViewModel(province: province)
     }
-    
+
     func viewModelForItemHistoryTableView(indexPath: IndexPath) -> HistoryCellViewModel? {
         return HistoryCellViewModel(historyKey: keySearch.reversedList[indexPath.row])
     }
@@ -48,7 +48,12 @@ final class SearchViewModel {
                 if count == 0 {
                     keySearch.keyList.append(searchKey)
                     realm.add(keySearch)
-                } else {
+                } else if count == 5 {
+                    keySearch.keyList.removeFirst()
+                    keySearch.keyList.append(searchKey)
+                    realm.add(keySearch, update: .modified)
+                }
+                else {
                     if let index = keySearch.keyList.firstIndex(of: searchKey) {
                         keySearch.keyList.remove(at: index)
                     }

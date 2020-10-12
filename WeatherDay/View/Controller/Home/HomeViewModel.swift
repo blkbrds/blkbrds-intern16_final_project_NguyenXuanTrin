@@ -93,7 +93,7 @@ final class HomeViewModel {
     func viewModelForCellFour(at indexPath: IndexPath) -> DailyTableCellViewModel? {
         guard 0 <= indexPath.row - 1 && indexPath.row - 1 < forecastsArray.count else { return nil }
         let temp = forecastsArray[indexPath.row - 1]
-        return DailyTableCellViewModel(forecasts: temp)
+        return DailyTableCellViewModel(forecasts: temp, atmosphere: atmosphere)
     }
 
     func viewModelForCellFive() -> DetailsOfDayViewModel? {
@@ -121,17 +121,6 @@ final class HomeViewModel {
     private func getListAmountOfRain() {
         listAmountOfRain = DataforCell.listAmountofRain()
     }
-    
-//    func fetchDataHome(completion: @escaping APICompletion) {
-//        do {
-//            let realm = try Realm()
-//            let results = realm.objects(Province.self)
-//            listProvince = results.reversed()
-//            completion(.success)
-//        } catch {
-//            completion(.failure(error))
-//        }
-//    }
     
     func fetchKeySearch() {
         do {

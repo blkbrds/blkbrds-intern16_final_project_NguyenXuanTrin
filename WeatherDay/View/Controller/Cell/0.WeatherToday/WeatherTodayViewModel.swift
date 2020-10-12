@@ -9,11 +9,18 @@
 import Foundation
 
 final class WeatherTodayViewModel {
-
+    
     // MARK: - Properties
     var forecasts: Forecasts
     var condition: ConditionToday
     
+    var url: String {
+        return "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + String(code) + "ds.png"
+    }
+    
+    var code: Int {
+        return condition.code
+    }
     var weatherStatus: String {
         return condition.weatherStatus
     }

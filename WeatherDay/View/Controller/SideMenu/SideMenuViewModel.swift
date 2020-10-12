@@ -10,13 +10,9 @@ import RealmSwift
 import Foundation
 
 final class SideMenuViewModel {
-    
+
     var keySearch: KeySearch = KeySearch()
-    
-    init() {
-        fetchKeyLocation()
-    }
-    
+
     enum SideMenuSectionType: Int {
         case profile
         case location
@@ -27,11 +23,11 @@ final class SideMenuViewModel {
         case row0
         case row1
     }
-    
+
     func numberOfSections() -> Int {
         return 3
     }
-    
+
     func numberOfRowsInSection(inSection section: Int) -> Int {
         guard let sectionType = SideMenuSectionType(rawValue: section) else { return 0 }
         switch sectionType {
@@ -43,16 +39,16 @@ final class SideMenuViewModel {
             return 1
         }
     }
-    
+
     func numberOfRowsInSectionLocationTableview() -> Int {
         return keySearch.reversedList.count
     }
-    
+
     func viewModelForItemLocationTableView(indexPath: IndexPath) -> LocationsViewModel? {
-        guard 0 <= indexPath.row - 1 && indexPath.row - 1 < keySearch.reversedList.count  else { return nil }
+        guard 0 <= indexPath.row - 1 && indexPath.row - 1 < keySearch.reversedList.count else { return nil }
         return LocationsViewModel(historyKey: keySearch.reversedList[indexPath.row - 1])
     }
-    
+
     func fetchKeyLocation() {
         do {
             let realm = try Realm()

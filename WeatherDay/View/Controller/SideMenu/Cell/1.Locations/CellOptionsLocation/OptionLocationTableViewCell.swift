@@ -15,7 +15,6 @@ class OptionLocationTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

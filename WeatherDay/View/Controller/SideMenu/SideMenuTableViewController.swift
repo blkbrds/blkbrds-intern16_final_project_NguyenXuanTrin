@@ -9,7 +9,7 @@
 import UIKit
 
 final class SideMenuTableViewController: UITableViewController {
-        
+    
     // MARK: - Properties
     var viewModel: SideMenuViewModel = SideMenuViewModel()
     
@@ -18,6 +18,12 @@ final class SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         configTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchKeyLocation()
+        tableView.reloadData()
     }
     
     func configTableView() {
@@ -33,14 +39,14 @@ final class SideMenuTableViewController: UITableViewController {
         let vc = ArrayLocationTableViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return viewModel.numberOfSections()
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return viewModel.numberOfRowsInSection(inSection: section)
@@ -73,5 +79,23 @@ final class SideMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(60)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sectionType = SideMenuViewModel.SideMenuSectionType(rawValue: indexPath.section)
+        switch sectionType {
+        case .profile: print("a")
+        case .location:
+            switch indexPath.row {
+            case 0:
+                print("a")
+            default:
+                SceneDelegate.shared.vc.check = false
+                SceneDelegate.shared.vc.locationName = viewModel.keySearch.reversedList[indexPath.row - 1]
+                dismiss(animated: true)
+            }
+        case .notification: print("a")
+        case .none: print("a")
+        }
     }
 }

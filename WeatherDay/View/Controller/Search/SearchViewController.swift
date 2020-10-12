@@ -59,6 +59,7 @@ final class SearchViewController: ViewController {
     private func configNavi() {
         let leftButton = UIBarButtonItem(image: UIImage(named: "img_back"), style: .plain, target: self, action: #selector(backButtonTouchUpInSide))
         navigationItem.leftBarButtonItem = leftButton
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     private func configSearchUI() {
@@ -134,16 +135,13 @@ extension SearchViewController: UITableViewDelegate {
         if tableView == historyTableView {
             let title: String = viewModel.keySearch.reversedList[indexPath.row]
             saveProvinceToRealm(searchKey: title)
-            delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
         } else {
             let title: String = viewModel.filterList[indexPath.row].provinceName
             saveProvinceToRealm(searchKey: title)
-            delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
         }
         navigationController?.popToRootViewController(animated: true)
     }
 }
-
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterProvince(for: searchController.searchBar.text ?? "")

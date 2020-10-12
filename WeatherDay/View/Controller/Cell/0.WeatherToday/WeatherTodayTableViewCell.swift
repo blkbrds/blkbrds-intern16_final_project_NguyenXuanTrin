@@ -6,6 +6,7 @@
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
+import SDWebImage
 import UIKit
 
 final class WeatherTodayTableViewCell: UITableViewCell {
@@ -27,6 +28,7 @@ final class WeatherTodayTableViewCell: UITableViewCell {
     // MARK: - Private Functions
     private func updateView() {
         guard let viewModel = viewModel else { return }
+        weatherShowImage.sd_setImage(with: URL(string: viewModel.url))
         weatherStatusLabel.text = viewModel.weatherStatus
         temperatureMinLabel.text = viewModel.infoWeatherToday(temperature: viewModel.temperatureMin)
         temperatureMaxLabel.text = viewModel.infoWeatherToday(temperature: viewModel.temperatureMax)

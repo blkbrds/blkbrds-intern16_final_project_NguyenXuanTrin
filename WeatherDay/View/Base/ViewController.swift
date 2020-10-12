@@ -34,15 +34,5 @@ class ViewController: UIViewController, MVVM.View {
 
     // MARK: - Private functions
     private func configNavi() {
-        setHiddenTitleBackbutton()
-    }
-
-    func setHiddenTitleBackbutton() {
-        switch self {
-        case is SearchViewController:
-            navigationController?.navigationItem.backBarButtonItem?.title = ""
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        default: break
-        }
     }
 }

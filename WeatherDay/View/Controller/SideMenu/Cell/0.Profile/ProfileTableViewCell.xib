@@ -16,6 +16,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgA-dm-ayY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eFT-l7-a5p">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <blurEffect style="regular"/>
+                    </visualEffectView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nVm-LI-zxe">
                         <rect key="frame" x="8" y="9.5" width="40" height="39"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,13 +42,18 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="NgA-dm-ayY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4Q0-oj-Js5"/>
                     <constraint firstItem="nVm-LI-zxe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6Ot-nJ-L30"/>
                     <constraint firstItem="dzw-gC-fRO" firstAttribute="leading" secondItem="nVm-LI-zxe" secondAttribute="trailing" constant="16" id="HZm-ur-eUF"/>
+                    <constraint firstItem="NgA-dm-ayY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J0l-xP-WY1"/>
                     <constraint firstAttribute="trailing" secondItem="dzw-gC-fRO" secondAttribute="trailing" constant="16" id="PZe-VU-ow0"/>
                     <constraint firstItem="nVm-LI-zxe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Xdw-Hk-df1"/>
                     <constraint firstItem="dzw-gC-fRO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bGh-Fk-NT9"/>
+                    <constraint firstAttribute="trailing" secondItem="NgA-dm-ayY" secondAttribute="trailing" id="gha-We-M1q"/>
+                    <constraint firstAttribute="bottom" secondItem="NgA-dm-ayY" secondAttribute="bottom" id="ibD-pG-K96"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="nameLabel" destination="dzw-gC-fRO" id="t9b-y5-2Hl"/>

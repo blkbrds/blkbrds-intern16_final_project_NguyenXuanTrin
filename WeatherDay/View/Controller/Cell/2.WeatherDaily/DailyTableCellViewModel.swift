@@ -13,12 +13,20 @@ final class DailyTableCellViewModel: ViewModel {
 
     // MARK: - Properties
     var forecasts: Forecasts
+    var atmosphere: Atmosphere
+    var url: String {
+        return "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + String(code) + "ds.png"
+    }
+    
+    var code: Int {
+        return forecasts.code
+    }
 
     var dayOfWeek: String {
         return forecasts.dayOfWeek
     }
     var percentHumidity: Int {
-        return 35
+        return atmosphere.humidity
     }
     var temperatureMin: Int {
         return forecasts.temperatureMin
@@ -27,8 +35,9 @@ final class DailyTableCellViewModel: ViewModel {
         return forecasts.temperatureMax
     }
 
-    init(forecasts: Forecasts) {
+    init(forecasts: Forecasts, atmosphere: Atmosphere) {
         self.forecasts = forecasts
+        self.atmosphere = atmosphere
     }
 
     func infoTempDaily(temperature: Int) -> String {
