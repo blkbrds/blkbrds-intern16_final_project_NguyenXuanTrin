@@ -8,10 +8,19 @@
 
 import UIKit
 
+// MARK: - Protocol
+protocol SideMenuViewControllerDelegate {
+    func changeTitleHome(_ viewController: SideMenuTableViewController, needPerform action: SideMenuTableViewController.Action)
+}
+
 final class SideMenuTableViewController: UITableViewController {
     
     // MARK: - Properties
+    var delegate: SideMenuViewControllerDelegate?
     var viewModel: SideMenuViewModel = SideMenuViewModel()
+    enum Action {
+        case sendTitleHome(title: String)
+    }
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -34,6 +43,18 @@ final class SideMenuTableViewController: UITableViewController {
         tableView.register(nibWithCellClass: NotificationsTableViewCell.self)
     }
     
+    private func saveProvinceToRealm(searchKey: String) {
+        viewModel.saveProvinceToRealm(searchKey: searchKey) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                print("Successed")
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+    
     // MARK: - Objc method
     @objc func handleEditButtonTouchUpInside() {
         let vc = ArrayLocationTableViewController()
@@ -41,7 +62,6 @@ final class SideMenuTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return viewModel.numberOfSections()
@@ -55,9 +75,6 @@ final class SideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionType = SideMenuViewModel.SideMenuSectionType(rawValue: indexPath.section) else { return UITableViewCell() }
         switch sectionType {
-        case .profile:
-            let cellOne = tableView.dequeueReusableCell(withClass: ProfileTableViewCell.self, for: indexPath)
-            return cellOne
         case .location:
             switch indexPath.row {
             case 0:
@@ -71,9 +88,6 @@ final class SideMenuTableViewController: UITableViewController {
                 cellThree.viewModel = viewModel.viewModelForItemLocationTableView(indexPath: indexPath)
                 return cellThree
             }
-        case .notification:
-            let cellFour = tableView.dequeueReusableCell(withClass: NotificationsTableViewCell.self)
-            return cellFour
         }
     }
     
@@ -84,17 +98,16 @@ final class SideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionType = SideMenuViewModel.SideMenuSectionType(rawValue: indexPath.section)
         switch sectionType {
-        case .profile: print("a")
         case .location:
             switch indexPath.row {
             case 0:
                 print("a")
             default:
-                SceneDelegate.shared.vc.check = false
-                SceneDelegate.shared.vc.locationName = viewModel.keySearch.reversedList[indexPath.row - 1]
+                let title = viewModel.keySearch.reversedList[indexPath.row - 1]
+                saveProvinceToRealm(searchKey: title)
+                delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
                 dismiss(animated: true)
             }
-        case .notification: print("a")
         case .none: print("a")
         }
     }

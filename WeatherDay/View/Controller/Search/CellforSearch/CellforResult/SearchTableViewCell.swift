@@ -28,6 +28,6 @@ final class SearchTableViewCell: UITableViewCell {
     // MARK: - Functions
     func updateView() {
         guard let viewModel = viewModel else { return }
-        provinceLabel.text = viewModel.provinceName
+        provinceLabel.text = viewModel.name
     }
 }

@@ -12,7 +12,8 @@ import RealmSwift
 final class SearchViewModel {
 
     // MARK: - Properties
-    var filterList: [Province] = []
+    var filterList: [SearchProvince] = []
+    var resultList: [SearchProvince] = []
     var keySearch: KeySearch = KeySearch()
 
     init() {
@@ -28,16 +29,12 @@ final class SearchViewModel {
     }
 
     func viewModelForItemResultTableView(at indexPath: IndexPath) -> SearchCellViewModel? {
-        let province = filterList[indexPath.row]
-        return SearchCellViewModel(province: province)
+        let searchProvince = filterList[indexPath.row]
+        return SearchCellViewModel(searchProvince: searchProvince)
     }
 
     func viewModelForItemHistoryTableView(indexPath: IndexPath) -> HistoryCellViewModel? {
         return HistoryCellViewModel(historyKey: keySearch.reversedList[indexPath.row])
-    }
-
-    func getListProvince() {
-        filterList = DataforCell.provinceList()
     }
 
     func saveProvinceToRealm(searchKey: String, completion: @escaping APICompletion) {
@@ -49,7 +46,11 @@ final class SearchViewModel {
                     keySearch.keyList.append(searchKey)
                     realm.add(keySearch)
                 } else if count == 5 {
-                    keySearch.keyList.removeFirst()
+                    if let index = keySearch.keyList.firstIndex(of: searchKey) {
+                        keySearch.keyList.remove(at: index)
+                    } else {
+                        keySearch.keyList.removeFirst()
+                    }
                     keySearch.keyList.append(searchKey)
                     realm.add(keySearch, update: .modified)
                 }
@@ -75,6 +76,19 @@ final class SearchViewModel {
             }
         } catch {
             print(error.localizedDescription)
+        }
+    }
+
+    func getListNameCity(completion: @escaping APICompletion) {
+        APIManager.Search.searchNameCity { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let nameResult):
+                this.resultList = nameResult
+                completion(.success)
+            }
         }
     }
 }

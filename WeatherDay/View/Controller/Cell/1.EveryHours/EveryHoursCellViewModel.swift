@@ -12,9 +12,11 @@ final class EveryHoursTableViewCellViewModel {
 
     // MARK: - Properties
     private(set) var listData: [EveryHours]
+    var condition: ConditionToday
 
-    init(listData: [EveryHours]) {
+    init(listData: [EveryHours], condition: ConditionToday) {
         self.listData = listData
+        self.condition = condition
     }
 
     // MARK: - Functions
@@ -28,7 +30,7 @@ final class EveryHoursTableViewCellViewModel {
 
     func viewModelForItem(at indexPath: IndexPath) -> EveryHoursCollectionViewViewModel? {
         let everyHours = listData[indexPath.row]
-        return EveryHoursCollectionViewViewModel(everyHours: everyHours)
+        return EveryHoursCollectionViewViewModel(everyHours: everyHours, condition: condition)
     }
 
     func viewModelForCell(at indexPath: IndexPath) -> EveryHours {

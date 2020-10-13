@@ -76,6 +76,7 @@
 		7044E219252A1D2E004D6111 /* Astronomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E218252A1D2E004D6111 /* Astronomy.swift */; };
 		7044E21B252A3537004D6111 /* MapTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E21A252A3537004D6111 /* MapTableViewModel.swift */; };
 		7044E21D252A355F004D6111 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E21C252A355F004D6111 /* Location.swift */; };
+		7045E06D2533FB8F0054DA55 /* SearchProvince.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7045E06C2533FB8F0054DA55 /* SearchProvince.swift */; };
 		704D7687251C3D16008E482B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 704D7686251C3D15008E482B /* GoogleService-Info.plist */; };
 		70CE738C251B5BA700047D96 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7386251B5BA700047D96 /* Measurement.swift */; };
 		70CE738D251B5BA700047D96 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7387251B5BA700047D96 /* String.swift */; };
@@ -213,6 +214,7 @@
 		7044E218252A1D2E004D6111 /* Astronomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronomy.swift; sourceTree = "<group>"; };
 		7044E21A252A3537004D6111 /* MapTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewModel.swift; sourceTree = "<group>"; };
 		7044E21C252A355F004D6111 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		7045E06C2533FB8F0054DA55 /* SearchProvince.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProvince.swift; sourceTree = "<group>"; };
 		704D7686251C3D15008E482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70CE7386251B5BA700047D96 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		70CE7387251B5BA700047D96 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -724,6 +726,7 @@
 				7044E21C252A355F004D6111 /* Location.swift */,
 				70425F92252B850200E3B55C /* Province.swift */,
 				703F6163252DD95000BB82B1 /* KeySearch.swift */,
+				7045E06C2533FB8F0054DA55 /* SearchProvince.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -1084,6 +1087,7 @@
 				7044E219252A1D2E004D6111 /* Astronomy.swift in Sources */,
 				70CE738D251B5BA700047D96 /* String.swift in Sources */,
 				70424000251DECA8000D09E2 /* WeatherTodayViewModel.swift in Sources */,
+				7045E06D2533FB8F0054DA55 /* SearchProvince.swift in Sources */,
 				D144D89D2518826700EA12FA /* Api.swift in Sources */,
 				703F6161252DD11100BB82B1 /* NotificationsTableViewCell.swift in Sources */,
 				70423FF2251DC638000D09E2 /* Forecasts.swift in Sources */,

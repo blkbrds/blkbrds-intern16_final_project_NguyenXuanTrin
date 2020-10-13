@@ -11,14 +11,14 @@ import Foundation
 final class SearchCellViewModel {
     
     // MARK: - Properties
-    var province: Province
+    var searchProvince: SearchProvince
     
-    var provinceName: String {
-        return province.provinceName
+    var name: String {
+        return searchProvince.name
     }
     
     // MARK: - Initialize
-    init(province :Province) {
-        self.province = province
+    init(searchProvince :SearchProvince) {
+        self.searchProvince = searchProvince
     }
 }

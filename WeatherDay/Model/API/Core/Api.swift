@@ -17,6 +17,9 @@ final class Api {
         #else
             static let baseURL = "https://pro-asiantech.vn"
         #endif
+            static let base_domain = " https://thongtindoanhnghiep.co"
+            static let base_path = "/api"
+            static let city_list = "/city"
     }
 }
 

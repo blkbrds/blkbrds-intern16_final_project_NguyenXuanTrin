@@ -12,6 +12,15 @@ final class EveryHoursCollectionViewViewModel: ViewModel {
 
     // MARK: - Properties
     var everyHours: EveryHours
+    var condition: ConditionToday
+    
+    var url: String {
+        return "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + String(code) + "ds.png"
+    }
+    
+    var code: Int {
+        return condition.code
+    }
 
     var percentOfRain: Int {
         return everyHours.percentOfRain
@@ -25,7 +34,8 @@ final class EveryHoursCollectionViewViewModel: ViewModel {
     var timeEveryHours: String {
         return everyHours.timeEveryHours
     }
-    init(everyHours: EveryHours) {
+    init(everyHours: EveryHours, condition: ConditionToday) {
         self.everyHours = everyHours
+        self.condition = condition
     }
 }

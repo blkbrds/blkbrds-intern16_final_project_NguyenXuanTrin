@@ -9,11 +9,12 @@
 import SideMenu
 import UIKit
 
-final class HomeViewController: ViewController {
+final class HomeViewController: ViewController, UINavigationControllerDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet weak var fullScreenImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var errorImageView: UIImageView!
 
     // MARK: - Properties
     var viewModel: HomeViewModel = HomeViewModel()
@@ -22,7 +23,6 @@ final class HomeViewController: ViewController {
     var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
     var menu: SideMenuNavigationController?
     var locationName: String = ""
-    var check: Bool = true
 
 
     // MARK: - Life Cycle
@@ -37,22 +37,19 @@ final class HomeViewController: ViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if check == false {
-            title = locationName
-            handleCallApi(locationName: locationName)
-        } else {
-            UIView.transition(with: fullScreenImageView, duration: 0.6,
+        errorImageView.isHidden = true
+        tableView.contentOffset = CGPoint(x: 0, y: 0)
+        UIView.transition(with: fullScreenImageView, duration: 0.6,
             options: .transitionCrossDissolve,
             animations: {
                 self.fullScreenImageView.image = self.imageArray.randomItem
             })
-            fetchData()
-            if locationName == "" {
-                locationName = "Đà Nẵng"
-            }
-            title = locationName
-            handleCallApi(locationName: locationName)
+        fetchData()
+        if locationName == "" {
+            locationName = "Đà Nẵng"
         }
+        title = locationName
+        handleCallApi(locationName: locationName)
     }
 
     // MARK: - Private Functions
@@ -113,20 +110,24 @@ final class HomeViewController: ViewController {
 
     private func loadDataCondition(locationTitle: String, completion: @escaping () -> Void) {
         viewModel.loadCondition(location: locationTitle) { [weak self] result in
+            completion()
             guard let this = self else { return }
             switch result {
-            case .success: completion()
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
+                this.errorImageView.isHidden = false
+                this.errorImageView.image = this.imageArray.randomItem
             }
         }
     }
 
     private func loadDataForecasts(locationTitle: String, completion: @escaping () -> Void) {
         viewModel.loadForecasts(location: locationTitle) { [weak self] result in
+            completion()
             guard let this = self else { return }
             switch result {
-            case .success: completion()
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -135,9 +136,10 @@ final class HomeViewController: ViewController {
 
     private func loadDataAtmosphere(locationTitle: String, completion: @escaping () -> Void) {
         viewModel.loadAtmosphere(location: locationTitle) { [weak self] result in
+            completion()
             guard let this = self else { return }
             switch result {
-            case .success: completion()
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -146,9 +148,10 @@ final class HomeViewController: ViewController {
 
     private func loadDataLocation(locationTitle: String, completion: @escaping () -> Void) {
         viewModel.loadLocation(location: locationTitle) { [weak self] result in
+            completion()
             guard let this = self else { return }
             switch result {
-            case .success: completion()
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -157,9 +160,10 @@ final class HomeViewController: ViewController {
 
     private func loadDataAstronomy(locationTitle: String, completion: @escaping () -> Void) {
         viewModel.loadAstronomy(location: locationTitle) { [weak self] result in
+            completion()
             guard let this = self else { return }
             switch result {
-            case .success: completion()
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -168,9 +172,10 @@ final class HomeViewController: ViewController {
 
     private func loadDataForecastsArray(locationTitle: String, completion: @escaping () -> Void) {
         viewModel.loadForecastsArray(location: locationTitle) { [weak self] result in
+            completion()
             guard let this = self else { return }
             switch result {
-            case .success: completion()
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -229,6 +234,7 @@ final class HomeViewController: ViewController {
 
     @objc private func didTapMenu() {
         guard let menu = menu else { return }
+        menu.delegate = self
         present(menu, animated: true)
     }
 
@@ -333,6 +339,18 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 5, let cell = tableView.cellForRow(at: indexPath) as? SunandWindTableViewCell {
             cell.viewModel = viewModel.viewModelForCellSeven()
+        }
+    }
+}
+
+extension HomeViewController: SideMenuViewControllerDelegate {
+    func changeTitleHome(_ viewController: SideMenuTableViewController, needPerform action: SideMenuTableViewController.Action) {
+        switch action {
+        case .sendTitleHome(title: let title):
+            if title != locationName {
+                locationName = title
+                handleCallApi(locationName: locationName)
+            }
         }
     }
 }

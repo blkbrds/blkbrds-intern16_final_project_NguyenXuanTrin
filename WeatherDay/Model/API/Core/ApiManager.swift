@@ -44,4 +44,5 @@ struct APIManager {
     struct Astronomy { }
     struct Atmosphere { }
     struct Location { }
+    struct Search { }
 }

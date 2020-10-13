@@ -33,6 +33,7 @@ final class EveryHoursCollectionViewCell: UICollectionViewCell {
     
     func updateView() {
         guard let viewModel = viewModel else { return }
+        weatherShowEveryHoursImageView.sd_setImage(with: URL(string: viewModel.url))
         percentOfRainLabel.text = String(viewModel.percentOfRain) + "%"
         temperatureLabel.text = String(viewModel.temperature) + "º"
         timeEveryHoursLabel.text = String(viewModel.timeEveryHours)

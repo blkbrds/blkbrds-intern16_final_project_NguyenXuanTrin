@@ -8,11 +8,6 @@
 
 import UIKit
 
-// MARK: - Protocol
-protocol SearchViewControllerDelegate: class {
-    func changeTitleHome(_ viewController: SearchViewController, needPerform action: SearchViewController.Action)
-}
-
 private struct Configure {
     static let titleName: String = "Add new locations"
 }
@@ -24,19 +19,15 @@ final class SearchViewController: ViewController {
     @IBOutlet private weak var historyTableView: UITableView!
 
     // MARK: - Properties
-    var delegate: SearchViewControllerDelegate?
     var viewModel: SearchViewModel = SearchViewModel()
     private lazy var searchController = UISearchController(searchResultsController: nil)
-
-    enum Action {
-        case sendTitleHome(title: String)
-    }
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavi()
         configSearchUI()
+        getListCityName()
     }
 
     // MARK: - Override functions
@@ -82,15 +73,27 @@ final class SearchViewController: ViewController {
             }
         }
     }
+    
+    private func getListCityName() {
+        viewModel.getListNameCity { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                print("Successed")
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
 
     private func filterProvince(for searchText: String) {
-        viewModel.getListProvince()
         if searchText.isEmpty {
+            viewModel.filterList = viewModel.resultList
             resultTableView.isHidden = true
             historyTableView.isHidden = false
         } else {
-            viewModel.filterList = viewModel.filterList.filter { Province in
-                Province.provinceName.lowercased().hasPrefix(searchText.lowercased())
+            viewModel.filterList = viewModel.resultList.filter { SearchProvince in
+                SearchProvince.name.lowercased().hasPrefix(searchText.lowercased())
             }
             historyTableView.isHidden = true
             resultTableView.isHidden = false
@@ -136,7 +139,7 @@ extension SearchViewController: UITableViewDelegate {
             let title: String = viewModel.keySearch.reversedList[indexPath.row]
             saveProvinceToRealm(searchKey: title)
         } else {
-            let title: String = viewModel.filterList[indexPath.row].provinceName
+            let title: String = viewModel.filterList[indexPath.row].name
             saveProvinceToRealm(searchKey: title)
         }
         navigationController?.popToRootViewController(animated: true)

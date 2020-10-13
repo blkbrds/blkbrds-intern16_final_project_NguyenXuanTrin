@@ -87,7 +87,7 @@ final class HomeViewModel {
     func viewModelForCellTwo() -> EveryHoursTableViewCellViewModel? {
         getListEveryHours()
         let everyHours = listEveryHours
-        return EveryHoursTableViewCellViewModel(listData: everyHours)
+        return EveryHoursTableViewCellViewModel(listData: everyHours, condition: current)
     }
 
     func viewModelForCellFour(at indexPath: IndexPath) -> DailyTableCellViewModel? {

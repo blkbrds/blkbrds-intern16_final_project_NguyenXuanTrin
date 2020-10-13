@@ -26,6 +26,37 @@ final class ArrayLoactionViewModel {
     func viewModelForItemLocationTableView(indexPath: IndexPath) -> CellforArrayViewModel? {
         return CellforArrayViewModel(locationName: keySearch.reversedList[indexPath.row])
     }
+    
+    func saveProvinceToRealm(searchKey: String, completion: @escaping APICompletion) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let count = keySearch.keyList.count
+                if count == 0 {
+                    keySearch.keyList.append(searchKey)
+                    realm.add(keySearch)
+                } else if count == 5 {
+                    if let index = keySearch.keyList.firstIndex(of: searchKey) {
+                        keySearch.keyList.remove(at: index)
+                    } else {
+                        keySearch.keyList.removeFirst()
+                    }
+                    keySearch.keyList.append(searchKey)
+                    realm.add(keySearch, update: .modified)
+                }
+                else {
+                    if let index = keySearch.keyList.firstIndex(of: searchKey) {
+                        keySearch.keyList.remove(at: index)
+                    }
+                    keySearch.keyList.append(searchKey)
+                    realm.add(keySearch, update: .modified)
+                }
+            }
+            completion(.success)
+        } catch {
+            completion(.failure(error))
+        }
+    }
 
     func fetchKeyLocation() {
         do {

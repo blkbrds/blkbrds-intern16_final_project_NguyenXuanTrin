@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="WeatherDay" customModuleProvider="target">
             <connections>
+                <outlet property="errorImageView" destination="Jt5-lx-XT5" id="Vey-am-VD0"/>
                 <outlet property="fullScreenImageView" destination="QLa-Yc-59j" id="95i-Mp-jeU"/>
                 <outlet property="tableView" destination="Xsg-hG-39k" id="zz0-DF-yIu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -35,13 +36,20 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Xsg-hG-39k">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                 </tableView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jt5-lx-XT5">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Efh-S0-WYY" secondAttribute="bottom" id="AWY-x1-qMj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Xsg-hG-39k" secondAttribute="bottom" id="D9l-Xr-0lk"/>
                 <constraint firstItem="Efh-S0-WYY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fnc-fc-AMv"/>
+                <constraint firstItem="Jt5-lx-XT5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Gds-o1-6qq"/>
+                <constraint firstItem="Jt5-lx-XT5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="H0W-Ef-0lV"/>
+                <constraint firstItem="Jt5-lx-XT5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JmZ-ao-d1B"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xsg-hG-39k" secondAttribute="trailing" id="SJv-eb-nhN"/>
+                <constraint firstAttribute="bottom" secondItem="Jt5-lx-XT5" secondAttribute="bottom" id="ZfT-L4-Yo6"/>
                 <constraint firstItem="Efh-S0-WYY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dQb-iA-jfW"/>
                 <constraint firstItem="Efh-S0-WYY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="obc-Gy-A2d"/>
                 <constraint firstItem="Xsg-hG-39k" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="t3S-je-N28"/>

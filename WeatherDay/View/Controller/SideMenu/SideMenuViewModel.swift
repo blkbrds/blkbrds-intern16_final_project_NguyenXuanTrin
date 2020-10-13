@@ -14,9 +14,7 @@ final class SideMenuViewModel {
     var keySearch: KeySearch = KeySearch()
 
     enum SideMenuSectionType: Int {
-        case profile
         case location
-        case notification
     }
 
     enum location: Int {
@@ -31,12 +29,8 @@ final class SideMenuViewModel {
     func numberOfRowsInSection(inSection section: Int) -> Int {
         guard let sectionType = SideMenuSectionType(rawValue: section) else { return 0 }
         switch sectionType {
-        case .profile:
-            return 1
         case .location:
             return numberOfRowsInSectionLocationTableview() + 1
-        case .notification:
-            return 1
         }
     }
 
@@ -47,6 +41,37 @@ final class SideMenuViewModel {
     func viewModelForItemLocationTableView(indexPath: IndexPath) -> LocationsViewModel? {
         guard 0 <= indexPath.row - 1 && indexPath.row - 1 < keySearch.reversedList.count else { return nil }
         return LocationsViewModel(historyKey: keySearch.reversedList[indexPath.row - 1])
+    }
+    
+    func saveProvinceToRealm(searchKey: String, completion: @escaping APICompletion) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let count = keySearch.keyList.count
+                if count == 0 {
+                    keySearch.keyList.append(searchKey)
+                    realm.add(keySearch)
+                } else if count == 5 {
+                    if let index = keySearch.keyList.firstIndex(of: searchKey) {
+                        keySearch.keyList.remove(at: index)
+                    } else {
+                        keySearch.keyList.removeFirst()
+                    }
+                    keySearch.keyList.append(searchKey)
+                    realm.add(keySearch, update: .modified)
+                }
+                else {
+                    if let index = keySearch.keyList.firstIndex(of: searchKey) {
+                        keySearch.keyList.remove(at: index)
+                    }
+                    keySearch.keyList.append(searchKey)
+                    realm.add(keySearch, update: .modified)
+                }
+            }
+            completion(.success)
+        } catch {
+            completion(.failure(error))
+        }
     }
 
     func fetchKeyLocation() {
