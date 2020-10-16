@@ -12,7 +12,8 @@ final class DetailsOfDayViewModel {
     
     // MARK: - Properties
     var condition: ConditionToday
-    var atmosphere: Atmosphere
+    var daily: DailyWeather
+    var hourly: ForecastsEveryHours
     
     var url: String {
         return "https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/" + String(code) + "d.png"
@@ -26,22 +27,23 @@ final class DetailsOfDayViewModel {
         return condition.temperatureToday
     }
     var humidity: Int {
-        return atmosphere.humidity
+        return daily.humidity
     }
-    var visibility: Float {
-        return atmosphere.visibility
+    var visibility: Int {
+        return hourly.visibility
     }
-    var uvIndex: String {
-        return "Low 0"
+    var uvIndex: Double {
+        return daily.uvRays
     }
-    var dewpoint: Int {
-        return 24
+    var dewpoint: Double {
+        return daily.dewPoint
     }
     
     // MARK: - Initialize
-    init(condition: ConditionToday, atmosphere: Atmosphere) {
+    init(condition: ConditionToday, daily: DailyWeather, hourly: ForecastsEveryHours) {
         self.condition = condition
-        self.atmosphere = atmosphere
+        self.daily = daily
+        self.hourly = hourly
     }
     
     // MARK: - Functions
@@ -50,10 +52,18 @@ final class DetailsOfDayViewModel {
     }
     
     func infoHumidityDaily(humidity: Int) -> String {
-        return "\(humidity.string)%"
+        return "\(humidity.string) %"
     }
     
-    func infoVisibilityDaily(visibility: Float) -> String {
-        return "\(humidity.string) km"
+    func infoVisibilityDaily(visibility: Int) -> String {
+        return "\(visibility.string) m"
+    }
+    
+    func infoUVIndex(uvIndex: Double) -> String {
+        return "\(daily.uvRays)"
+    }
+    
+    func infoDewPoint(dewPoint: Double) -> String {
+        return "\(daily.dewPoint)"
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 
 final class SunandWindTableViewCell: UITableViewCell {
 
-    // MARK: - IBOutlets
     // MARK: - Properties
     var viewModel: SunandWindTableViewModel? {
         didSet {

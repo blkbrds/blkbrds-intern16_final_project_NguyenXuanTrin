@@ -1,20 +1,20 @@
 //
-//  ForecastsEveryHours.swift
+//  DailyWeather.swift
 //  WeatherDay
 //
-//  Created by PCI0004 on 10/13/20.
+//  Created by PCI0004 on 10/16/20.
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
 import ObjectMapper
 import Foundation
 
-final class ForecastsEveryHours: Mappable {
+final class DailyWeather: Mappable {
 
     // MARK: Properties
-    var temperatureToday: Int = 0
     var humidity: Int = 0
-    var visibility: Int = 0
+    var uvRays: Double = 0.0
+    var dewPoint: Double = 0.0
 
     // MARK: - Initialaze
     init?(map: Map) {
@@ -25,8 +25,8 @@ final class ForecastsEveryHours: Mappable {
 
     // MARK: - Functions
     func mapping(map: Map) {
-        temperatureToday <- map["temp"]
         humidity <- map["humidity"]
-        visibility <- map["visibility"]
+        uvRays <- map["uvi"]
+        dewPoint <- map["dew_point"]
     }
 }

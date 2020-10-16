@@ -13,7 +13,6 @@ final class DailyTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet private weak var dayOfWeekLabel: UILabel!
     @IBOutlet private weak var showWeatherImageView: UIImageView!
-    @IBOutlet private weak var percentHumidityLabel: UILabel!
     @IBOutlet private weak var temperatureMinLabel: UILabel!
     @IBOutlet private weak var temperatureMaxLabel: UILabel!
 
@@ -28,7 +27,6 @@ final class DailyTableViewCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         showWeatherImageView.sd_setImage(with: URL(string: viewModel.url))
         dayOfWeekLabel.text = viewModel.infoDayofWeek(day: viewModel.dayOfWeek) 
-        percentHumidityLabel.text = viewModel.infoHumidityDaily(humidity: viewModel.percentHumidity) 
         temperatureMinLabel.text = viewModel.infoTempDaily(temperature: viewModel.temperatureMin) 
         temperatureMaxLabel.text = viewModel.infoTempDaily(temperature: viewModel.temperatureMax)
     }

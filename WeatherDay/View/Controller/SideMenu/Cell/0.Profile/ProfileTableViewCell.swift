@@ -11,18 +11,15 @@ import UIKit
 class ProfileTableViewCell: UITableViewCell {
     
     // MARK: IBOutlets
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var searchCitySwitch: UISwitch!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        if !searchCitySwitch.isOn {
+            
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBAction func searchCitySwitchValueChange(_ sender: UISwitch) {
     }
-    
 }

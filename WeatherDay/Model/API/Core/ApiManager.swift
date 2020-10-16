@@ -46,4 +46,5 @@ struct APIManager {
     struct Location { }
     struct Search { }
     struct ForecastsEveryHours { }
+    struct DailyWeather { }
 }

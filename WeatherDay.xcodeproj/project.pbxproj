@@ -78,6 +78,9 @@
 		7044E21B252A3537004D6111 /* MapTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E21A252A3537004D6111 /* MapTableViewModel.swift */; };
 		7044E21D252A355F004D6111 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044E21C252A355F004D6111 /* Location.swift */; };
 		7045E06D2533FB8F0054DA55 /* SearchProvince.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7045E06C2533FB8F0054DA55 /* SearchProvince.swift */; };
+		704A30B1253941840023B00A /* DailyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704A30B0253941840023B00A /* DailyWeather.swift */; };
+		704A30B32539AB230023B00A /* ProfileTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704A30B22539AB230023B00A /* ProfileTableViewModel.swift */; };
+		704A30B52539AB6D0023B00A /* ValueforSearchSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704A30B42539AB6D0023B00A /* ValueforSearchSwitch.swift */; };
 		704D7687251C3D16008E482B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 704D7686251C3D15008E482B /* GoogleService-Info.plist */; };
 		70CE738C251B5BA700047D96 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7386251B5BA700047D96 /* Measurement.swift */; };
 		70CE738D251B5BA700047D96 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE7387251B5BA700047D96 /* String.swift */; };
@@ -217,6 +220,9 @@
 		7044E21A252A3537004D6111 /* MapTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewModel.swift; sourceTree = "<group>"; };
 		7044E21C252A355F004D6111 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7045E06C2533FB8F0054DA55 /* SearchProvince.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProvince.swift; sourceTree = "<group>"; };
+		704A30B0253941840023B00A /* DailyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeather.swift; sourceTree = "<group>"; };
+		704A30B22539AB230023B00A /* ProfileTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewModel.swift; sourceTree = "<group>"; };
+		704A30B42539AB6D0023B00A /* ValueforSearchSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueforSearchSwitch.swift; sourceTree = "<group>"; };
 		704D7686251C3D15008E482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70CE7386251B5BA700047D96 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		70CE7387251B5BA700047D96 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -326,6 +332,7 @@
 			children = (
 				703F6157252DD0ED00BB82B1 /* ProfileTableViewCell.swift */,
 				703F6158252DD0ED00BB82B1 /* ProfileTableViewCell.xib */,
+				704A30B22539AB230023B00A /* ProfileTableViewModel.swift */,
 			);
 			path = 0.Profile;
 			sourceTree = "<group>";
@@ -730,6 +737,8 @@
 				703F6163252DD95000BB82B1 /* KeySearch.swift */,
 				7045E06C2533FB8F0054DA55 /* SearchProvince.swift */,
 				7040D69F25358DCF0013255F /* ForecastsEveryHours.swift */,
+				704A30B0253941840023B00A /* DailyWeather.swift */,
+				704A30B42539AB6D0023B00A /* ValueforSearchSwitch.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -1060,6 +1069,7 @@
 				70CE7390251B5BA700047D96 /* App.swift in Sources */,
 				7040D6A025358DCF0013255F /* ForecastsEveryHours.swift in Sources */,
 				703F616E252EAC5500BB82B1 /* HistoryCellViewModel.swift in Sources */,
+				704A30B52539AB6D0023B00A /* ValueforSearchSwitch.swift in Sources */,
 				70CE738E251B5BA700047D96 /* DeviceType.swift in Sources */,
 				704076A5252498B1009A09FD /* DetailsOfDayCell.swift in Sources */,
 				704076C825264B84009A09FD /* AmountofRainTableViewModel.swift in Sources */,
@@ -1087,6 +1097,7 @@
 				704076CB25264BDE009A09FD /* AmountofRainCollectionViewCell.swift in Sources */,
 				70423FF6251DC87B000D09E2 /* ApiKey.swift in Sources */,
 				704076BF25262CA2009A09FD /* SunandWindTableViewCell.swift in Sources */,
+				704A30B1253941840023B00A /* DailyWeather.swift in Sources */,
 				D144D8902518826700EA12FA /* AppDelegate.swift in Sources */,
 				7044E219252A1D2E004D6111 /* Astronomy.swift in Sources */,
 				70CE738D251B5BA700047D96 /* String.swift in Sources */,
@@ -1110,6 +1121,7 @@
 				703F6164252DD95000BB82B1 /* KeySearch.swift in Sources */,
 				D144D89A2518826700EA12FA /* Error.swift in Sources */,
 				D144D8922518826700EA12FA /* CollectionCell.swift in Sources */,
+				704A30B32539AB230023B00A /* ProfileTableViewModel.swift in Sources */,
 				704240212521BCF4000D09E2 /* EveryHoursTableViewCell.swift in Sources */,
 				703F618B252EE57300BB82B1 /* OptionLocationTableViewCell.swift in Sources */,
 				703F6183252EE18400BB82B1 /* CellforArrayTableViewCell.swift in Sources */,

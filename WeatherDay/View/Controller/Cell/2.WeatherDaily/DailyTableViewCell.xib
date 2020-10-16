@@ -35,7 +35,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="img_storm" translatesAutoresizingMaskIntoConstraints="NO" id="dan-RS-wC9">
-                        <rect key="frame" x="128" y="6" width="67.5" height="48"/>
+                        <rect key="frame" x="128" y="10" width="116" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="wpe-fk-TTB"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytJ-6A-SaW">
                         <rect key="frame" x="254" y="20.5" width="40" height="19.5"/>
@@ -44,12 +47,6 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="th9-fh-bLI">
-                        <rect key="frame" x="195.5" y="20.5" width="42.5" height="19.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                        <color key="textColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-wo-Ix3">
@@ -63,7 +60,6 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="th9-fh-bLI" firstAttribute="leading" secondItem="dan-RS-wC9" secondAttribute="trailing" id="72m-Bb-GHm"/>
                     <constraint firstAttribute="bottom" secondItem="WIl-Aa-Ykj" secondAttribute="bottom" id="7jM-il-sHx"/>
                     <constraint firstItem="Mby-wo-Ix3" firstAttribute="leading" secondItem="ytJ-6A-SaW" secondAttribute="trailing" constant="14" id="9sd-Zb-LLK"/>
                     <constraint firstAttribute="trailing" secondItem="Mby-wo-Ix3" secondAttribute="trailing" constant="12" id="B92-b8-LDR"/>
@@ -71,11 +67,10 @@
                     <constraint firstItem="Mby-wo-Ix3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SmY-cN-Ry6"/>
                     <constraint firstItem="dan-RS-wC9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Vcu-mF-rdL"/>
                     <constraint firstItem="WIl-Aa-Ykj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YGP-CI-YSz"/>
-                    <constraint firstItem="th9-fh-bLI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="g8I-xM-oXR"/>
                     <constraint firstItem="ytJ-6A-SaW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jfr-ta-1wI"/>
-                    <constraint firstItem="ytJ-6A-SaW" firstAttribute="leading" secondItem="th9-fh-bLI" secondAttribute="trailing" constant="16" id="llM-5C-Yb7"/>
                     <constraint firstItem="ndV-2c-uNl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nUK-CD-L2k"/>
                     <constraint firstAttribute="trailing" secondItem="WIl-Aa-Ykj" secondAttribute="trailing" id="nlf-ut-9IP"/>
+                    <constraint firstItem="ytJ-6A-SaW" firstAttribute="leading" secondItem="dan-RS-wC9" secondAttribute="trailing" constant="10" id="npM-ds-9UB"/>
                     <constraint firstItem="dan-RS-wC9" firstAttribute="leading" secondItem="ndV-2c-uNl" secondAttribute="trailing" constant="8" id="oUc-ic-wew"/>
                     <constraint firstItem="WIl-Aa-Ykj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tEj-Rj-276"/>
                 </constraints>
@@ -90,7 +85,6 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="dayOfWeekLabel" destination="ndV-2c-uNl" id="x9r-wR-C9M"/>
-                <outlet property="percentHumidityLabel" destination="th9-fh-bLI" id="5TD-iv-jJZ"/>
                 <outlet property="showWeatherImageView" destination="dan-RS-wC9" id="QtV-3d-sR1"/>
                 <outlet property="temperatureMaxLabel" destination="Mby-wo-Ix3" id="rXJ-qn-MEN"/>
                 <outlet property="temperatureMinLabel" destination="ytJ-6A-SaW" id="dfm-xy-dbO"/>

@@ -196,6 +196,18 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
             }
         }
     }
+    
+    private func loadDataDailyWeather(lat: Double, lon: Double, completion: @escaping () -> Void) {
+        viewModel.loadDailyWeather(lat: lat, lon: lon) { [weak self] (result) in
+            completion()
+            guard let this = self else { return }
+            switch result {
+            case .success: break
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
 
     func handleCallApi(locationName: String) {
         HUD.show()
@@ -245,6 +257,10 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         loadDataForecastsEveryHourList(lat: viewModel.location.lat, lon: viewModel.location.lon) {
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        loadDataDailyWeather(lat: viewModel.location.lat, lon: viewModel.location.lon) {
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) {
@@ -360,12 +376,6 @@ extension HomeViewController: UITableViewDelegate {
         case .amountOfRain:
             return 220
         default: return UITableView.automaticDimension
-        }
-    }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 5, let cell = tableView.cellForRow(at: indexPath) as? SunandWindTableViewCell {
-            cell.viewModel = viewModel.viewModelForCellSeven()
         }
     }
 }

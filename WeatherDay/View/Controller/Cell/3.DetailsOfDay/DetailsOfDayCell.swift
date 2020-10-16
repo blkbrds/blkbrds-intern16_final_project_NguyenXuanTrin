@@ -32,7 +32,7 @@ class DetailsOfDayCell: UITableViewCell {
         temperatureLabel.text = viewModel.infoTempDaily(temperature: viewModel.temperature)
         humidityLabel.text = viewModel.infoHumidityDaily(humidity: viewModel.humidity)
         visibilityLabel.text = viewModel.infoVisibilityDaily(visibility: viewModel.visibility)
-        uvIndexLabel.text = viewModel.uvIndex
-        dewpointLabel.text = viewModel.infoTempDaily(temperature: viewModel.dewpoint)
+        uvIndexLabel.text = viewModel.infoUVIndex(uvIndex: viewModel.uvIndex)
+        dewpointLabel.text = viewModel.infoDewPoint(dewPoint: viewModel.dewpoint)
     }
 }

@@ -151,6 +151,27 @@ extension APIManager.ForecastsEveryHours {
     }
 }
 
+extension APIManager.DailyWeather {
+    static func getDailyWeather(lat: Double, lon: Double, completion: @escaping DataCompletion<DailyWeather>) {
+        let url: String = Api.Path.base_domain_forecasts + String(lat) + Api.Path.base_lon + String(lon) + Api.Path.base_hourly
+        if let urlString = URL(string: url) {
+            let urlRequest = URLRequest(url: urlString)
+            URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                guard let data = try? data?.jsonObject() as? [String: Any] else {
+                    print("\(Api.Error.emptyData)")
+                    return
+                }
+                if let result = data["daily"] as? JSArray,
+                    let dailyWeather: DailyWeather = Mapper<DailyWeather>().mapArray(JSONArray: result).first {
+                    completion(.success(dailyWeather))
+                } else {
+                    completion(.failure(Api.Error.emptyData))
+                }
+            }).resume()
+        }
+    }
+}
+
 //extension APIManager.Search {
 //    static func searchNameCity(completion: @escaping DataCompletion<[SearchProvince]>) {
 //        let url: String = "https://thongtindoanhnghiep.co/api/city"

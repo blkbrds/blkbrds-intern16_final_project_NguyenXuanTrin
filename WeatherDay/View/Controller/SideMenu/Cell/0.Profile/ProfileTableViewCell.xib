@@ -25,17 +25,15 @@
                         </view>
                         <blurEffect style="regular"/>
                     </visualEffectView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nVm-LI-zxe">
-                        <rect key="frame" x="8" y="9.5" width="40" height="39"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="ZEP-Hx-T4D"/>
-                            <constraint firstAttribute="height" constant="40" id="yQB-RE-45O"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaaaa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzw-gC-fRO">
-                        <rect key="frame" x="64" y="20" width="240" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65T-a4-ZSg">
+                        <rect key="frame" x="261" y="14.5" width="51" height="31"/>
+                        <connections>
+                            <action selector="searchCitySwitchValueChange:" destination="KGk-i7-Jjw" eventType="valueChanged" id="lDT-jv-fNT"/>
+                        </connections>
+                    </switch>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search City in The World" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWc-QC-SR1">
+                        <rect key="frame" x="10" y="19.5" width="241" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -43,26 +41,22 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="NgA-dm-ayY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4Q0-oj-Js5"/>
-                    <constraint firstItem="nVm-LI-zxe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6Ot-nJ-L30"/>
-                    <constraint firstItem="dzw-gC-fRO" firstAttribute="leading" secondItem="nVm-LI-zxe" secondAttribute="trailing" constant="16" id="HZm-ur-eUF"/>
+                    <constraint firstItem="65T-a4-ZSg" firstAttribute="leading" secondItem="eWc-QC-SR1" secondAttribute="trailing" constant="10" id="EIG-6c-rJ8"/>
                     <constraint firstItem="NgA-dm-ayY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J0l-xP-WY1"/>
-                    <constraint firstAttribute="trailing" secondItem="dzw-gC-fRO" secondAttribute="trailing" constant="16" id="PZe-VU-ow0"/>
-                    <constraint firstItem="nVm-LI-zxe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Xdw-Hk-df1"/>
-                    <constraint firstItem="dzw-gC-fRO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bGh-Fk-NT9"/>
+                    <constraint firstItem="65T-a4-ZSg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PmL-tM-yTk"/>
+                    <constraint firstItem="eWc-QC-SR1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="TkN-X9-x2E"/>
+                    <constraint firstAttribute="trailing" secondItem="65T-a4-ZSg" secondAttribute="trailing" constant="10" id="YCi-Bt-qCX"/>
                     <constraint firstAttribute="trailing" secondItem="NgA-dm-ayY" secondAttribute="trailing" id="gha-We-M1q"/>
                     <constraint firstAttribute="bottom" secondItem="NgA-dm-ayY" secondAttribute="bottom" id="ibD-pG-K96"/>
+                    <constraint firstItem="eWc-QC-SR1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="kif-yh-bOs"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="nameLabel" destination="dzw-gC-fRO" id="t9b-y5-2Hl"/>
-                <outlet property="profileImageView" destination="nVm-LI-zxe" id="uOS-dL-QRH"/>
+                <outlet property="searchCitySwitch" destination="65T-a4-ZSg" id="7Vl-AH-bcd"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="103.125"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="square.and.pencil" catalog="system" width="128" height="118"/>
-    </resources>
 </document>

@@ -22,7 +22,7 @@ final class HomeViewModel {
         var numberOfRowInSections: Int {
             switch self {
             case .weatherToday: return 2
-            case .weatherDayofWeek: return 2
+            case .weatherDayofWeek: return 8
             case .weatherDetails: return 1
             case .map: return 1
             case .sunAndWind: return 1
@@ -49,6 +49,7 @@ final class HomeViewModel {
     var forecasts: Forecasts = Forecasts()
     var forecastsArray: [Forecasts] = []
     var forecastsEveryHoursList: [ForecastsEveryHours] = []
+    var daily: DailyWeather = DailyWeather()
     var current: ConditionToday = ConditionToday()
     var atmosphere: Atmosphere = Atmosphere()
     var location: Location = Location()
@@ -92,12 +93,12 @@ final class HomeViewModel {
     func viewModelForCellFour(at indexPath: IndexPath) -> DailyTableCellViewModel? {
         guard 0 <= indexPath.row - 1 && indexPath.row - 1 < forecastsArray.count else { return nil }
         let temp = forecastsArray[indexPath.row - 1]
-        return DailyTableCellViewModel(forecasts: temp, atmosphere: atmosphere)
+        return DailyTableCellViewModel(forecasts: temp)
     }
 
     func viewModelForCellFive() -> DetailsOfDayViewModel? {
-        return DetailsOfDayViewModel(condition: current, atmosphere: atmosphere)
-    }
+        guard let forecastsEveryHours = forecastsEveryHoursList.first else { return nil }
+            return DetailsOfDayViewModel(condition: current, daily: daily, hourly: forecastsEveryHours) }
 
     func viewModelForCellSix() -> MapTableViewModel? {
         return MapTableViewModel(location: location)
@@ -211,6 +212,19 @@ final class HomeViewModel {
             case .success(let astronomyResult):
                 this.astronomy = astronomyResult
                 completion(.success)
+            }
+        }
+    }
+
+    func loadDailyWeather(lat: Double, lon: Double, completion: @escaping APICompletion) {
+        APIManager.DailyWeather.getDailyWeather(lat: lat, lon: lon) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let dailyResult):
+                this.daily = dailyResult
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
