@@ -1,18 +1,19 @@
 //
-//  SearchProvince.swift
+//  ForecastsEveryHours.swift
 //  WeatherDay
 //
-//  Created by PCI0004 on 10/12/20.
+//  Created by PCI0004 on 10/13/20.
 //  Copyright © 2020 Thinh Nguyen X. All rights reserved.
 //
 
-import Foundation
 import ObjectMapper
+import Foundation
 
-final class SearchProvince: Mappable {
-    
+final class ForecastsEveryHours: Mappable {
+
     // MARK: Properties
-    var name: String = ""
+    var temperatureToday: Int = 0
+    var humidity: Int = 0
 
     // MARK: - Initialaze
     init?(map: Map) {
@@ -23,7 +24,7 @@ final class SearchProvince: Mappable {
 
     // MARK: - Functions
     func mapping(map: Map) {
-        //name <- map["Title"]
-        name <- map["name"]
+        temperatureToday <- map["temp"]
+        humidity <- map["humidity"]
     }
 }

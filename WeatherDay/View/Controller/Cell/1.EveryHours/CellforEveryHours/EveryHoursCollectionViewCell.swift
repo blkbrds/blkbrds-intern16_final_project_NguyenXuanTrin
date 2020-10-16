@@ -36,6 +36,6 @@ final class EveryHoursCollectionViewCell: UICollectionViewCell {
         weatherShowEveryHoursImageView.sd_setImage(with: URL(string: viewModel.url))
         percentOfRainLabel.text = String(viewModel.percentOfRain) + "%"
         temperatureLabel.text = String(viewModel.temperature) + "º"
-        timeEveryHoursLabel.text = String(viewModel.timeEveryHours)
+        timeEveryHoursLabel.text = String(viewModel.numbers) + ":00"
     }
 }

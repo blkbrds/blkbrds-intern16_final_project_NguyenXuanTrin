@@ -16,11 +16,10 @@ final class EveryHoursTableViewCell: UITableViewCell {
     // MARK: - Properties
     var viewModel: EveryHoursTableViewCellViewModel? {
         didSet {
-            self.collectionView.reloadData()
+            updateView()
         }
     }
-    var maxTemp: Int = 30
-    var minTemp: Int = 0
+    var heights: [Int] = []
     var temps: [Int] = []
 
     // MARK: - Life Cycle
@@ -34,13 +33,19 @@ final class EveryHoursTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+
+    private func updateView() {
+        heights = []
+        temps = []
+        collectionView.reloadData()
+    }
 }
 
 // MARK: - UICollectionViewDelegate
 extension EveryHoursTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = viewModel else { return 5 }
+        guard let viewModel = viewModel else { return 1 }
         return viewModel.numberOfItemsInSection()
     }
 
@@ -48,23 +53,27 @@ extension EveryHoursTableViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withClass: EveryHoursCollectionViewCell.self, for: indexPath)
         guard let viewModel = viewModel else { return UICollectionViewCell() }
         cell.viewModel = viewModel.viewModelForItem(at: indexPath)
-        cell.frame.origin.y = CGFloat(220 - temps[indexPath.row])
+        guard 0 <= indexPath.row && indexPath.row < heights.count else { return cell }
+        cell.frame.origin.y = CGFloat(220 - heights[indexPath.row])
         return cell
     }
 }
 
 extension EveryHoursTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var temp: EveryHours
         var temperature: Int = 0
-        temp = viewModel?.viewModelForCell(at: indexPath) as! EveryHours
-        temperature = temp.temperature
-        temps.append(temperature * 220 / maxTemp)
-        if temperature > minTemp && temperature < maxTemp {
-            return CGSize(width: 60, height: temperature * 220 / maxTemp)
-        } else {
-            return CGSize(width: 60, height: 220)
+        var height = 0
+        if let forecastsEveryHours: ForecastsEveryHours = viewModel?.viewModelForCell(at: indexPath), let viewModel = viewModel {
+            temperature = forecastsEveryHours.temperatureToday
+            let max = viewModel.findMax()
+            if temperature <= max / 2 {
+                heights.append(120)
+                height = 120
+            } else {
+                heights.append(temperature * 220 / max)
+                height = temperature * 220 / max
+            }
         }
+        return CGSize(width: 60, height: height)
     }
 }
-

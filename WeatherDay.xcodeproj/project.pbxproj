@@ -47,6 +47,7 @@
 		704076CE25264BFD009A09FD /* AmountofRainCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076CD25264BFD009A09FD /* AmountofRainCollectionViewModel.swift */; };
 		704076D025264F48009A09FD /* AmountofRain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076CF25264F48009A09FD /* AmountofRain.swift */; };
 		704076D22526C9E4009A09FD /* SunandWindTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704076D12526C9E3009A09FD /* SunandWindTableViewModel.swift */; };
+		7040D6A025358DCF0013255F /* ForecastsEveryHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7040D69F25358DCF0013255F /* ForecastsEveryHours.swift */; };
 		70423FE5251C52E2000D09E2 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70423FE4251C52E2000D09E2 /* Enum.swift */; };
 		70423FED251D8E87000D09E2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70423FEB251D8E87000D09E2 /* SearchViewController.swift */; };
 		70423FEE251D8E87000D09E2 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70423FEC251D8E87000D09E2 /* SearchViewController.xib */; };
@@ -185,6 +186,7 @@
 		704076CD25264BFD009A09FD /* AmountofRainCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountofRainCollectionViewModel.swift; sourceTree = "<group>"; };
 		704076CF25264F48009A09FD /* AmountofRain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountofRain.swift; sourceTree = "<group>"; };
 		704076D12526C9E3009A09FD /* SunandWindTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunandWindTableViewModel.swift; sourceTree = "<group>"; };
+		7040D69F25358DCF0013255F /* ForecastsEveryHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastsEveryHours.swift; sourceTree = "<group>"; };
 		70423FE4251C52E2000D09E2 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		70423FEB251D8E87000D09E2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		70423FEC251D8E87000D09E2 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 				70425F92252B850200E3B55C /* Province.swift */,
 				703F6163252DD95000BB82B1 /* KeySearch.swift */,
 				7045E06C2533FB8F0054DA55 /* SearchProvince.swift */,
+				7040D69F25358DCF0013255F /* ForecastsEveryHours.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -1055,6 +1058,7 @@
 				70E9C49D25246C4A0032DF67 /* SubTableViewCell.swift in Sources */,
 				70423FE5251C52E2000D09E2 /* Enum.swift in Sources */,
 				70CE7390251B5BA700047D96 /* App.swift in Sources */,
+				7040D6A025358DCF0013255F /* ForecastsEveryHours.swift in Sources */,
 				703F616E252EAC5500BB82B1 /* HistoryCellViewModel.swift in Sources */,
 				70CE738E251B5BA700047D96 /* DeviceType.swift in Sources */,
 				704076A5252498B1009A09FD /* DetailsOfDayCell.swift in Sources */,

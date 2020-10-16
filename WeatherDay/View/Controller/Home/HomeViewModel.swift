@@ -48,6 +48,7 @@ final class HomeViewModel {
     // MARK: - Properties
     var forecasts: Forecasts = Forecasts()
     var forecastsArray: [Forecasts] = []
+    var forecastsEveryHoursList: [ForecastsEveryHours] = []
     var current: ConditionToday = ConditionToday()
     var atmosphere: Atmosphere = Atmosphere()
     var location: Location = Location()
@@ -85,9 +86,7 @@ final class HomeViewModel {
     }
 
     func viewModelForCellTwo() -> EveryHoursTableViewCellViewModel? {
-        getListEveryHours()
-        let everyHours = listEveryHours
-        return EveryHoursTableViewCellViewModel(listData: everyHours, condition: current)
+        return EveryHoursTableViewCellViewModel(listData: forecastsEveryHoursList, condition: current)
     }
 
     func viewModelForCellFour(at indexPath: IndexPath) -> DailyTableCellViewModel? {
@@ -121,7 +120,7 @@ final class HomeViewModel {
     private func getListAmountOfRain() {
         listAmountOfRain = DataforCell.listAmountofRain()
     }
-    
+
     func fetchKeySearch() {
         do {
             let realm = try Realm()
@@ -132,7 +131,7 @@ final class HomeViewModel {
             print(error.localizedDescription)
         }
     }
-    
+
     func getFirstKey() -> String? {
         return keySearch.reversedList.first
     }
@@ -212,6 +211,19 @@ final class HomeViewModel {
             case .success(let astronomyResult):
                 this.astronomy = astronomyResult
                 completion(.success)
+            }
+        }
+    }
+
+    func loadForecastsEveryHours(lat: Double, lon: Double, completion: @escaping APICompletion) {
+        APIManager.ForecastsEveryHours.getForecastsEveryHours(lat: lat, lon: lon) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success(let everyHoursResult):
+                this.forecastsEveryHoursList = everyHoursResult
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

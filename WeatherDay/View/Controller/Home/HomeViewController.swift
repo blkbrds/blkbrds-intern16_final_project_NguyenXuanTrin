@@ -34,11 +34,11 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         configSideMenu()
         UIScreen.main.brightness = CGFloat(1)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.setContentOffset(.zero, animated: true)
         errorImageView.isHidden = true
-        tableView.contentOffset = CGPoint(x: 0, y: 0)
         UIView.transition(with: fullScreenImageView, duration: 0.6,
             options: .transitionCrossDissolve,
             animations: {
@@ -93,7 +93,9 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
     }
 
     private func configSideMenu() {
-        menu = SideMenuNavigationController(rootViewController: SideMenuTableViewController())
+        let vc = SideMenuTableViewController()
+        menu = SideMenuNavigationController(rootViewController: vc)
+        vc.delegate = self
         menu?.leftSide = true
         SideMenuManager.default.leftMenuNavigationController = menu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
@@ -151,7 +153,8 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
             completion()
             guard let this = self else { return }
             switch result {
-            case .success: break
+            case .success:
+                this.handleForecastsAPI()
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -182,9 +185,26 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         }
     }
 
+    private func loadDataForecastsEveryHourList(lat: Double, lon: Double, completion: @escaping () -> Void) {
+        viewModel.loadForecastsEveryHours(lat: lat, lon: lon) { [weak self] (result) in
+            completion()
+            guard let this = self else { return }
+            switch result {
+            case .success: break
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
     func handleCallApi(locationName: String) {
         HUD.show()
         let dispatchGroup = DispatchGroup()
+        // loadDataLocation
+        dispatchGroup.enter()
+        loadDataLocation(locationTitle: locationName) {
+            dispatchGroup.leave()
+        }
         // loadDataCondition
         dispatchGroup.enter()
         loadDataCondition(locationTitle: locationName) {
@@ -215,9 +235,16 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         loadDataAstronomy(locationTitle: locationName) {
             dispatchGroup.leave()
         }
-        // loadDataLocation
+        dispatchGroup.notify(queue: .main) {
+            HUD.popActivity()
+        }
+    }
+    
+    func handleForecastsAPI() {
+        HUD.show()
+        let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        loadDataLocation(locationTitle: locationName) {
+        loadDataForecastsEveryHourList(lat: viewModel.location.lat, lon: viewModel.location.lon) {
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) {
@@ -226,7 +253,7 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         }
     }
 
-    // MARK: - Objc private functions
+// MARK: - Objc private functions
     @objc private func pushToSearch() {
         let vc = SearchViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -346,10 +373,13 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: SideMenuViewControllerDelegate {
     func changeTitleHome(_ viewController: SideMenuTableViewController, needPerform action: SideMenuTableViewController.Action) {
         switch action {
-        case .sendTitleHome(title: let title):
-            if title != locationName {
-                locationName = title
+        case .sendTitleHome(title: let titleResult):
+            if titleResult != locationName {
+                title = titleResult
+                locationName = titleResult
                 handleCallApi(locationName: locationName)
+                tableView.setContentOffset(.zero, animated: true)
+                self.errorImageView.isHidden = true
             }
         }
     }

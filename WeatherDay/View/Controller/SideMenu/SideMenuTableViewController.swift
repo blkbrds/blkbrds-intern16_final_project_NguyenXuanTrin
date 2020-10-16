@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - Protocol
-protocol SideMenuViewControllerDelegate {
+protocol SideMenuViewControllerDelegate: class {
     func changeTitleHome(_ viewController: SideMenuTableViewController, needPerform action: SideMenuTableViewController.Action)
 }
 

@@ -20,6 +20,9 @@ final class Api {
             static let base_domain = " https://thongtindoanhnghiep.co"
             static let base_path = "/api"
             static let city_list = "/city"
+            static let base_domain_forecasts = "https://api.openweathermap.org/data/2.5/onecall?lat="
+            static let base_lon = "&lon="
+            static let base_hourly = "&exclude=current&units=metric&appid=49a74f4775a2a1c9165de02d81317fff"
     }
 }
 
