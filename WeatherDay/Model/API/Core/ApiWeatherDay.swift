@@ -172,29 +172,8 @@ extension APIManager.DailyWeather {
     }
 }
 
-//extension APIManager.Search {
-//    static func searchNameCity(completion: @escaping DataCompletion<[SearchProvince]>) {
-//        let url: String = "https://thongtindoanhnghiep.co/api/city"
-//        if let urlString = URL(string: url) {
-//            let urlRequest = URLRequest(url: urlString)
-//            URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-//                guard let data = try? data?.jsonObject() as? [String: Any] else {
-//                    print("\(Api.Error.emptyData)")
-//                    return
-//                }
-//                if let result = data["LtsItem"] as? JSArray,
-//                    let results: [SearchProvince] = Mapper<SearchProvince>().mapArray(JSONObject: result) {
-//                    completion(.success(results))
-//                } else {
-//                    completion(.failure(Api.Error.emptyData))
-//                }
-//            }).resume()
-//        }
-//    }
-//}
-
 extension APIManager.Search {
-    static func searchNameCity(completion: @escaping DataCompletion<[SearchProvince]>) {
+    static func searchNameCityInTheWorld(completion: @escaping DataCompletion<[SearchProvince]>) {
         let url: String = "https://parseapi.back4app.com/classes/City?limit=1000&keys=name"
         if let urlString = URL(string: url) {
             var urlRequest = URLRequest(url: urlString)
@@ -214,4 +193,23 @@ extension APIManager.Search {
             }).resume()
         }
     }
+    
+    static func searchNameCityInVietNam(completion: @escaping DataCompletion<[SearchProvince]>) {
+            let url: String = "https://thongtindoanhnghiep.co/api/city"
+            if let urlString = URL(string: url) {
+                let urlRequest = URLRequest(url: urlString)
+                URLSession.shared.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                    guard let data = try? data?.jsonObject() as? [String: Any] else {
+                        print("\(Api.Error.emptyData)")
+                        return
+                    }
+                    if let result = data["LtsItem"] as? JSArray,
+                        let results: [SearchProvince] = Mapper<SearchProvince>().mapArray(JSONObject: result) {
+                        completion(.success(results))
+                    } else {
+                        completion(.failure(Api.Error.emptyData))
+                    }
+                }).resume()
+            }
+        }
 }

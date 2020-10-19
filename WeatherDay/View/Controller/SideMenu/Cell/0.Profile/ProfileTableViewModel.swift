@@ -10,4 +10,6 @@ import Foundation
 
 final class ProfileTableViewModel {
     
+    // MARK: - Properties
+    var valueforSearchSwitch: ValueforSearchSwitch = ValueforSearchSwitch()
 }

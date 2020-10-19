@@ -79,14 +79,27 @@ final class SearchViewModel {
         }
     }
 
-    func getListNameCity(completion: @escaping APICompletion) {
-        APIManager.Search.searchNameCity { [weak self] (result) in
+    func getListNameCityInTheWorld(completion: @escaping APICompletion) {
+        APIManager.Search.searchNameCityInTheWorld { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let nameResult):
                 this.resultList = nameResult
+                completion(.success)
+            }
+        }
+    }
+    
+    func getListNameCityInVietNam(completion: @escaping APICompletion) {
+        APIManager.Search.searchNameCityInVietNam { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let nameVNResult):
+                this.resultList = nameVNResult
                 completion(.success)
             }
         }

@@ -14,7 +14,6 @@ final class SideMenuViewModel {
     var keySearch: KeySearch = KeySearch()
 
     enum SideMenuSectionType: Int {
-        case switchSearch
         case location
     }
 
@@ -30,7 +29,6 @@ final class SideMenuViewModel {
     func numberOfRowsInSection(inSection section: Int) -> Int {
         guard let sectionType = SideMenuSectionType(rawValue: section) else { return 0 }
         switch sectionType {
-        case .switchSearch: return 1
         case .location:
             return numberOfRowsInSectionLocationTableview() + 1
         }

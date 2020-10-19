@@ -9,8 +9,8 @@
 import RealmSwift
 import Foundation
 
-@objcMembers class ValueforSearchSwitch: Object {
+final class ValueforSearchSwitch {
     
     // MARK: Properties
-    dynamic var check: Bool = true
+    var check: Bool = true
 }

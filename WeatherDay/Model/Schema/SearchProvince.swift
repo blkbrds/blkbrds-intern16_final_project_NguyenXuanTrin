@@ -23,7 +23,7 @@ final class SearchProvince: Mappable {
 
     // MARK: - Functions
     func mapping(map: Map) {
-        //name <- map["Title"]
         name <- map["name"]
+        //name <- map["Title"]
     }
 }

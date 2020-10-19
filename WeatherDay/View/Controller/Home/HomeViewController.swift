@@ -23,6 +23,7 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
     var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
     var menu: SideMenuNavigationController?
     var locationName: String = ""
+    var check: Bool = true
 
 
     // MARK: - Life Cycle
@@ -302,6 +303,7 @@ extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionType = HomeViewModel.HomeSectionType(rawValue: indexPath.section) else { return UITableViewCell() }
+
         switch sectionType {
         case .weatherToday:
             guard let rowType = HomeViewModel.WeatherToday(rawValue: indexPath.row) else {

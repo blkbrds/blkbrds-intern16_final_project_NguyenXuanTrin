@@ -36,6 +36,7 @@ final class SunandWindTableViewCell: UITableViewCell {
         circleCustom.createADC()
         circleCustom.createLine(hoursCurrent: getHoursCurrent(), minuteCurrent: getMinutesCurrent(), sunrise: sunrise, sunset: sunset)
         circleCustom.configSunsetSunrise(sunRise: sunrise, sunSet: sunset)
+        //circleCustom.configImage()
         circleCustom.tag = 1
         addSubview(circleCustom)
     }

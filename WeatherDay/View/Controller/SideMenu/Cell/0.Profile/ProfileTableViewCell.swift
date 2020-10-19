@@ -10,16 +10,25 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
-    // MARK: IBOutlets
-    @IBOutlet private weak var searchCitySwitch: UISwitch!
+    // MARK: - IBOutlets
+    @IBOutlet weak var searchCitySwitch: UISwitch!
 
+    // MARK: - Properties
+    var check: Bool = true
+    
+    // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        if !searchCitySwitch.isOn {
-            
-        }
     }
 
     @IBAction func searchCitySwitchValueChange(_ sender: UISwitch) {
+        if searchCitySwitch.isOn != true {
+            self.check = false
+            UserDefaults.standard.set(check, forKey: "CheckListSearch")
+        } else {
+            self.check = true
+            UserDefaults.standard.set(check, forKey: "CheckListSearch")
+        }
     }
+    
 }

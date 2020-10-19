@@ -37,10 +37,8 @@ final class SideMenuTableViewController: UITableViewController {
 
     func configTableView() {
         tableView.backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
-        tableView.register(nibWithCellClass: ProfileTableViewCell.self)
         tableView.register(nibWithCellClass: OptionLocationTableViewCell.self)
         tableView.register(nibWithCellClass: LocationsTableViewCell.self)
-        tableView.register(nibWithCellClass: NotificationsTableViewCell.self)
     }
 
     private func saveProvinceToRealm(searchKey: String) {
@@ -75,16 +73,11 @@ final class SideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionType = SideMenuViewModel.SideMenuSectionType(rawValue: indexPath.section) else { return UITableViewCell() }
         switch sectionType {
-        case .switchSearch:
-            let cellOne = tableView.dequeueReusableCell(withClass: ProfileTableViewCell.self)
-            return cellOne
         case .location:
             switch indexPath.row {
             case 0:
                 let cellTwo = tableView.dequeueReusableCell(withClass: OptionLocationTableViewCell.self)
-
                 cellTwo.editButton.addTarget(self, action: #selector(handleEditButtonTouchUpInside), for: .touchUpInside)
-
                 return cellTwo
             default:
                 let cellThree = tableView.dequeueReusableCell(withClass: LocationsTableViewCell.self, for: indexPath)
@@ -112,8 +105,6 @@ final class SideMenuTableViewController: UITableViewController {
                 dismiss(animated: true)
             }
         case .none: print("a")
-        case .some(.switchSearch):
-            print("a")
         }
     }
 }

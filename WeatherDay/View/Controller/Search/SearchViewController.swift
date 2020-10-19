@@ -21,13 +21,15 @@ final class SearchViewController: ViewController {
     // MARK: - Properties
     var viewModel: SearchViewModel = SearchViewModel()
     private lazy var searchController = UISearchController(searchResultsController: nil)
+    let status = UserDefaults.standard.bool(forKey: "CheckListSearch")
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavi()
         configSearchUI()
-        getListCityName()
+        getListCityNameInTheWorld()
+        //getListCityNameInVietNam()
     }
 
     // MARK: - Override functions
@@ -74,8 +76,20 @@ final class SearchViewController: ViewController {
         }
     }
     
-    private func getListCityName() {
-        viewModel.getListNameCity { [weak self] (result) in
+    private func getListCityNameInTheWorld() {
+        viewModel.getListNameCityInTheWorld { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                print("Successed")
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+    
+    private func getListCityNameInVietNam() {
+        viewModel.getListNameCityInVietNam { [weak self] (result) in
             guard let this = self else { return }
             switch result {
             case .success:
