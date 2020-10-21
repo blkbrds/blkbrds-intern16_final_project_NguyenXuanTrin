@@ -25,5 +25,7 @@ target 'WeatherDay' do
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'GoogleSignIn'
+    pod 'OAuthSwift', '~> 2.0.0'
+    pod 'SideMenu'
 
 end

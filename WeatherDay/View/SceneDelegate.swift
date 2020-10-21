@@ -12,17 +12,22 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
+    
+    static var share: SceneDelegate {
+        guard let sceneDe = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+            fatalError()
+        }
+        return sceneDe
+    }
 
     var window: UIWindow?
+    let vc = HomeViewController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
-        let vc = LoginViewController()
-
-        // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = vc
+            let homeNavi = UINavigationController(rootViewController: vc)
+            window.rootViewController = homeNavi
             self.window = window
             window.makeKeyAndVisible()
 
@@ -31,6 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
             GIDSignIn.sharedInstance()?.clientID = GoogleSignIn.clientID
             GIDSignIn.sharedInstance()?.delegate = self
         }
+        AppDelegate.shared.window = window
     }
 
     static let shared: SceneDelegate = {
@@ -101,7 +107,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

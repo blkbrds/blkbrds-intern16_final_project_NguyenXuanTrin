@@ -17,7 +17,28 @@ final class Api {
         #else
             static let baseURL = "https://pro-asiantech.vn"
         #endif
+            static let base_domain = " https://thongtindoanhnghiep.co"
+            static let base_path = "/api"
+            static let city_list = "/city"
+            static let base_domain_forecasts = "https://api.openweathermap.org/data/2.5/onecall?lat="
+            static let base_lon = "&lon="
+            static let base_hourly = "&exclude=current&units=metric&appid=49a74f4775a2a1c9165de02d81317fff"
     }
+}
+
+struct API {
+    //singleton
+    private static var shareAPI: API = {
+        let shareAPI = API()
+        return shareAPI
+    }()
+
+    static func shared() -> API {
+        return shareAPI
+    }
+
+    //init
+    private init() { }
 }
 
 protocol URLStringConvertible {

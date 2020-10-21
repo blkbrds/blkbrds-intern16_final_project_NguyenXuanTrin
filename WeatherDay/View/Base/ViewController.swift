@@ -9,4 +9,30 @@
 import UIKit
 import MVVM
 
-class ViewController: UIViewController, MVVM.View { }
+class ViewController: UIViewController, MVVM.View {
+
+    // MARK: - Life cycle
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpData()
+        setUpUI()
+    }
+    // MARK: - Public functions
+    func setUpData() { }
+    func setUpUI() {
+        configNavi()
+    }
+
+    // MARK: - Private functions
+    private func configNavi() {
+    }
+}

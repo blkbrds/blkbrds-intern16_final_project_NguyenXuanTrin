@@ -9,13 +9,13 @@
 import Alamofire
 import Foundation
 
-extension ApiManager {
+extension APIManager {
     @discardableResult
     func request(method: HTTPMethod,
                  urlString: URLStringConvertible,
                  parameters: [String: Any]? = nil,
                  headers: [String: String]? = nil,
-                 completion: Completion?) -> Request? {
+                 completion: Completion<Any>?) -> Request? {
         guard Network.shared.isReachable else {
             completion?(.failure(Api.Error.network))
             return nil

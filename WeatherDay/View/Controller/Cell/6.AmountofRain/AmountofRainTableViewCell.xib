@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="152" id="KGk-i7-Jjw" customClass="AmountofRainTableViewCell" customModule="WeatherDay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="152"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="370" height="152"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <visualEffectView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4v-Pg-BDv">
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="152"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Llb-Kp-S2S">
+                            <rect key="frame" x="0.0" y="0.0" width="370" height="152"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <blurEffect style="regular"/>
+                    </visualEffectView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vuf-TX-dtt">
+                        <rect key="frame" x="10" y="10" width="69" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fDZ-Tq-MAN">
+                        <rect key="frame" x="10" y="47.5" width="350" height="94.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="faN-IO-41R">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fDZ-Tq-MAN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="4UF-2y-ZgJ"/>
+                    <constraint firstAttribute="trailing" secondItem="fDZ-Tq-MAN" secondAttribute="trailing" constant="10" id="Kgk-AQ-L83"/>
+                    <constraint firstAttribute="trailing" secondItem="b4v-Pg-BDv" secondAttribute="trailing" id="SPB-Zg-78v"/>
+                    <constraint firstItem="fDZ-Tq-MAN" firstAttribute="top" secondItem="Vuf-TX-dtt" secondAttribute="bottom" constant="18" id="T1e-KC-jLH"/>
+                    <constraint firstAttribute="bottom" secondItem="b4v-Pg-BDv" secondAttribute="bottom" id="Wqf-5P-Kas"/>
+                    <constraint firstItem="Vuf-TX-dtt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="aHU-Y1-M1n"/>
+                    <constraint firstItem="b4v-Pg-BDv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fNk-B6-Flv"/>
+                    <constraint firstItem="b4v-Pg-BDv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hIZ-Uz-T5c"/>
+                    <constraint firstItem="Vuf-TX-dtt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="jce-q0-iTB"/>
+                    <constraint firstAttribute="bottom" secondItem="fDZ-Tq-MAN" secondAttribute="bottom" constant="10" id="xc8-Jv-j3r"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="collectionView" destination="fDZ-Tq-MAN" id="Kph-o8-xbC"/>
+            </connections>
+            <point key="canvasLocation" x="82.608695652173921" y="131.25"/>
+        </tableViewCell>
+    </objects>
+</document>
