@@ -24,7 +24,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
     let vc = HomeViewController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let homeNavi = UINavigationController(rootViewController: vc)

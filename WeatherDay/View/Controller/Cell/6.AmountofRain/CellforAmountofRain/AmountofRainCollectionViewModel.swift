@@ -12,14 +12,18 @@ final class AmountofRainCollectionViewModel {
     
     // MARK: - Properties
     var amountOfRain: AmountofRain
+    var forecastsEveryHours: ForecastsEveryHours
 
     var statusRain: String {
         return amountOfRain.statusOfRain
     }
     var humidity: Int {
-        return amountOfRain.humidity
+        return forecastsEveryHours.humidity
     }
-    init(amountOfRain: AmountofRain) {
+    
+    // MARK: - Initialize
+    init(amountOfRain: AmountofRain, forecastsEveryHours: ForecastsEveryHours) {
         self.amountOfRain = amountOfRain
+        self.forecastsEveryHours = forecastsEveryHours
     }
 }

@@ -29,20 +29,20 @@ final class SunandWindView: UIView {
     }
 
     private func covertSunrisetoSecond(hours: String) -> Int {
-        let temp: [String] = hours.components(separatedBy: ":")
-        let index = temp[1].index(temp[1].startIndex, offsetBy: 2)
-        let mySubstringTemp1 = temp[1][..<index]
-        guard let temp1 = Int(temp[0]), let temp2 = Int(mySubstringTemp1) else {
+        let temps: [String] = hours.components(separatedBy: ":")
+        let index = temps[1].index(temps[1].startIndex, offsetBy: 2)
+        let mySubstringTemp1 = temps[1][..<index]
+        guard let temp1 = Int(temps[0]), let temp2 = Int(mySubstringTemp1) else {
             return 0
         }
         return (temp1 * 60) * 60 + temp2 * 60
     }
 
     private func covertSunsettoSecond(hours: String) -> Int {
-        let temp: [String] = hours.components(separatedBy: ":")
-        let index = temp[1].index(temp[1].startIndex, offsetBy: 2)
-        let mySubstringTemp1 = temp[1][..<index]
-        guard let temp1 = Int(temp[0]), let temp2 = Int(mySubstringTemp1) else {
+        let temps: [String] = hours.components(separatedBy: ":")
+        let index = temps[1].index(temps[1].startIndex, offsetBy: 2)
+        let mySubstringTemp1 = temps[1][..<index]
+        guard let temp1 = Int(temps[0]), let temp2 = Int(mySubstringTemp1) else {
             return 0
         }
         return ((temp1 + 12) * 60) * 60 + temp2 * 60
@@ -85,7 +85,6 @@ final class SunandWindView: UIView {
         let secondCurrent: Int = (hoursCurrent * 60) * 60 + minuteCurrent * 60
         let secondSunrise: Int = covertSunrisetoSecond(hours: sunrise)
         let secondSunset: Int = covertSunsettoSecond(hours: sunset)
-
         var anglePI: CGFloat = CGFloat(secondCurrent - secondSunrise) / CGFloat(secondSunset - secondSunrise)
         if anglePI >= 1 {
             anglePI = 1
@@ -94,10 +93,10 @@ final class SunandWindView: UIView {
 
         let circleLayer = CAShapeLayer()
         let circlePath = UIBezierPath(arcCenter: arrCenter,
-            radius: 120,
-            startAngle: startAngle,
-            endAngle: anglePI * .pi + startAngle,
-            clockwise: true).cgPath
+                                      radius: 120,
+                                      startAngle: startAngle,
+                                      endAngle: anglePI * .pi + startAngle,
+                                      clockwise: true).cgPath
         circleLayer.path = circlePath
         circleLayer.lineWidth = 3.0
         circleLayer.strokeColor = UIColor.yellow.cgColor //border of circle
@@ -115,32 +114,6 @@ final class SunandWindView: UIView {
         //prevent the imageView from going back to its original coordinates
         imageView.frame.origin.x = circlePath.currentPoint.x - imageView.frame.width / 2
         imageView.frame.origin.y = circlePath.currentPoint.y - imageView.frame.height / 2
-    }
-
-    func configImage() {
-        let bigPole2X = UIImageView(image: UIImage(named: "bigpole2x"))
-        bigPole2X.frame = CGRect(x: 160,
-                                 y: 220 - 105,
-                                 width: 8,
-                                 height: 45)
-        let blade2X = UIImageView(image: UIImage(named: "blade_big2x"))
-        blade2X.frame = CGRect(x: 140,
-                               y: 220 - 135,
-                               width: 50,
-                               height: 50)
-        let bigPole3X = UIImageView(image: UIImage(named: "bigpole3x"))
-        bigPole3X.frame = CGRect(x: 120,
-                                 y: 220 - 120,
-                                 width: 10,
-                                 height: 60)
-        let blade3X = UIImageView(image: UIImage(named: "blade_big3x"))
-        blade3X.frame = CGRect(x: 95,
-                               y: 220 - 155,
-                               width: 60,
-                               height: 60)
-        blade2X.rotateView(targetView: blade2X, duration: 4)
-        blade3X.rotateView(targetView: blade3X, duration: 4)
-        addSubviews([bigPole3X,blade3X,bigPole2X,blade2X])
     }
 
     func configAnimations(startAngle: CGFloat, anglePI: CGFloat) -> CABasicAnimation {
@@ -176,6 +149,32 @@ final class SunandWindView: UIView {
         imageAnimation.path = circlePath
         return imageAnimation
     }
+    
+    func configImage() {
+            let bigPole2X = UIImageView(image: UIImage(named: "bigpole2x"))
+            bigPole2X.frame = CGRect(x: 160,
+                                     y: 220 - 105,
+                                     width: 8,
+                                     height: 45)
+            let blade2X = UIImageView(image: UIImage(named: "blade_big2x"))
+            blade2X.frame = CGRect(x: 140,
+                                   y: 220 - 135,
+                                   width: 50,
+                                   height: 50)
+            let bigPole3X = UIImageView(image: UIImage(named: "bigpole3x"))
+            bigPole3X.frame = CGRect(x: 120,
+                                     y: 220 - 120,
+                                     width: 10,
+                                     height: 60)
+            let blade3X = UIImageView(image: UIImage(named: "blade_big3x"))
+            blade3X.frame = CGRect(x: 95,
+                                   y: 220 - 155,
+                                   width: 60,
+                                   height: 60)
+    //        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { (timer) in
+    //            blade2X.transform = blade2X.transform.rotated(by: CGFloat.pi / 360)
+    //            blade3X.transform = blade3X.transform.rotated(by: CGFloat.pi / 360)
+    //        }
+            addSubviews([bigPole3X,blade3X,bigPole2X,blade2X])
+        }
 }
-
-

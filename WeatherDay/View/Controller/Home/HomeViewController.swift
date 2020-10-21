@@ -9,7 +9,7 @@
 import SideMenu
 import UIKit
 
-final class HomeViewController: ViewController, UINavigationControllerDelegate {
+final class HomeViewController: ViewController {
 
     // MARK: - IBOutlets
     @IBOutlet weak var fullScreenImageView: UIImageView!
@@ -18,13 +18,10 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
 
     // MARK: - Properties
     var viewModel: HomeViewModel = HomeViewModel()
-    var sunAndWind: SunandWindView = SunandWindView()
     var refreshControl = UIRefreshControl()
-    var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01")]
+    var imageArray: [UIImage] = [#imageLiteral(resourceName: "img_02"), #imageLiteral(resourceName: "img_05"), #imageLiteral(resourceName: "img_04"), #imageLiteral(resourceName: "img_03"), #imageLiteral(resourceName: "img_01"),#imageLiteral(resourceName: "img_lock")]
     var menu: SideMenuNavigationController?
     var locationName: String = ""
-    var check: Bool = true
-
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -33,24 +30,11 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         configTableview()
         configPulltoRefesh()
         configSideMenu()
-        UIScreen.main.brightness = CGFloat(1)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.setContentOffset(.zero, animated: true)
-        errorImageView.isHidden = true
-        UIView.transition(with: fullScreenImageView, duration: 0.6,
-            options: .transitionCrossDissolve,
-            animations: {
-                self.fullScreenImageView.image = self.imageArray.randomItem
-            })
-        fetchData()
-        if locationName == "" {
-            locationName = "Đà Nẵng"
-        }
-        title = locationName
-        handleCallApi(locationName: locationName)
+        configUIViewWillAppear()
     }
 
     // MARK: - Private Functions
@@ -64,7 +48,6 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         // Change color title
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-
         navigationController?.navigationBar.tintColor = .white
 
         // Transparent navi
@@ -87,10 +70,26 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
     }
+    
+    private func configUIViewWillAppear() {
+        tableView.setContentOffset(.zero, animated: true)
+        errorImageView.isHidden = true
+        UIView.transition(with: fullScreenImageView, duration: 0.6,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.fullScreenImageView.image = self.imageArray.randomItem
+            })
+        fetchData()
+        if locationName == "" {
+            locationName = "Đà Nẵng"
+        }
+        title = locationName
+        handleCallApi(locationName: locationName)
+    }
 
     private func configPulltoRefesh() {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        tableView.addSubview(refreshControl)
+        tableView.refreshControl = refreshControl
     }
 
     private func configSideMenu() {
@@ -103,7 +102,13 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
     }
 
     private func fetchData() {
-        viewModel.fetchKeySearch()
+        viewModel.fetchKeySearch { result in
+            switch result {
+            case .success: break
+            case .failure(let error):
+                self.alert(error: error)
+            }
+        }
         getFirst()
     }
 
@@ -270,7 +275,7 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
         }
     }
 
-// MARK: - Objc private functions
+    // MARK: - Objc private functions
     @objc private func pushToSearch() {
         let vc = SearchViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -278,7 +283,6 @@ final class HomeViewController: ViewController, UINavigationControllerDelegate {
 
     @objc private func didTapMenu() {
         guard let menu = menu else { return }
-        menu.delegate = self
         present(menu, animated: true)
     }
 
@@ -358,8 +362,7 @@ extension HomeViewController: UITableViewDelegate {
         case .weatherToday:
             let rowType = HomeViewModel.WeatherToday(rawValue: indexPath.row)
             switch rowType {
-            case .row0: return 220
-            case .row1: return 220
+            case .row0, .row1: return 220
             default: return UITableView.automaticDimension
             }
         case .weatherDayofWeek:
@@ -371,11 +374,7 @@ extension HomeViewController: UITableViewDelegate {
             }
         case .weatherDetails:
             return 199
-        case .map:
-            return 220
-        case .sunAndWind:
-            return 220
-        case .amountOfRain:
+        case .map, .sunAndWind, .amountOfRain:
             return 220
         default: return UITableView.automaticDimension
         }

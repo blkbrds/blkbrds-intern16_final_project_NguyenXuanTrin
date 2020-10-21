@@ -42,10 +42,10 @@ final class EveryHoursTableViewCellViewModel {
     
     func findMax() -> Int {
         var array: [Int] = []
-        var a: ForecastsEveryHours
+        var temp: ForecastsEveryHours
         for i in 0..<48 {
-            a = listData[i]
-            array.append(a.temperatureToday)
+            temp = listData[i]
+            array.append(temp.temperatureToday)
         }
         var max = array[0]
         for i in array {

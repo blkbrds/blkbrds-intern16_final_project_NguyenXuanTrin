@@ -44,6 +44,7 @@ extension AmountofRainTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: AmountofRainCollectionViewCell.self, for: indexPath)
         guard let viewModel = viewModel else { return UICollectionViewCell() }
+        viewModel.findItemforCell()
         cell.viewModel = viewModel.viewModelForItem(at: indexPath)
         return cell
     }

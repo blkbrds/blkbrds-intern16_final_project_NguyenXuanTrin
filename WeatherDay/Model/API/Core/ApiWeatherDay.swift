@@ -31,7 +31,7 @@ extension APIManager.Forecasts {
 
     static func getForecastsArrayByCity(location: String, completion: @escaping DataCompletion<[Forecasts]>) {
         ApiOAuth.shared.weather(location: location, failure: { (error) in
-            print(error.localizedDescription)
+            completion(.failure(Api.Error.emptyData))
         }, success: { (response) in
                 do {
                     guard let data = try response.jsonObject() as? [String: Any] else {

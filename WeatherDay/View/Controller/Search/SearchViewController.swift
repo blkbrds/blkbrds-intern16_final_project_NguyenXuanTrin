@@ -21,7 +21,6 @@ final class SearchViewController: ViewController {
     // MARK: - Properties
     var viewModel: SearchViewModel = SearchViewModel()
     private lazy var searchController = UISearchController(searchResultsController: nil)
-    let status = UserDefaults.standard.bool(forKey: "CheckListSearch")
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -30,6 +29,11 @@ final class SearchViewController: ViewController {
         configSearchUI()
         getListCityNameInTheWorld()
         //getListCityNameInVietNam()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchKeySearch()
     }
 
     // MARK: - Override functions
@@ -68,8 +72,7 @@ final class SearchViewController: ViewController {
         viewModel.saveProvinceToRealm(searchKey: searchKey) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
-            case .success:
-                print("Successed")
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -80,8 +83,7 @@ final class SearchViewController: ViewController {
         viewModel.getListNameCityInTheWorld { [weak self] (result) in
             guard let this = self else { return }
             switch result {
-            case .success:
-                print("Successed")
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -92,10 +94,19 @@ final class SearchViewController: ViewController {
         viewModel.getListNameCityInVietNam { [weak self] (result) in
             guard let this = self else { return }
             switch result {
-            case .success:
-                print("Successed")
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
+            }
+        }
+    }
+    
+    private func fetchKeySearch() {
+        viewModel.fetchKeySearch { result in
+            switch result {
+            case .success: break
+            case .failure(let error):
+                self.alert(error: error)
             }
         }
     }

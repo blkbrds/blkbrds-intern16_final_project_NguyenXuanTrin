@@ -11,10 +11,6 @@ import Foundation
 
 final class ArrayLoactionViewModel {
 
-    init() {
-        self.fetchKeyLocation()
-    }
-
     // MARK: - Properties
     var keySearch: KeySearch = KeySearch()
 
@@ -57,28 +53,30 @@ final class ArrayLoactionViewModel {
             completion(.failure(error))
         }
     }
-
-    func fetchKeyLocation() {
+    
+    func fetchKeyLocation(completion: @escaping APICompletion) {
         do {
             let realm = try Realm()
             if let result = realm.objects(KeySearch.self).first {
                 keySearch = result
+                completion(.success)
             }
         } catch {
-            print(error.localizedDescription)
+            completion(.failure(error))
         }
     }
 
-    func removeKeyLocation(locationName: String) {
+    func removeKeyLocation(locationName: String, completion: @escaping APICompletion) {
         do {
             let realm = try Realm()
             try realm.write {
                 if let index = keySearch.keyList.index(of: locationName) {
                     keySearch.keyList.remove(at: index)
+                    completion(.success)
                 }
             }
         } catch {
-            print(error.localizedDescription)
+            completion(.failure(error))
         }
     }
 }

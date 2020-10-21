@@ -18,21 +18,6 @@ final class HomeViewModel {
         case map
         case sunAndWind
         case amountOfRain
-
-        var numberOfRowInSections: Int {
-            switch self {
-            case .weatherToday: return 2
-            case .weatherDayofWeek: return 8
-            case .weatherDetails: return 1
-            case .map: return 1
-            case .sunAndWind: return 1
-            case .amountOfRain: return 1
-            }
-        }
-
-        static var count: Int {
-            return HomeSectionType.weatherToday.hashValue + 1
-        }
     }
 
     enum WeatherToday: Int {
@@ -54,9 +39,7 @@ final class HomeViewModel {
     var atmosphere: Atmosphere = Atmosphere()
     var location: Location = Location()
     var astronomy: Astronomy = Astronomy()
-    var listEveryHours: [EveryHours] = []
     var listAmountOfRain: [AmountofRain] = []
-    var listProvince: [Province] = []
     var keySearch: KeySearch = KeySearch()
 
     // MARK: - Functions
@@ -71,13 +54,7 @@ final class HomeViewModel {
             return 2
         case .weatherDayofWeek:
             return 8
-        case .weatherDetails:
-            return 1
-        case .map:
-            return 1
-        case .sunAndWind:
-            return 1
-        case .amountOfRain:
+        case .weatherDetails, .map, .sunAndWind, .amountOfRain:
             return 1
         }
     }
@@ -111,25 +88,22 @@ final class HomeViewModel {
     func viewModelForCellEight() -> AmountofRainTableViewModel? {
         getListAmountOfRain()
         let temps = listAmountOfRain
-        return AmountofRainTableViewModel(listData: temps)
-    }
-
-    private func getListEveryHours() {
-        listEveryHours = DataforCell.listEveryHours()
+        return AmountofRainTableViewModel(listAmountOfRain: temps, listDataForecasts: forecastsEveryHoursList)
     }
 
     private func getListAmountOfRain() {
         listAmountOfRain = DataforCell.listAmountofRain()
     }
 
-    func fetchKeySearch() {
+    func fetchKeySearch(completion: @escaping APICompletion) {
         do {
             let realm = try Realm()
             if let result = realm.objects(KeySearch.self).first {
                 keySearch = result
+                completion(.success)
             }
         } catch {
-            print(error.localizedDescription)
+            completion(.failure(error))
         }
     }
 

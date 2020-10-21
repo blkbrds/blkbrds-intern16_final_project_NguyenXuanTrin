@@ -16,7 +16,7 @@ protocol SideMenuViewControllerDelegate: class {
 final class SideMenuTableViewController: UITableViewController {
 
     // MARK: - Properties
-    var delegate: SideMenuViewControllerDelegate?
+    weak var delegate: SideMenuViewControllerDelegate?
     var viewModel: SideMenuViewModel = SideMenuViewModel()
     enum Action {
         case sendTitleHome(title: String)
@@ -25,17 +25,17 @@ final class SideMenuTableViewController: UITableViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         configTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchKeyLocation()
+        fetchKeyLocation()
         tableView.reloadData()
     }
 
     func configTableView() {
+        navigationController?.navigationBar.isHidden = true
         tableView.backgroundColor = #colorLiteral(red: 0.1131554469, green: 0.128916502, blue: 0.1580072343, alpha: 1)
         tableView.register(nibWithCellClass: OptionLocationTableViewCell.self)
         tableView.register(nibWithCellClass: LocationsTableViewCell.self)
@@ -45,10 +45,19 @@ final class SideMenuTableViewController: UITableViewController {
         viewModel.saveProvinceToRealm(searchKey: searchKey) { [weak self] (result) in
             guard let this = self else { return }
             switch result {
-            case .success:
-                print("Successed")
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
+            }
+        }
+    }
+    
+    private func fetchKeyLocation() {
+        viewModel.fetchKeyLocation { result in
+            switch result {
+            case .success: break
+            case .failure(let error):
+                self.alert(error: error)
             }
         }
     }
@@ -61,12 +70,10 @@ final class SideMenuTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return viewModel.numberOfSections()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return viewModel.numberOfRowsInSection(inSection: section)
     }
 
@@ -96,15 +103,14 @@ final class SideMenuTableViewController: UITableViewController {
         switch sectionType {
         case .location:
             switch indexPath.row {
-            case 0:
-                print("a")
+            case 0: break
             default:
                 let title = viewModel.keySearch.reversedList[indexPath.row - 1]
                 saveProvinceToRealm(searchKey: title)
                 delegate?.changeTitleHome(self, needPerform: .sendTitleHome(title: title))
                 dismiss(animated: true)
             }
-        case .none: print("a")
+        case .none: break
         }
     }
 }

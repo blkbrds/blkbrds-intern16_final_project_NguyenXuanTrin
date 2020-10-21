@@ -20,6 +20,11 @@ class ArrayLocationTableViewController: UITableViewController {
         configTableview()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchKeyLocation()
+    }
+
     // MARK: - Functions
     func configNavi() {
         title = "Edit locations"
@@ -40,6 +45,27 @@ class ArrayLocationTableViewController: UITableViewController {
             switch result {
             case .success:
                 print("Successed")
+            case .failure(let error):
+                this.alert(error: error)
+            }
+        }
+    }
+
+    private func fetchKeyLocation() {
+        viewModel.fetchKeyLocation { result in
+            switch result {
+            case .success: break
+            case .failure(let error):
+                self.alert(error: error)
+            }
+        }
+    }
+
+    private func removeKeyLocation(locationName: String) {
+        viewModel.removeKeyLocation(locationName: locationName) { [weak self] (result) in
+            guard let this = self else { return }
+            switch result {
+            case .success: break
             case .failure(let error):
                 this.alert(error: error)
             }
@@ -85,12 +111,10 @@ class ArrayLocationTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            viewModel.removeKeyLocation(locationName: viewModel.keySearch.reversedList[indexPath.row])
+            removeKeyLocation(locationName: viewModel.keySearch.reversedList[indexPath.row])
             tableView.reloadData()
-        case .insert:
-            print("b")
-        case .none:
-            print("c")
+        case .insert: break
+        case .none: break
         }
     }
 

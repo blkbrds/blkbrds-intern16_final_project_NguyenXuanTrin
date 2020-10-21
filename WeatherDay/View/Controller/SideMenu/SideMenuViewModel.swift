@@ -74,14 +74,15 @@ final class SideMenuViewModel {
         }
     }
 
-    func fetchKeyLocation() {
+    func fetchKeyLocation(completion: @escaping APICompletion) {
         do {
             let realm = try Realm()
             if let result = realm.objects(KeySearch.self).first {
                 keySearch = result
+                completion(.success)
             }
         } catch {
-            print(error.localizedDescription)
+            completion(.failure(error))
         }
     }
 }
